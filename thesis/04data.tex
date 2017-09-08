@@ -1,0 +1,94 @@
+\chapter{Data}
+\label{chap:data}
+As is the case in many fields, a major issue in Authorship Attribution research, highlighted by \citet{potthast2016wrote}, is the lack of reproducibility. As part of our goal to make our research more easily reproducible, we use this chapter to describe the datasets we use for our experiments in detail. 
+
+All of these datasets are in the public domain or at least available online. We use three main sources for datasets that have been used in previous AA work, and present a new dataset as well.
+
+\section{PAN dataset}
+PAN is a ``series of scientific events and shared tasks on digital text forensics''\footnote{http://pan.webis.de/}. Every year, PAN holds shared tasks, and they have held several of these shared tasks on Authorship Verification. In 2013 \cite{juola2013overview}, 2014 \cite{stamatatos2015overview}, and 2015 \cite{stamatatos2015overview} a standard authorship verification task was run, and a new dataset was released in each of these years. In 2016 \cite{stein2016overview} and 2017 \cite{stein2017overview}, a more complicated ``authorship clustering'' task was run instead. In each year, a new authorship dataset was released. These datasets are small, but interesting in that they span multiple languages.
+
+The 2013 datasets are substantially smaller than those from 2014 and 2015. We therefore ignore the 2013 dataset for our work, but we use the the 2014 and 2015 datasets, which are described below. We also do not make use of the data provided in 2016 and 2017 as this follows a different format for use in authorship clustering instead of authorship verification. 
+
+\subsection{PAN 2014 dataset}
+In 2014, PAN released datasets for English, Dutch, Greek and Spanish. For English, there are two subsets. The first contains texts taken from essays, and the second contains excerpts from novels. Dutch similarly has two subsets, one of essays and one of reviews. The Greek and Spanish datasets are built from news articles. There are training and test datasets available. Note that PAN releases two test datasets, which they call testset 1 and testset 2. Unless otherwise noted, we use testset 2, which was used by the organisers for the official ranking of particpating systems. Some datasets also include more than one ``known'' text per author. Whenever this is the case, we concatenate all known texts into a single known text, a strategy that is sometimes referred to as ``profile-based'' (as opposed to ``instance-based'') in the literature, as we attempt to build a profile of the author from all available material instead of focusing on the individual texts. An overview of this dataset can be seen in Table \ref{tab:pan14data}.
+
+\begin{table}[!ht]
+\small
+\caption{\label{tab:pan14data}An overview of the PAN 2014 dataset. \textit{Docs. / Prob.} refers to the average number of documents per known author. \textit{Words / Doc.} is an average of the words per document.}
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+& \bf Problems & \bf Documents &\bf Docs. / Prob. & \bf Words / Doc. \\
+\midrule
+English Novels train & 100 & 200 & 1.0 & 3 137.8\\
+English Novels test & 200 & 400 & 1.0 & 6 104.0 \\
+English Essays train & 200 & 729 & 2.6 & 848.0 \\
+English Essays test & 200 & 718 & 2.6 & 833.2 \\
+Dutch Essays train & 96 & 268 & 1.8 & 412.4   \\
+Dutch Essays test  & 96 & 287 & 2.0 & 398.1   \\
+Dutch Reviews train & 100 & 202 & 1.0 & 112.3 \\
+Dutch Reviews test  & 100 & 202 & 1.0 & 116.3 \\
+Greek Articles train & 100& 385 & 2.9 & 1 404.0\\
+Greek Articles test  & 100 & 368 & 2.7 & 1536.6\\
+Spanish Articles train & 100& 600 & 5.0 & 1 135.6\\
+Spanish Articles test & 100 & 600 & 5.0 & 1 221.4 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+\subsection{PAN 2015 dataset}
+
+The PAN 2015 dataset is similar to that provided in 2014, but it is cross-genre in some cases (the known and unknown texts for each problem come from different genres) and cross-topic in others (the known and unknown texts are from different topics). As in 2014, the languages covered are English, Dutch, Greek, and Spanish. We provide a summary of this dataset in Table \ref{tab:pan15data}.
+
+
+\begin{table}[!ht]
+\small
+\caption{\label{tab:pan15data}An overview of the PAN 2015 dataset. \textit{Docs. / Prob.} refers to the average number of documents per known author. \textit{Words / Doc.} is an average of the words per document.}
+\begin{center}
+\begin{tabular}{lrrrr}
+\toprule
+& \bf Problems & \bf Documents &\bf Docs. / Prob. & \bf Words / Doc. \\
+\midrule
+English train & 100 & 200 & 1.0 & 3 366\\
+English test & 500 & 1000 & 1.0 & 6 536 \\
+Dutch train & 100& 276   & 1.76 & 354   \\
+Dutch test  & 165 & 452  & 1.74 & 360   \\
+Greek train & 100& 393 & 2.93 & 678\\
+Greek test  & 100 & 380 & 2.8 & 756\\
+Spanish train & 100& 500 & 4.0 & 954 \\
+Spanish test & 100 & 500 & 4.0 & 946 \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\section{C50 dataset}
+The C50 dataset \cite{houvardas2006ngram} is a subset of the well-known Reuters Newswire corpus, RCV1 \cite{lewis2004rcv1}. It was created by \citet{houvardas2006ngram} for an AA study that focussed on n-gram features. This corpus is interesting because all the authors are writing in the same style (journalism) on the same topic, as all articles were taken from the CCAT (corporate/industrial) part of the larger corpus. This is a well-balanced corpus, with 50 authors. Each author is represented by 50 training texts and 50 test texts. We provide a summary of this dataset in Table \ref{tab:c50data}.
+
+\begin{table}[!ht]
+\caption{\label{tab:c50data}An overview of the C50 dataset.}
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+& \bf Train & \bf Test            \\
+\midrule
+Number of Authors & 50 & 50               \\
+Number of Documents & 2\,500 & 2\,500         \\
+Average words / Author & 24\,380 & 24\,737  \\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{table}
+
+\section{Yelp dataset}
+Yelp runs a so-called ``dataset challenge'' periodically where they invite interested parties to use large collections of review data for original research. We used the data provided along with the ninth installment of this challenge, and we provide an overview of this dataset below.
+
+Yelp provides data in the form of several text files, where each line of each file is a JSON object. We look only at the ``Reviews'' file, which contains the text of user reviews for various products and services (mainly accommodation and food). Although the usernames have been anonymized, each review written by the same user has the same anonymized \textit{user\_id} field, and therefore we know which users left the same reviews.
+There are 4\,153\,150 reviews in total, from 1\,029\,432 different users. 537\,904 users have left exactly one review in the dataset, and therefore their reviews are of limited use to us in Authorship Attribution studies, and we can use these reviews only as negative examples for the AV problem.
+
+This dataset is primarily interesting because it is far larger than the other datasets that we use. The larger amount of data is potentially useful for our Neural Network models, as these typically require more training data than other approaches, and the amount of data is also interesting in that it forces models to be efficient in order to process all of the data in a reasonable time frame.
+
+We create different subsets for different experiments from the Yelp dataset, and we therefore describe these different subsets in more detail along with the descriptions of the relevant experiments.
+

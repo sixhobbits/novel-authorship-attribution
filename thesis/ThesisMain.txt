@@ -1,0 +1,2015 @@
+Novel Approaches to Authorship
+Attribution
+
+Submitted in partial fulfilment
+of the requirements of the degree of
+Master of Arts
+of University of Groningen
+
+Gareth Terence Bryant Dwyer
+
+Groningen, the Netherlands
+July 2017
+
+Abstract
+
+This is pretty abstract.
+
+ACM Computing Classification System Classification
+
+Thesis classification under the ACM Computing Classification System (1998 version, valid
+through 2013) [16]:
+I.2.7 [Natural Language Processing]: Web Corpora
+General-Terms: Corpus, Corpora, Natural Language, Concordancer
+
+Acknowledgements
+
+I would like to thank all the people who gave me money and my supervisor too. Also
+some other people.
+
+Contents
+
+1 Introduction
+
+8
+
+2 Background
+
+9
+
+2.1
+
+2.2
+
+Text Classification . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+2.1.1
+
+Support Vector Machines . . . . . . . . . . . . . . . . . . . . . . . . 10
+
+2.1.2
+
+Neural Networks . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+
+2.1.3
+
+Siamese Neural Networks . . . . . . . . . . . . . . . . . . . . . . . . 12
+
+Text Generation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 15
+2.2.1
+
+2.3
+
+Neural Language Modelling . . . . . . . . . . . . . . . . . . . . . . 15
+
+Authorship Attribution . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 17
+2.3.1
+
+Authorship Identification . . . . . . . . . . . . . . . . . . . . . . . . 17
+
+2.3.2
+
+Authorship Verification . . . . . . . . . . . . . . . . . . . . . . . . . 20
+
+2.3.3
+
+Neural Networks for Authorship Attribution . . . . . . . . . . . . . 23
+
+2.3.4
+
+Transfer Learning . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+
+2.3.5
+
+Style . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+
+2.3.6
+
+Related tasks . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+
+2
+
+CONTENTS
+
+3
+
+3 Method
+
+28
+
+3.1
+
+Unsupervised statistical approaches . . . . . . . . . . . . . . . . . . . . . . 28
+3.1.1
+
+3.2
+
+3.3
+
+Support vector machine approaches . . . . . . . . . . . . . . . . . . . . . . 30
+3.2.1
+
+Authorship identification tasks . . . . . . . . . . . . . . . . . . . . . 31
+
+3.2.2
+
+Authorship verification tasks . . . . . . . . . . . . . . . . . . . . . . 31
+
+Neural network approaches . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+3.3.1
+
+Authorship Identification Tasks . . . . . . . . . . . . . . . . . . . . 32
+
+3.3.2
+
+Authorship verification tasks . . . . . . . . . . . . . . . . . . . . . . 33
+
+4 Data
+4.1
+
+Authorship verification tasks . . . . . . . . . . . . . . . . . . . . . . 29
+
+34
+
+PAN dataset . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+4.1.1
+
+PAN 2014 dataset . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+
+4.1.2
+
+PAN 2015 dataset . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+
+4.2
+
+C50 dataset . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+
+4.3
+
+Enron dataset . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+
+4.4
+
+Yelp dataset . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+
+4.5
+
+Authorship Identification . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+
+4.6
+
+Authorship Identification . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+
+4.7
+
+Authorship Verification . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+
+4.8
+
+Authorship Verification . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 36
+
+CONTENTS
+5 Models
+5.1
+
+5.3
+
+37
+
+Unsupervised Statistical Approaches . . . . . . . . . . . . . . . . . . . . . 37
+5.1.1
+
+5.2
+
+4
+
+Features and Feature Extraction . . . . . . . . . . . . . . . . . . . . 37
+
+Support Vector Machine Approaches . . . . . . . . . . . . . . . . . . . . . 40
+5.2.1
+
+Authorship Identification Tasks . . . . . . . . . . . . . . . . . . . . 40
+
+5.2.2
+
+Authorship Verification Tasks . . . . . . . . . . . . . . . . . . . . . 41
+
+Neural Network Approaches . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+5.3.1
+
+6 Results
+
+Authorship Identification Tasks . . . . . . . . . . . . . . . . . . . . 42
+
+44
+
+6.1
+
+Unsupervised Statistical Approaches . . . . . . . . . . . . . . . . . . . . . 44
+
+6.2
+
+Support Vector Machine Approaches . . . . . . . . . . . . . . . . . . . . . 44
+
+6.3
+
+6.2.1
+
+Authorship Identification Tasks . . . . . . . . . . . . . . . . . . . . 44
+
+6.2.2
+
+Authorship Verification Tasks . . . . . . . . . . . . . . . . . . . . . 45
+
+Neural Network Approaches . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+
+7 Conclusion
+
+47
+
+List of Figures
+
+5
+
+List of Tables
+
+4.1
+
+Description of our Authorship Verification datasets.
+to the total number of characters of text we used to
+Text Length is half of this to account for creating
+texts for each author. . . . . . . . . . . . . . . . . .
+
+5.1
+
+An overview of the features we used for our unsupervised models. Each
+feature is normalized as a ratio either by the number of words in the text
+or the number of characters . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+
+5.2
+
+The fifteen supporting features for a pair of texts by J. M. Barrie. The
+Feature column shows the literal word or feature that was used differently
+in these two texts compared to the rest of the corpus, while the Known
+and Unknown columns show the z-score for that feature. . . . . . . . . . . 40
+
+5.3
+
+Example of pairing same-author and different-author verification examples.
+All pairs are same-author in the first two arrays (before shift), while half
+are different author in the second two (after shift). . . . . . . . . . . . . . 41
+
+5.4
+
+Description of our Authorship Verification datasets.
+to the total number of characters of text we used to
+Text Length is half of this to account for creating
+texts for each author. . . . . . . . . . . . . . . . . .
+
+5.5
+
+Example of partially overlapping sequences for 10 characters (note that for
+the actual model we used sequences of 100 characters). . . . . . . . . . . . 43
+
+6.1
+
+Results for the Identification task. Train time includes vectorization and
+preprocessing time. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 44
+6
+
+Author Length refers
+represent one author.
+known and unknown
+. . . . . . . . . . . . . 35
+
+Author Length refers
+represent one author.
+known and unknown
+. . . . . . . . . . . . . 42
+
+LIST OF TABLES
+6.2
+
+7
+
+Results for the Verification task. Train time includes vectorization and
+preprocessing time. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+
+Chapter 1
+Introduction
+Afroz et al. (2014) show how authorship attribution can be used for deanonymizing criminals in underground internet forums.
+[@goga2013exploiting] show that language modelling is hard – to deanonymize users on
+Yelp and Twitter they found that language was the least useful feature, with location and
+timestamps of updates being much better at identifying authors.
+
+8
+
+Chapter 2
+Background
+In this chapter, we will review prior literature relating to authorship attribution. We start
+with a review of prior literature that relates to the more general and related fields of text
+classification and language modelling, and follow this by looking at work which is more
+directly related to ours.
+Note that many of the articles that we make reference to are arXiv1 preprints and not all
+of them have been published in peer-reviewed journals. Due to the fast-moving nature of
+the field, it is necessary to consider the newest ideas, datasets, and methods, even before
+they have proven themselves though peer review. Most of the preprint paper we cite in
+this work are authored by well-known established researchers. Many of the papers have
+already been accepted at established conferences and will appear shortly in peer reviewed
+journals.
+Stamatatos (2009) has already created a comprehensive survey, summarizing and comparing various techniques that have been used for authorship attribution, including feature
+engineering and classification methods. In order to avoid repeating Stamatatos’s work,
+we therefore focus here on newer research (published after his survey), and research that
+is closely connected to our own (that is, work which uses similar features, classification
+techniques, and datasets).
+Authorship Attribution is a broad and completely well-defined field. We focus on two
+subtasks, namely Authorship Identification (AID) and Authorship Verification (AV). The
+first is the most well-known task, and it involves identifying the author of a disputed
+work from a set of candidate authors. For Authorship Verification, we attempt to predict
+1
+
+https://arxiv.org/
+
+9
+
+2.1. TEXT CLASSIFICATION
+
+10
+
+whether or not a specific person was the author of a disputed text. While the first task
+is more common, it has been argued that the second has more real-world applications.
+We discuss each of these in this section, and also mention the related AA tasks of Author
+Profiling and Native Language Identification.
+
+2.1
+
+Text Classification
+
+Authorship Attribution has seen research from different fields, including forensic studies
+(who are largely concerned with practical applications), linguistics (who are largely concerned with stylometry and language use, and often look at historically disputed texts
+manually or with computer assistance) and computer scientists (who are largely concerned
+with seeing how well machines can understand something as complicated as writing style).
+Our work is closest to the last category, and we see AA in essence as a text classification
+task, in which we attempt to build a system or systems that can take texts as input and
+produce the names or identities of specific authors as output.
+We further aim to create systems that are automatic and general. Therefore, we largely
+avoid approaches that would require manual annotation or be overly specific to a single
+dataset (for example, a system that only works on English texts, or only on poetry).
+In this section, we provide an overview of some common text classification methods which
+form part of the AA systems that we describe later. Specifically, several of our systems
+rely on Support Vector Machines (SVMs), which have been used successfully for many text
+classification tasks. We also experiment with Neural Networks, which have outperformed
+Support Vector Machines in many natural language processing tasks in the last few years.
+We therefore begin with a brief overview of these classifiers, and then look more specifically
+at how they relate to Authorship Attribution.
+
+2.1.1
+
+Support Vector Machines
+
+A Support Vector Machine is a linear classifier. It tries to find a separating hyperplane
+that maximises the distance between two classes. Support Vector Machines have been
+widely used over the last two decades since Joachims (1998) showed that they provide a
+robust and well-performing method for many text classification tasks. They have proven
+to work well in tasks ranging from Named Entity Recognition (Kravalová & Žabokrtský,
+
+2.1. TEXT CLASSIFICATION
+
+11
+
+2009), Authorship Profiling, such as personality and gender prediction (Verhoeven et al.,
+2016, Busger op Vollenbroek et al., 2016), and authorship attribution tasks (Hürlimann
+et al., 2015, Diederich et al., 2003, Koppel & Schler, 2003)
+Koppel et al. (2009) found that SVM approaches were state of the art for Authorship
+Attribution tasks. They state:
+
+Comparative studies on machine learning methods for topic-based text categorisation problems (Dumais et al. 1998; Yang 1999) have shown that in general, support
+vector machine (SVM) learning is at least as good for text categorisation as any
+other learning method and the same has been found for authorship attribution
+(Abbasi & Chen 2005; Zheng et al. 2006).
+
+Many of the studies that we reference below use SVM classifiers for Authorship Attribution
+and other text classification tasks. For all of the SVM experiments we use the SVM
+implementation provided by Pedregosa et al. (2011) in the popular scikit-learn Python
+library.
+
+2.1.2
+
+Neural Networks
+
+Recently, Neural Networks have received a lot of attention and have outperformed previous
+state-of-the-art approaches in many text classification and natural language processing
+tasks. Lai et al. (2015) showed that neural network classifiers could outperform other
+methods (including SVMs) in various text classification tasks. More generally, Neural
+Networks, and specifically Recurrent Neural Networks – a Neural Network which can
+model sequences – have been used to achieve promising results in many areas of Natural
+Language Processing. Goldberg (2016) states:
+
+Recurrent models have been shown to produce very strong results for language
+modeling, as well as for sequence tagging, machine translation, dependency parsing,
+sentiment analysis, noisy text normalization, dialog state tracking, response generation, and modeling the relation between character sequences and part-of-speech
+tags.
+
+However, neural networks often rely on larger datasets in order to outperform other classifiers, such as SVMs, and this is arguably one of the reasons why they are not yet widely
+
+2.1. TEXT CLASSIFICATION
+
+12
+
+used in AA tasks (we discuss some notable exceptions in Section 2.3.3.) We see two
+promising ways that Neural Networks can be used to tackle AA tasks in spite of the often
+limited data. For Authorship Identification, neural language models can be used to distinguish between different authors, as in the work of Bagnall (2015, 2016). We discuss this
+further in Section 2.2 and Section 2.3.3. For Authorship Verification, so-called Siamese
+Neural Networks conceptually fit the task very well, but there is very little empirical research that they work well for this in practice. We introduce Siamese Neural Networks in
+Section 2.1.3.
+
+2.1.3
+
+Siamese Neural Networks
+
+Siamese neural networks are a customized neural network architecture in which two subnetworks share weights which are simultaneously updated during training. A joining
+neuron learns a distance function between the two networks, and outputs a single similarity measure. Thus the network as a whole learns a custom distance function between
+pairs of inputs. Siamese neural networks are designed for verification tasks, in which we
+want to classify the relation between pairs of inputs, and they therefore conceptually fit
+the Authorship Verification task, in which we examine pairs of texts, very well. They
+have been used mainly for image verification tasks, as discussed below, but they are now
+gaining in popularity for text classification tasks such as question answering in which the
+question and candidate answer are taken as the input pair.
+Because Siamese Neural Networks were first used for image verification tasks, and most of
+the recent literature relating to Siamese Networks is still in that domain, we first present
+a broader introduction to Siamese Networks within image processing. This is followed by
+a review of the much smaller body of recent work which experiments with using similar
+ideas for text classification tasks.
+
+Image Similarity Tasks
+The concept of a Siamese Neural Network was first introduced by Bromley et al. (1993),
+who used it for Signature Verification. With signature verification, the task is to predict
+whether two signatures are signed by the same hand, or if one of the them is a forgery.
+The authors compare the two identical sub-networks, or “legs”, of the siamese network to
+feature extraction, as these learn which features are important, while the joining neuron
+measures the similarity between the two legs. If the measured distance between a known
+
+2.1. TEXT CLASSIFICATION
+
+13
+
+signature and an unknown one is greater than some threshold, then the unknown signature
+is rejected as being a forgery. More recently, similar architectures are still being actively
+used and researched for signature verification (Tiflin & Omlin, 2012).
+Since then, Siamese Networks have been used for similar verification tasks, such as face
+verification. This is similar to signature verification, but it is used, for example, for access
+control. A new picture of a person is taken and compared to one that is stored on record
+(for example, in an ID card or passport). If the system predicts that the new picture is
+the same as the stored one, the person is ‘verified’ and allowed access. (Chopra et al.,
+2005) describe how a siamese neural network can be used to solve this task as follows:
+
+We present a method for training a similarity metric from data. The method can
+be used for recognition or verification applications where the number of categories
+is very large and not known during training, and where the number of training
+samples for a single category is very small. The idea is to learn a function that
+maps input patterns into a target space such that the L2 norm in the target space
+approximates the semantic distance in the input space. The method is applied to a
+face verification task. The learning process minimizes a discriminative loss function
+that drives the similarity metric to be small for pairs of faces from the same person,
+and large for pairs from different persons.
+
+Similarly Zhu et al. (2017) achieved good results using siamese neural networks for face
+verification (called person reidentification in their work). A more complicated extension
+of image verification is automatic scene detection for films. Siamese networks have shown
+promising results for this task as well by doing multiple frame-wise verification sub-tasks,
+deciding which frames belong to the same scene, and which to different scenes in order to
+detect when the scene changes (Baraldi et al., 2015).
+The face verification task, in which real-world settings often mean that ta large or unknown
+number of classes needs to be taken into account and the training data per class is highly
+limited, is highly similar to the AV task that we already described. Although images are
+used for the face verification task, while we need to look at text for the AV task, because
+neural networks have shown to be proficient at classifying both images and text, and
+because the siamese architecture has been shown to be successful for the face verification
+task, it is likely that a similar architecture would work well for the AV task.
+Verification tasks are associated with what is sometimes referred to as ‘one-shot’ learning.
+One shot learning describes teaching a classifier to recognise examples of a specific class by
+training it on a single example from that class, as opposed to normal classification tasks
+
+2.1. TEXT CLASSIFICATION
+
+14
+
+in which the classifier is given thousands or millions of training examples for each class.
+Koch et al. (2015) shows how Siamese Neural Networks can be used to solve one-shot
+learning tasks in image classification by comparing each test example to each training
+example, and seeing which one is predicted most strongly as being same-class. Bouma2
+presents a higher-level introduction to the same idea.
+Siamese Neural Networks have also being used for pronunciation similarity in speech
+recognition tasks (Naaman et al., 2017), for Optical Character Recognition (Hosseini-Asl
+& Guha, 2015), and for several types of text classification task, which we discuss next.
+
+Text Similarity Tasks
+More recently, Siamese Neural Networks are being used for text classification tasks. Yin
+et al. (2016) use a models based on Siamese Neural Networks for three text classification
+tasks. These are answer selection, in which the goal is to select the correct answer for a
+given question; paraphrase identification, in which pairs of sentences must be identified
+as either being a paraphrase of each other or not; and textual entailment, in which they
+attempt to predict whether or not one sentence entails another. The find that their
+architecture performs adequately on all three tasks.
+Neculoiu et al. (2016) use a Siamese Network to match job titles that refer to the same
+(or similar) positions, but which are lexically different. For example, in the technology
+industry, “software architectural technician Java/J2EE” may describe the same job as
+“Java Engineer”. When matching job applications to job applicants, it is useful to be
+able to automatically map all titles to the same concept, and the authors show that this
+can be done with a Siamese Neural Network architecture.
+Similarly, Mueller & Thyagarajan (2016) use Siamese Networks to achieve high results in
+a sentence similarity task, in which the goal is to predict how semantically similar two
+sentences are.
+Notably, almost all of the text similarity tasks described above involve very short texts,
+usually sentences or phrases. While the Authorship Verification task, in which we have
+to decide whether to texts are by the same author, conceptually fits the siamese model
+very well, there is almost no empirical evidence that this architecture performs well for
+learning a similarity function over longer text pairs.
+2
+
+https://sorenbouma.github.io/blog/oneshot/
+
+2.2. TEXT GENERATION
+
+2.2
+
+15
+
+Text Generation
+
+Automatically generating text in a specific style is a more difficult task than discriminating
+between different styles of human-generated text. If we can generate text in the style of a
+specific author then we can also discriminate between authorship styles. One of the main
+methods we experiment with, described in Section 2.3.3, uses generative language models
+for discriminating between authorship styles. Therefore, we introduce the concept of text
+generation and review prior work in this area, focusing on work that uses generative
+character-based neural language modelling.
+
+2.2.1
+
+Neural Language Modelling
+
+A language model is a function that assigns a probability to a sequence of words or
+characters. A common word sequence, such as “Yesterday, I bought an apple” would be
+assigned a much higher probability than an uncommon sequence such as “My mattocks
+are inaureoled”3 .
+Most language models have historically been so-called word-level language models (Mikolov
+et al., 2012). That is, these models take individual words as the smallest unit, and calculate the probability of a specific word given the sequence of words that come before
+it.
+More recently, character-level language models have become more popular, and are useful
+for their ability to model unseen or “OOV” (out-of-vocabulary) words. It is impossible
+for a language model to account for every word in existence, and word-based language
+models cannot deal with words that they have not been trained on. Character-level
+language models work in the same way as word-based models, but take an atomic unit to
+be the character, and calculate the probability of a specific character given the sequence
+of characters that come before it. These models deal much better with unseen or OOV
+words, as even unseen words usually follow specific character patterns (for example, a
+character-level model might be able to predict a ‘-tion’ suffix for a word, even if it hasn’t
+seen the complete word during training).
+Sutskever et al. (2011) showed that Recurrent Neural Networks (RNNs), a neural network model designed for sequence modelling, could be used for character-level language
+3
+
+Which loosely could mean “my double-ended battle hoe is surrounded by a halo”
+
+2.2. TEXT GENERATION
+
+16
+
+modelling and that these language models could generate surprisingly coherent sounding
+text. This concept was popularised in a blog post titled The Unreasonable Effectiveness of Recurrent Neural Networks 4 , where Karpathy showed how well character-level
+recurrent neural networks were able to generate text in a specific style. For example, his
+network was able to automatically generate text that closely resembles that written by
+Shakespeare, an excerpt of which is given below:
+
+KING LEAR: O, if you were a feeble sight, the courtesy of your law, Your sight
+and several breath, will wear the gods With his heads, and my hands are wonder’d
+at the deeds, So drop upon your lordship’s head, and your opinion Shall be against
+your honour.
+
+Mikolov et al. (2012) discuss the trade-offs between word- and character-based language
+modelling and shows how Neural Networks can be used for a variety of language modelling
+tasks. They introduce so-called subword models, which share the advantages of word- and
+character-based models.
+More recently Gatt & Krahmer (2017) present a comprehensive modern survey on Natural
+Language Generation. Although their work is generally broader than ours, it is interesting
+to us because they mention the idea of generating text in the style of a specific author,
+stating
+
+A second question is whether stylistic variation could be modelled in a more specific
+fashion, for example, by tailoring style to a specific author, rather than to generic
+dimensions related to formality, involvement and so on.
+
+Any work that could achieve this fine-grained style control could certainly be useful in
+discriminating between authorship styles. Unfortunately, as noted by Gatt & Krahmer,
+this is a very new area of research and no one has yet successfully achieved this.
+There are broader notions of style, which we discuss in more details in Section 2.3.4, and
+there is some work in generating text in these broader styles. Ficler & Goldberg (2017)
+experiment with generating movie reviews in specific styles. For example, by setting a
+“professional” parameter in their model, they get a sample generation of “This film has
+a certain sense of imagination and a sobering look at the clandestine indictment.”, which
+4
+
+http://karpathy.github.io/2015/05/21/rnn-effectiveness/
+
+2.3. AUTHORSHIP ATTRIBUTION
+
+17
+
+is in the style of a professional critic. By turning off this setting, they get examples such
+as “I know its a little bit too long, but its a great movie to watch !!!”, which is more
+in the style of an internet review. They use a conditioned LSTM-RNN, conditioning the
+generated texts based on several parameters, such as sentiment, formality, and register.
+
+2.3
+
+Authorship Attribution
+
+In this section we present a review of prior work that is closely related to our research
+on Authorship Attribution (AA). The two main sub-tasks of AA, as discussed before, are
+Authorship Identification (AID) and Authorship Verification (AV). We discuss each of
+these in turn. By some definitions, related tasks such as age profiling, gender profiling,
+personality profiling, and native language identification, also fall under the AA umbrella.
+We discuss these tasks briefly later, but for our work we will regard AA as consisting of
+AID and AV.
+
+2.3.1
+
+Authorship Identification
+
+Authorship Identification (AID) is the most well-known Authorship Attribution task. For
+the AID task, the goal is to predict which of a closed set of candidate authors is the author
+of an unknown text, where the unknown text is of disputed authorship. (Stamatatos, 2009)
+describes this task as follows:
+
+In the typical authorship attribution problem, a text of unknown authorship is
+assigned to one candidate author, given a set of candidate authors for whom text
+samples of undisputed authorship are available. From a machine learning point-ofview, this can be viewed as a multi-class single-label text categorization task.
+
+Many approaches to authorship attribution have been attempted over the last three
+decades, including supervised and unsupervised approaches. For supervised approaches,
+the features used have varied greatly. Stamatatos (2009) lists 20 commonly used features, which he breaks down into the categories of lexical (for example, word n-grams),
+character (for example, character n-grams), syntactic (for example, parts of speech tags),
+semantic (for example, synonyms), and application specific (for example, language specific
+dictionary).
+
+2.3. AUTHORSHIP ATTRIBUTION
+
+18
+
+Intuitively, when attempting to identify the author of a text, it seems that very unusual
+words and phrases used by that author would be helpful. In practice, however, the unique
+way that an author uses very common words and phrases is far more useful. Looking only
+at very common function words (for example, ‘the’, ‘and’, ‘he’, etc), can in many cases be
+enough to reliably distinguish one author from another. (Kestemont, 2014) talks about
+why function words are important for authorship attribution. He gives four main points
+regarding function words, namely that all people who write in the same language will use
+the same function words; that function words appear with high frequency in almost all
+texts; that function words are not effected by the topic of the text; and that function
+words seem“seems less under an authors conscious control”.
+(Koppel et al., 2009) also support the idea that function words are good for Authorship
+Attribution. They state:
+
+The reason for using FWs [function words] in preference to others is that we do
+not expect their frequencies to vary greatly with the topic of the text, and hence,
+we may hope to recognize texts by the same author on different topics. It also is
+unlikely that the frequency of FW use can be consciously controlled, so one may
+hope that use of FWs for attribution will minimize the risk of being deceived
+
+However, Kestemont (2014) also argues that function words are more useful in English
+settings than for other languages, because English, as a language that does not make
+heavy use of inflections, relies more on function words than other languages do. He
+believes that character n-grams can often provide an adequate representation of function
+words in a text, while also being “sensitive to the internal morphemic structure of words”.
+That is, it is likely that models which rely on character n-grams as features will be
+more language independent than word-based models, as character n-grams can capture
+distinctive function word usage, while also capturing distinctive inflection usage.
+Feature engineering is not always desirable as it requires a topic specialist to construct
+task-specific features. It can also make classification tasks less efficient (for example, if
+a parts-of-speech tagger is needed to extract a specific feature then classification performance will be drastically reduced), and less generalizable (a model that relies on partsof-speech tag is less likely to perform well cross-lingually, especially for languages which
+do not have good taggers). Furthermore, recent research has shown that manual feature
+engineering can result in worse accuracy than in cases where the classifier is relied upon
+to infer features from rawer input. For example, we were part of a team that achieved
+
+2.3. AUTHORSHIP ATTRIBUTION
+
+19
+
+the top ranking in an Authorship Profiling shared task, using only word and character
+n-grams as features. Our research showed that adding additional features only hurt perfomance (FIXME cite n-GrAM). Similarly, (Braud & Sgaard, 2017) showed that a simple
+uni-gram model outperformed a model with many complex features in a task that used
+writing to style to identify scientific fraud.
+Recently, authorship attribution models which rely on almost no manual feature engineering have proven to perform well. For example, Bagnall (2015) achieved the top score at
+an Authorship Attribution shared task, using only the characters of each text as features.
+We discuss his approach in more detail in Section 2.3.3.
+With the above in mind, we focus on approaches that do not require heavy feature engineering, and which are therefore more applicable across different domains and languages.
+Much of the prior work related to AID uses settings that are not common in real-world
+authorship attribution tasks. Luyckx (2011) talks about the scalability issues relating to
+authorship identification and criticises prior research on two main points. First, earlier
+work often uses a very small number of candidate authors for AI tasks (sometimes only
+two). Second, this work often uses very long texts (often each text is a full-length book).
+By contrast, in practical AA tasks there is often only a short fragment of text available,
+and a large number of candidate authors. Luyckx states:
+
+authorship attribution ‘in the wild’ may entail thousands of candidate authors with
+often small sets of data or only very short texts, in substantially more topics, genres,
+and registers
+
+It is therefore desirable to experiment with AID tasks that are closer to the settings
+found “in the wild”. That is, we want our methods to perform well in cases where their
+are many candidate authors and limited text available for each. More modern papers
+often acknowledge and address the issues raised by Luyckx, but it is not unusual to
+still see studies that ignore these issues. For example, Akimushkin et al. (2017) provide
+an extensive analysis on using text networks for AA, but present results on a dataset
+consisting of only eight authors, and using ten full-length books for each author.
+Abbasi & Chen (2008) present research that has closer ties to practical AA problems. They
+focus on attempting to identify authors in “cyberspace”, and use datasets consisting of
+emails and online forums. They use the Enron dataset (Klimt & Yang, 2004) which we
+also use, and describe in Section 4.8. Our work contrasts with theirs in that they use
+
+2.3. AUTHORSHIP ATTRIBUTION
+
+20
+
+many of the features described above, while in most of our models, we attempt to solve
+the task using as few features as possible.
+Somers & Tweedie (2003) look at some basic stylometry features such as lexical richness
+and take special note of Alice Through the Needle’s Eye, sometimes claimed to be the
+best Pistache. REMOVE.
+
+2.3.2
+
+Authorship Verification
+
+Authorship Verification (AV) is an AA task in which the goal is to predict whether two
+texts are written by the same author. It is sometimes formulated as deciding whether or
+not a specific author wrote a disputed text. Therefore, it can be thought of in two ways.
+First, it can be modelled as a one-class classification problem, in which we attempt to
+distinguish a single class (or a single author) from all other possible texts.
+Koppel & Schler (2004) takes this approach and in explaining why AV is a more interesting
+and realistic task than AID, he states:
+
+If, for example, all we wished to do is to determine if a text was written by Shakespeare or Marlowe, it would be sufficient to use their respective known writings,
+to construct a model distinguishing them, and to test the unknown text against
+the model. If, on the other hand, we need to determine if a text was written by
+Shakespeare or not, it is very difficult if not impossible to assemble an exhaustive,
+or even representative, sample of not-Shakespeare.
+
+To keep the advantages of AV over AID, but to also solve the problem of representing
+“not-Shakespeare”, (Koppel et al., 2009) later argued that it might be better to think of
+AV as a two-class problem. He states:
+
+Verification can be thought of as a one-class classification problem (Manevitz &
+Yousef, 2001; Scholkopf, Platt, Shawe- Taylor, Smola, & Williamson, 2001; Tax,
+2001). But perhaps a better way to think about authorship verification is that we
+are given two example sets and are asked whether these sets were generated by the
+same process (i.e., author) or by two different processes.
+
+Koppel has pushed the idea of AV being a more important and interesting task than AID
+more strongly over the years. He has stated that “a solution to [authorship verification]
+
+2.3. AUTHORSHIP ATTRIBUTION
+
+21
+
+can serve as a building block for solving almost any conceivable authorship attribution
+problem” (Koppel et al., 2012b) and has called it the “fundamental problem of Authorship
+Attribution” (Koppel et al., 2012b,a). He has also said that “Almost any conceivable
+authorship attribution problem can be reduced to one fundamental problem: whether a
+pair of (possibly short) documents were written by the same author” (Koppel & Winter,
+2014)
+Luyckx & Daelemans (2008) are also proponents of Authorship Verification. They state:
+
+Most studies also use sizes of training data that are unrealistic for situations in
+which stylometry is applied (e.g., forensics), and thereby overestimate the accuracy
+of their approach in these situations. A more realistic interpretation of the task is
+as an authorship verification problem[...].
+
+However not everyone uses the same definitions or terminology for Authorship Verification tasks. Another way to distinguish between AV and AID is by distinguishing between
+‘closed-world’ and ‘open-world’ tasks. In AID, the world is ‘closed’ because we can enumerate all the potential authors for a given text. In AV, the world is ‘open’, because either
+the two texts are written by the same author, or they are not. In the latter case, we do
+not attempt to define who is the actual author of the unknown text. This distinction
+(and terminology) is discussed by Stolerman et al. (2011) who aim to reconcile theoretical
+AA work with practical issues. They present research on “Breaking the Closed-World
+Assumption in Stylometric Authorship Attribution”, and argue that much theoretical
+research is impractical as it assumes a closed-world setting.
+They introduce the classify-verify method for AA tasks, which adds a second step to a
+traditional classification approach in which the classifier is taught to “abstain” in certain
+cases, and argue that this is a good compromise between closed- and open-world tasks.
+Stolerman (2015) presents a comprehensive review of Authorship Verification methods.
+He distinguishes between two classes of authorship tasks, namely one-class problems and
+textittwo-class problems. The former refers to tasks in which we attempt to distinguish a
+single class (for example, a single author) against all other classes (for example, all other
+possible authors). Two-class problems refer to tasks in which we attempt to assign one
+of two labels (for example, same-author or different-author to each instance. Stolerman
+notes that there is no need to discuss the more general n-class classification as any n-class
+problem can be reduced to multiple one-class or two-class tasks.
+
+2.3. AUTHORSHIP ATTRIBUTION
+
+22
+
+Stolerman [PhD thesis on Authorship Verification] discusses at length the need for authorship attribution research to focus more on practical tasks, and to move away from
+the traditional closed-task setups that have dominated previous work. He states
+
+The standard closed-world authorship attribution domain, however, is abundant
+with datasets that can be trivially formulated to test verification. If more datasets
+are to be used and tested, it can assert the usability of current and future verification
+methodologies, with emphasis on which techniques are suited to what problems.
+Verification methods should be tested on datasets that challenge with a high number
+of potential authors, taking pure one-sided learning approaches, limited amounts of
+training data, texts with real-world characteristics and the like.
+
+Central to the verification task is the idea of similarity. Because we have two texts, a
+known and an unknown, we want to be able to tell how stylistically similar these two texts
+are. This has led researches to propose many different ways of representing similarity,
+both in terms of features used as well as custom distance measures. Halvani et al. (2016)
+propose a distance function which is a modified version of Manhattan Distance, and show
+a novel similarity-based authorship verification that generalises well over different genres
+and languages. Halvani et al.’s work is mainly of interest to us because they show results
+for many different PAN datasets, which we also use.
+A less usual approach to modelling similarity is by using compression models. Data
+compression exploits patterns in text to efficiently reduce the storage space required to
+store a representation of that text. If a compression model ‘trained’ on a known text
+is also able to efficiently compress an unknown text, then at least some patterns in the
+known text are also present in the unknown text. (Stamatatos, 2009) discusses some
+older work that uses compression models for AA, and more recently (Halvani et al., 2017)
+has investigated these methods again. Although we do not use compression models in
+our current work, this research is related to ours because character-based neural language
+models, which we do use and describe in detail in Section ??, rely on a similar idea: that
+a system trained to find low-level patterns in a known text can be used to evaluate an
+unknown text.
+Luyckx & Daelemans (2008) describe why the verification task is more interesting than
+the identification one. They use a high-school essay corpus of 145 authors.
+Halvani et al. (2016) present results for authorship verification on a several corpora,
+including PAN. They achieve a median accuracy of 0.7.
+
+2.3. AUTHORSHIP ATTRIBUTION
+
+23
+
+[@halvani2017authorship] evaluate simple and fast compression-based models for authorship verification. They compare their system to Bagnall and GLAD, and use the PAN
+dataset.
+
+2.3.3
+
+Neural Networks for Authorship Attribution
+
+As we mentioned before, there has been very little work in using Neural Networks for
+Authorship Attribution. This is partly because in AA tasks there is often very limited
+training data available. Neural Networks have proven to be very powerful in many text
+classification tasks, but they often rely on huge amounts of training data to achieve good
+results. Here, we discuss some existing attempts that use neural approaches to Authorship
+Attribution.
+Bagnall (2015, 2016) has achieved the top rank at recent PAN Authorship Attribution
+shared tasks. He competed in and won two shared tasks over two years. The first task
+was an AV task, while the second was an “authorship clustering” task, which is a more
+complicated task but which can still be remodelled as AV. Bagnall’s approach is interesting for three reasons. First, he uses a neural network approach which outperformed
+competitors’ SVM models. As far as we know, this is the only indication in prior literature that neural networks can improve upon existing AA methods Second, Bagnall uses
+almost no manual feature engineering, relying only on character sequences. Third, instead
+of training a discriminative classifier to discriminate between authors, as is more common
+for text classification tasks, he trains separate generative models for each candidate author. He assumes that a model trained on a known text from a specific author will better
+fit unknown texts from that same author. He therefore classifies each unknown text by
+seeing how well each author-specific model models that text.
+Although in both 2015 and 2016 the AA tasks presented by PAN were closer to AV tasks
+than AID ones, Bagnall’s approach better fits the AID task. He approximates the AV task
+as follows. After evaluating each unknown text against each author-specific model, if the
+model from the known text models the unknown text better than half of all author-specific
+models, then he predicts that the two texts are written by the same author.
+There has been some indication that Convolutional Neural Networks (CNNs) can be used
+for Authorship Attribution.Shrestha et al. (2017) use CNNs to identify the authors of
+short texts (Tweets) and Ruder et al. (2016) use a similar model for larger scale AA
+tasks, using datasets from Twitter, Reddit, Blogs, IMDB, and The Enron Email dataset
+(which we discuss in section FIXME).
+
+2.3. AUTHORSHIP ATTRIBUTION
+
+24
+
+Generative and Discriminative models
+Unlike Bagnall’s approach discussed above, which relies on generative models, both of
+these approaches use discriminative models. (Ng & Jordan, 2002) compare discriminative
+and generative models for classification (specifically logistic regression and naive Bayes),
+and show that, depending on the size of the training data, generative models can outperform discriminative ones. Similarly and more recently (Yogatama et al., 2017) build on
+the word by Ng & Jordan and show empirically that the same is true for LSTM models
+in text classification tasks. They state:
+
+However we also find that generative models approach their asymptotic error rate
+more rapidly than their discriminative counterpartsthe same pattern that Ng &
+Jordan (2001) proved holds for linear classification models that make more nave
+conditional independence assumptions. Building on this finding, we hypothesize
+that RNN-based generative classification models will be more robust to shifts in the
+data distribution. This hypothesis is confirmed in a series of experiments in zeroshot and continual learning settings that show that generative models substantially
+out-perform discriminative models.
+
+Deng & Jaitly (2015) also compare generative and discriminative models, mainly in the
+domain of speech processing, and similarly find that generative models can outperform
+discriminative models in certain cases, especially when training data is limited.
+
+2.3.4
+
+Transfer Learning
+
+As mentioned above, a major obstacle against using neural networks for AA tasks is that
+of data scarcity. Often we simply do not have enough training data available per author
+for a neural network model to learn a generic representation of each author. Previously,
+Transfer Learning has been used to surmount data-scarcity obstacles.
+Transfer learning is the practice of training a neural network on one task and then using
+the learned weights to initialise a new network for a different task. Riemer et al. (2017)
+describe this by stating: “The very popular strategy of fine-tuning a neural network
+involves first training a neural network on a source task and then using the model to
+simply initialize the weights of a target task network up to the highest allowable common
+representation layer”. This is often used for task where data-scarcity is an issue. I large
+network is trained on a more general task, such as image recognition, on a large dataset,
+
+2.3. AUTHORSHIP ATTRIBUTION
+
+25
+
+and this knowledge is then “transferred” to a more specific network to be used in a task
+with less data available. Although this is most well-known for its use in image classification
+tasks, it is also used in text-based tasks. For example, Zoph et al. (2016) use Transfer
+Learning to improve Neural Machine Translation for low-resource language pairs.
+Although the terms transfer learning and fine-tuning are often used interchangeably,
+Lalor et al. (2017) make a distinction between the two, reserving transfer learning for
+situations in which data from a different task is used in the second training phase, and
+using fine-tuning for situations in which more data for the same task is used.
+Of special interest to Authorship Attribution is the idea of fine-tuning a language model
+to be personalised to a specific author. (Yoon et al., 2017) show that it’s possible to
+“personalize” language models in this way. They train generative LSTM language models
+and then fine-tune them to represent a specific author, even though they have only limited
+data per author. In this work, the goal is to predict user-specific replies and sentencecompletion on mobile phones, but the idea is not dissimilar to that of Bagnall’s that we
+discussed previously.
+
+2.3.5
+
+Style
+
+We have discussed how it is possible to attribute a work to a specific author based on
+specific stylistic features. However, it is important to note that the concept of authorship
+style is not well defined nor well understood, and different studies often refer to very
+different concepts under the same label of “writing style”. Gatt & Krahmer (2017), in an
+extensive survey on text generation, state:
+
+What does the term ‘linguistic style’ refer to? Most work on what we shall refer to
+as ‘stylistic nlg’ shies away from a rigorous definition, preferring to operationalise
+the notion in the terms most relevant to the problem at hand.
+
+For authorship attribution, style is closely associated with, for example, which parts-ofspeech tags authors choose to use (a specific author might use a lot of adjectives), how
+they choose to punctuate (some authors are proud of never having used a semi-colon in
+their lives; others use them frequently), or how long they typically make their sentences.
+By contrast, “style” often refers to a more general concept which includes the register,
+formality, or tone of a specific text. For example, (Jhamtani et al., 2017) show how it
+
+2.3. AUTHORSHIP ATTRIBUTION
+
+26
+
+is possible to automatically “translate” between writing styles by taking modern text
+as input and producing text in the style of Shakespeare as output, while keeping the
+meaning of the text the same. In order to achieve this, we need to be able to discriminate
+between content and style. If we could do this reliably, authorship attribution would be a
+much easier task, as we could simply compare various writing styles needing to deal with
+content. However, (Jhamtani et al., 2017) needed parallel corpora to achieve the results
+that they did. These were available as all of Shakespeare’s works have been translated into
+“modern” English manually. There is ongoing work on automatic style transfer. Kabbara
+& Cheung (2016) propose the opposite of (Jhamtani et al., 2017), that is, they present a
+proposal in which they aim to build a Recurrent Neural Network system that, trained on
+Shakespeare and Simple-English Wikipedia, could translate works written in the style of
+Shakespeare into a more modern and easier to read style.
+While we have two different versions of Shakespeare’s work (the original version and
+the modernized version), this is uncommon. In nearly all cases, when we examine text
+written in different styles, the content differs as well. One exception is the book Exercises
+in Style (Queneau, 1981), in which the same short story is re-written 99 times in different
+styles. The book was written in French, but has since been translated into over 30 other
+languages. While this work is of interest to any studies that relate to writing style, the
+book is too short to be of use in teaching machine learning models to discriminate between
+styles more generally, and moreover although the author consciously varies his style for the
+99 variations, they are all still written by the same author (or translator). Therefore much
+of the subconscious writing style variations (such as the use of function words discussed
+above) would be lost.
+However we define style, it is clear that the separation of content from style is necessary
+for many AA tasks. Recently, work has been done to separate content from artistic style
+in photographs and paintings. For example Gatys et al. (2016) show that it is possible to
+automatically alter modern photographs to make them resemble the distinctive artistic
+style of Van Goch. Central to this idea is that CNNs seem to learn different levels of
+abstraction at different layers. Lower layers often learn to recognise more fundamental
+features, such as shapes, while higher layers learn more abstract features, such as those
+we associate with style. This is related to the work byRaghu et al. (2016) who discuss
+the relation between the structure of a neural network and the functions that it is able to
+compute. They state that lower layers are more important and are more sensitive to noise
+and optimisations, while higher layers can model exponentially more complex functions.
+Unfortunately while image classification is often done with deeply stacked CNNs, thus
+allowing for different layers to learn content- and style-related features, this is not the
+
+2.3. AUTHORSHIP ATTRIBUTION
+
+27
+
+same for text tasks, where sequences are more important than hierarchies. Therefore
+there is no work showing that textual style can be separate from content in the same way.
+
+2.3.6
+
+Related tasks
+
+By some definitions, other author profiling tasks also form part of general AA. These include, Age Profiling, Gender Profiling, Personality Profiling, and Native Language Identification. For age profiling the task is usually to predict which of several age ranges an
+author belongs to, looking only at text written by that author. For gender profiling, we
+attempt to discriminate between male and female authors. Personality profiling is less
+common, and usually attempts to predict Myers-Briggs personality types (Myers, 1962).
+Native Language Identification is the task of predicting the authors first language from
+text produced in a second language (usually English). This has practical links to forensic
+linguistics, in that even if we cannot identify the exact author of an unknown text, it is
+often still useful to identify their nationality by using their native language as a proxy,
+and it’s ties to Authorship Attribution are discussed by (Stolerman, 2015).
+We do not investigate these tasks closely in the current work, but studies that focus on
+these areas is related to ours in that the systems that work well for these tasks also work
+for AID and AV, due to the fact that the tasks all fall under a general assumption of
+classifying authors based on their writing style. Specifically, the annual PAN AA shared
+task, which is one of our primary sources for AID and AV prior work, runs parallel shared
+task on Authorship Profiling, with a focus on age and gender tasks. Methods which use
+Support Vector Machine classifiers have shown to outperform other methods in all of these
+tasks. Similarly (Verhoeven et al., 2016) use SVMs and TF-IDF vectors for gender and
+personality profiling.
+
+Chapter 3
+Method
+As previously discussed, there are a number of different ways to approach Authorship
+Attribution tasks. Specifically, we experiment with both authorship identification and
+authorship verification tasks, using different methods. These methods can be broadly
+broken into
+• Statistical methods, in which we compare texts using (unsupervised) statistical
+methods.
+• Support Vector Machine (SVM) methods, in which we use SVMs to discriminate
+between authorship styles.
+• Neural Network approaches, in which we experiment with various formulations of
+AA tasks and various models, including Siamese Networks and generative language
+modelling.
+
+In the rest of this chapter, we give a brief overview of each method with which we experimented. The goal of this chapter is to provide a high-level overview of each method,
+explaining the intuitions behind why we decided to use these. We describe the approaches
+in depth in Chapter 5.
+
+3.1
+
+Unsupervised statistical approaches
+
+Previously, we discussed the distinction between intrinsic and extrinsic approaches to
+authorship attribution. Recall that the former relies only on comparing the target texts
+28
+
+3.1. UNSUPERVISED STATISTICAL APPROACHES
+
+29
+
+(e.g. a known and an unknown text) to each other, while the latter compares the target
+texts to a corpus of external texts.
+In this section, we describe our experiments involving extrinsic approaches. Supervised
+machine learning has become the go-to method for many text classification tasks, but the
+resulting models are often seen as a “black box”. Data goes in and predictions come out,
+and it can be difficult to justify or explain these predictions. Here, we explain how we can
+meaningfully analyse texts using some basic statistical approaches, including correlation
+techniques, on a number of different features. For these techniques, we experimented only
+with authorship verification tasks.
+
+3.1.1
+
+Authorship verification tasks
+
+To decide if two texts are written by the same author, we can compare various features
+in each text to some large corpus of (preferably similar) texts. If, for example, both texts
+have (when compared to the corpus) a higher-than-average sentence length, or a lowerthan-average adjective frequency, then we have some small piece of evidence that the two
+texts were written by the same author. If the two texts relate to the corpus similarly over
+a variety of different features, then we have more evidence that the two texts share an
+author.
+We experiment with two ways of comparing our target texts to a corpus. Firstly, we use a
+simple count-based approach based on supporting and opposing points for the hypothesis
+that the texts share an author. Secondly we use a correlation analysis, to see if the two
+texts diverge from the corpus in a similar fashion.
+We use lexical and syntactic features for these experiments, including sentence length,
+word length, various readability scores, parts-of-speech (PoS) tag relative frequency, and
+frequency of the most-common function words. Unlike our other experiments where we
+attempt to keep feature engineering to a minimum, these experiments rely on a PoS tagger,
+a manually crafted list of function words, and several readability scores. Therefore, we
+experiment only with the small English datasets, that is, the English sections of PAN
+2014 and PAN 2015.
+
+Count-based statistical experiments First, we use a simple count-based approach.
+If two texts, compared to the corpus, either:
+
+3.2. SUPPORT VECTOR MACHINE APPROACHES
+
+30
+
+a) Both have a feature that is higher-than-average (for example, both texts have a
+higher-than-average adjective frequency), or
+b) Both have a feature that is lower-than-average (for example, both texts have an
+average sentence length that is lower than the average of the corpus)
+then we take this to be a point supporting the hypothesis that the texts share an author.
+If there is a feature such that one text is higher-than-average while the other is lowerthan-average (e.g. Text 1 uses more commas than the corpus-average while Text 2 uses
+fewer commas than the corpus-average), then we take this to be an opposing point.
+We then classify texts into same-author or different-author classes based on whether there
+are more supporting points than opposing ones.
+
+Correlation based statistical experiments A more nuanced way to achieve the
+above is to look at the correlation between the features of each text. If one text has a
+much higher than average sentence length, and the other has only a slightly higher than
+average sentence length, then this should be less indicative of same-author than if the two
+texts both have a much higher than average sentence length.
+If two texts are written by the same author, we expect the exact way that each diverges
+from the reference corpus to correlate quite strongly. If the texts are written by different
+authors, we expect a weaker correlation.
+We therefore run experiments similar to those described above, but instead of simply
+counting the supporting and opposing points, we run a Pearson correlation coefficient
+test on each pair of features, again experimenting with different thresholds to make the
+final same-author or different-author predictions.
+
+3.2
+
+Support vector machine approaches
+
+Support Vector Machines (SVMs) have proven to be efficient and powerful for a widevariety of text-classification tasks. For all of our multi-class SVM experiments, we use a
+one-against-all strategy. That is, if we have 50 candidate authors, we train 50 SVMs, and
+each one is trained to discriminate in a binary fashion between its author and all other
+authors.
+
+3.2. SUPPORT VECTOR MACHINE APPROACHES
+
+31
+
+Because SVMs are fast to train and scale well to large datasets, we present SVM-based
+experiments for all of our datasets.
+
+3.2.1
+
+Authorship identification tasks
+
+For the identification task, we can simply train SVMs on the authors knowns texts, and
+attempt to predict the author of unknown texts from the pool of candidate authors. While
+this is perhaps the most-common set up for authorship attribution tasks, it is also the
+least interesting. Generally, good results are only feasible for a small pool (fewer than 100)
+candidate authors, and practically there are very few cases where we want to know which
+of small, well-defined set of authors wrote a particular text. Nonetheless, we use this set
+up to experiment with different numbers of authors and different features, predominately
+word and character n-grams represented as Term Frequency - Inverse Document Frequency
+(TF-IDF) vectors.
+
+3.2.2
+
+Authorship verification tasks
+
+Normally for text classification tasks, the goal is to apply a label to each text. For
+authorship verification tasks, we need to say something meaningful about the relation
+between a pair of texts. A naive approach might be to concatenate the two texts and
+then attempt to assign a “yes” or “no” label. However, we don’t want to learn rules such
+as “if either text contains the word discombobulation then the two texts are likely to be
+written by the same author” which is unfortunately the kind of rule that a traditional
+classifier would learn if we trained it on concatenated pairs of texts.
+Therefore, to learn something meaningful about text pairs, we need to look at the similarity between the two texts. Often, the cosine distance between the vector representations
+of each text is used for such tasks. However, two different authors often write texts that
+have a strong cosine similarity (for example, two authors writing about the same topic),
+and conversely a single author will often produce two texts that appear very dissimilar
+by the cosine metric (for example, if the author writes on two different topics).
+By subtracting TF-IDF vectors of each text, we get a feature set that is more meaningful.
+The SVM can learn which word- and character n-grams are indicate authorship, and can
+learn rules such as “if the count of the word “the” is similar in both texts, then it is likely
+that they are written by the same author”.
+
+3.3. NEURAL NETWORK APPROACHES
+
+3.3
+
+32
+
+Neural network approaches
+
+Neural Networks (NNs), especially Recurrent Neural Networks (RNNs) with Long ShortTerm Memory (RNN-LSTMs) or with Gated Recurrent Units (RNN-GRUs) have been
+the poster-child of many Natural Language Processing (NLP) advancements in the last
+few years. As discussed before, they have failed so far to become state-of-the-art for
+Authorship Attribution tasks. This is for several reasons, including:
+• RNNs are difficult to train and not yet fully understood
+• RNNs usually require much larger amounts of data than existing AA datasets
+• The feedback cycle for RNN classifiers can be much longer than alternative approaches such as SVMs. For example, for one of our experiments FIXME REF, the
+SVM took about three minutes to train and evaluate, while the RNN model took
+over 14 hours.
+Our experiments with Neural Network classification can be broken into three main categories:
+• Discriminative Text Classification: Similarly to our SVM identification experiments, we model the authorship identification problem as a traditional multi-class
+classification task. Instead of TF-IDF vectors, we use word embeddings, and instead
+of the SVM classifier, we use a neural network model.
+• Generative, author-specific language modelling: Following recent advances in
+neural character-based language modelling, it is possible to generate text in the style
+of a specific author (for example, Karpathy FIXME REF). By training language
+models to mimic the writing style of specific authors, we can classify unknown texts
+by seeing which author-specific language model best models that text.
+• Siamese neural networks: We use a neural network that contains two sets of
+identical weights and learns a custom distance function between pairs of inputs.
+This fits our verification task very well.
+
+3.3.1
+
+Authorship Identification Tasks
+
+Discriminative classifiers
+TODO or remove
+
+3.3. NEURAL NETWORK APPROACHES
+
+33
+
+Generative Language Modelling
+If we can generate text in the style of a specific author, we can also recognise it. Previous
+work has shown that generative classifiers can be more effective than discriminative ones,
+even for discriminative tasks.
+For these experiments, we analyse various ways to create personalized language models,
+including different architectures, and using transfer learning.
+
+3.3.2
+
+Authorship verification tasks
+
+Discriminative classifiers
+Generative language modelling
+Because identification tasks can often be reformulated as verification tasks, and vice-versa,
+we also attempt some of the verification tasks using the generative personalized models
+described above. For verification, we train personalized language models for each known
+text. Then we compute the cross entropy for each unknown text, for each model. If the
+unknown text has a lower cross entropy than more than half of the personalized models,
+that provides an indication that the two texts are by the same author.
+
+Siamese networks
+TODO
+
+Chapter 4
+Data
+As is the case in many fields, a major issue in Authorship Attribution research, highlighted
+by Potthast et al. (2016), is the lack of reproducibility. As part of our goal to make our
+research more easily reproducible, we use this chapter to describe the datasets we use for
+our experiments in detail.
+All of these datasets are in the public domain or at least available online. We use three
+main sources for datasets that have been used in previous AA work, and present a new
+dataset as well.
+
+4.1
+
+PAN dataset
+
+PAN is a “series of scientific events and shared tasks on digital text forensics”. Every year,
+PAN holds shared tasks, and they have held several of these shared tasks on Authorship
+Verification. In 2013 (?), 2014 (Stamatatos et al., 2014), and 2015 (Stamatatos et al.,
+2015) a standard authorship verification task was run, and a new dataset was released in
+each of these years. In 2016(Stamatatos et al., 2016) and 2017 FIXME, a more complicated
+“authorship clustering” task was run instead. In each year, a new authorship dataset was
+released. These datasets are small, but interesting in that they span multiple languages.
+The 2013 datasets are substantially smaller than those from 2014 and 2015. We therefore
+ignore the 2013 dataset for our work, but we use the the 2014 and 2015 datasets, which
+are described below.
+
+34
+
+4.2. C50 DATASET
+
+4.1.1
+
+35
+
+PAN 2014 dataset
+
+In 2014, PAN released datasets for English, Dutch, Greek and Spanish. For English,
+there are two subsets. The first contains texts taken from essays, and the second contains
+excerpts from novels. Dutch similarly has two subsets, one of essays and one of reviews.
+The Greek and Spanish datasets are built from news articles. There are training and test
+datasets available. Note that PAN releases two test datasets, which they call testset 1
+and testset 2. Unless otherwise noted, we use testset 2. Some datasets also include more
+than one “known” text per author. Whenever this is the case, we concatenate all known
+texts into a single known text, a strategy that is sometimes referred to as “profile-based”
+(as opposed to “instance-based”) in the literature, as we attempt to build a profile of the
+author from all available material instead of focusing on the individual texts. An overview
+of this dataset can be seen in Table 4.1.
+English Novels train
+English Novels test
+English Essays train
+English Essays Test
+Dutch Essays Train
+Dutch Essays Test
+Dutch Reviews Train
+Dutch Reviews Test
+Dutch Essays Test
+Greek Articles Train
+Greek Articles Test
+Spanish Articles Train
+Spanish Articles Test
+
+Number of authors
+10 000
+5 000
+38 900
+30 000
+8 900
+8 900
+24979
+24979
+24979
+24979
+24979
+24979
+24979
+
+Average text length
+6 000
+3 000
+71 300
+60 000
+11 300
+11 300
+17662
+17662
+17662
+17662
+17662
+17662
+17662
+
+Table 4.1: Description of our Authorship Verification datasets. Author Length refers to
+the total number of characters of text we used to represent one author. Text Length is
+half of this to account for creating known and unknown texts for each author.
+
+4.1.2
+
+4.2
+
+PAN 2015 dataset
+
+C50 dataset
+
+The C50 dataset (Houvardas & Stamatatos, 2006) is a subset of the well-known Reuters
+Newswire corpus, RCV1 (Lewis et al., 2004). It was created by Houvardas & Stamatatos
+
+4.3. ENRON DATASET
+
+36
+
+(2006) for an AA study that focussed on n-gram features. This corpus is interesting
+because all the authors are writing in the same style (journalism) on the same topic, as
+all articles were taken from the CCAT (corporate/industrial) part of the larger corpus. s
+
+4.3
+
+Enron dataset
+
+(Klimt & Yang, 2004)
+
+4.4
+
+Yelp dataset
+
+Yelp runs a so-called “dataset challenge” periodically where they invite interested parties
+to use large collections of review data for original research. We used the data provided
+along with the 9th installment of this challenge to create several Authorship Identification
+and Authorship Verification datasets. These are described below.
+
+4.5
+
+Authorship Identification
+
+4.6
+
+Authorship Identification
+
+4.7
+
+Authorship Verification
+
+4.8
+
+Authorship Verification
+
+Chapter 5
+Models
+5.1
+
+Unsupervised Statistical Approaches
+
+As described in Section 3.1, we experiment with unsupervised approaches to Authorship
+Verification. Specifically, we build a corpus out of all available text pairs for a given
+dataset, and then compare each text to the corpus using various features. Below, we
+describe these features, how we extract them, and which datasets we use to evaluate this
+method.
+
+5.1.1
+
+Features and Feature Extraction
+
+We extracted various features from each text to attempt to “fingerprint” the author’s
+style. These features can be seen in Table 5.1
+We used the English sections of the PAN 2014 and PAN 2015 datasets. Because this is an
+unsupervised method, we present results on the training and test datasets. All texts were
+lowercased and stripped of characters not included in Characters from Table 5.1. For
+each dataset, we considered all texts in that dataset as a corpus. We calculated the mean
+and standard deviation of each feature, across all texts in this corpus. Then, for each text
+pair in that dataset, we looked for supporting or opposing points for the hypothesis that
+both texts were written by the same author by comparing each text to the corpus.
+Specifically, this was achieved by looking at standard deviations from the corpus mean,
+the z-score, for each feature. We set a threshold to only consider the features of each text
+37
+
+5.1. UNSUPERVISED STATISTICAL APPROACHES
+Name
+Long Words
+Monosyllables
+Polysyllables
+Num Sentences
+Num Syllables
+Num Unique Words
+Num Words
+POS Tags
+Function words
+Characters
+
+38
+
+Description
+Number of words with > 6 characters per character
+Number of words with a single syllable per character
+Number of words with > 2 syllables per character
+Number of sentences per character
+Number of syllables per character
+Number of unique words per character
+Number of words per character
+Frequency of each of 16 common PoS tags per word
+Frequency of each of 150 function words per word
+Frequency of lowercase letter plus !? :; , .0 per character
+
+Table 5.1: An overview of the features we used for our unsupervised models. Each feature
+is normalized as a ratio either by the number of words in the text or the number of
+characters
+that were substantially different from the mean. For example, if the known and unknown
+text in a given text pair both had a Long Words z-score larger than the threshold, then
+this is taken as a supporting point that the texts share an author. For another exapmle,
+using a threshold of 0.5, if the known text has a z-score of 0.6 for Long Words and the
+unknown text has a z-score of -0.7 for Long Words, then this is taken as an opposing point.
+Features which do not differ from the corpus by more than the threshold in both texts are
+ignored. We generate a final same-author or different-author prediction by considering
+all features that differ suitably from the corpus mean, and counting the supporting and
+opposing points, predict same-author if the number of supporting points is larger than
+the number of opposing points, and different-author otherwise.
+We experimented with different thresholds and also with combining all of the datasets
+into a single dataset in order to have a more reliable average of each feature. This method
+also allows for manual inspection of a text pair (for example, to assist a forensic linguist
+in verifying the authorship of a disputed text). That is, we can compare two texts against
+a given corpus and examine the most distinctive features of each text. In the PAN 15 test
+dataset, one of the same-author text pairs uses an excerpt from Der Tag a short tragic
+play by J. M. Barrie, as the known text and an excerpt from The Admirable Crichton,
+a comedy by the same author, as the unknown text. Despite the different topics, the
+features we extract from these two works are very similar when compared against the rest
+of the corpus.
+For reference and further explication, we provide the start and end of each excerpt below
+and how these two texts are analysed using this method. Even from a few lines, J. M
+
+5.1. UNSUPERVISED STATISTICAL APPROACHES
+
+39
+
+Barrie’s style can be seen (the actual excerpts used for analysis are longer at 500 and 430
+words respectively). Using a threshold of 0.75, and looking for supporting and opposing
+points for the same-author hypothesis when comparing these two texts against the other
+499 pairs provided in the PAN 15 test dataset, we find 15 supporting points and zero
+opposing ones. These are detailed in Table 5.2, where we can see that Barrie favours
+longer words and colons compared to the rest of the corpus, as well as some specific
+function words. The model using this threshold and this corpus would therefore correctly
+predict that these two texts are written by the same author.
+
+Your system of espionage is known to be tolerably complete.
+All Germany is with me. I hold in leash the mightiest machine for war the world
+has forged.
+I have seen your legions, and all are with you. Never was a Lord more trusted. O
+Emperor, does that not make you pause?
+...
+I have come with this gaping wound in my breast to bid you farewell.
+God cannot let my Germany be utterly destroyed.
+If God is with the Allies, Germany will not be destroyed. Farewell.
+
+In the regrettable slang of the servants’ hall, my lady, the master is usually referred
+to as the Gov.
+I see. You–
+Yes, I understand that is what they call me.
+You didn’t even take your meals with the family?
+...
+My lady, not even from you can I listen to a word against England.
+Tell me one thing: you have not lost your courage?
+No, my lady.
+
+For
+
+5.2. SUPPORT VECTOR MACHINE APPROACHES
+Feature
+which
+:
+over
+no
+Long Words
+my
+Polysyllables
+as
+with
+once
+Words
+Monosyllables
+like
+’
+a
+
+Known
+2.51
+2.34
+1.96
+1.58
+1.57
+1.5
+1.32
+1.21
+1.17
+0.86
+-0.79
+-0.88
+-0.91
+-1.33
+-1.36
+
+40
+
+Unknown
+4.21
+1.2
+0.75
+1.73
+0.93
+3.41
+1.98
+0.88
+0.96
+0.92
+-0.79
+-1.31
+-0.91
+-1.01
+-1.17
+
+Table 5.2: The fifteen supporting features for a pair of texts by J. M. Barrie. The Feature
+column shows the literal word or feature that was used differently in these two texts
+compared to the rest of the corpus, while the Known and Unknown columns show the
+z-score for that feature.
+
+5.2
+5.2.1
+
+Support Vector Machine Approaches
+Authorship Identification Tasks
+
+Dataset and preparation To see if we could discriminate between different review
+authors, we took the 50 most-prolific reviewers in the Yelp Reviews file. Each of these
+authors had left more than 100 000 characters of review text in total (across multiple
+reviews). For each author, we concatenated all of his or her reviews into a single text. We
+took the first 50 000 characters as training data and the next 50 000 characters to create
+ten test texts for that author, with each text being 5 000 characters in length, resulting
+in 500 test texts in total.
+We vectorized the texts using TF-IDF (?), a scheme in which all terms are represented
+by their frequency, but lower weights are given to terms that appear in many different
+documents. The resulting vectors consist of word and character n-grams, with unigrams
+and bigrams for words and bigrams and trigrams for characters. This resulted in a feature
+set consisting of 806 236 distinct terms (fitted only on the training texts; terms in the
+test texts that were not found in the training texts were ignored).
+
+5.2. SUPPORT VECTOR MACHINE APPROACHES
+
+41
+
+Classification We then trained Support Vector Machines, as described above, on the
+50 known texts. We used the scikit-learn (Pedregosa et al., 2011) “LinearSVC” implementation with default parameters. Predictions were generated for each of the test texts
+based on the confidence scores assigned by the SVMs, assigning each test text to its most
+likely author.
+
+5.2.2
+
+Authorship Verification Tasks
+
+Dataset and preparation As with the identification task, we concatenated all of the
+reviews of each author, and divided them into fixed chunks. For authorship verification,
+we need a small amount of text from a large number of authors. This is different from
+the identification task, where we needed a large amount of text from each of a small
+number of authors. In the Yelp review dataset, there are 38 985 unique authors who have
+produced at least 10 000 characters in reviews. First, we took 10 000 character texts from
+38 900 unique authors (dropping 85 texts to work with a round number). We divided
+each text into two subtexts of 5 000 characters each, one for the known text and one for
+the unknown, and we put these texts into known and unknown arrays respectively. Each
+text in the unknown array is paired with a text by the same author in the known array.
+We then shifted the texts in the second half of the unknown array by one, so that each
+text in the second half of the unknown array was paired with a different-author example
+in the known array. Assuming eight texts, this would look as seen in Table 5.3.
+k = 1, 2, 3, 4, 5, 6, 7, 8
+u = 1, 2, 3, 4, 5, 6, 7, 8
+k = 1, 2, 3, 4, 5, 6, 7, 8
+u = 1, 2, 3, 4, 8, 5, 6, 7
+Table 5.3: Example of pairing same-author and different-author verification examples.
+All pairs are same-author in the first two arrays (before shift), while half are different
+author in the second two (after shift).
+To gain some insight into whether it is easier to classify shorter texts when more training
+examples are present, or longer texts with fewer examples, we also created a similar
+dataset using 6 000 characters per text pair. We set up this dataset in the same way as
+above, resulting in a second dataset consisting of 71 300 text pairs.
+A summary of the two datasets and how we split them into train and test sets is given in
+Table 5.4.
+
+5.3. NEURAL NETWORK APPROACHES
+
+Author Length
+Text Length
+Number of Authors
+Train Examples
+Test Examples
+Feature Size
+
+42
+Long
+10 000
+5 000
+38 900
+30 000
+8 900
+24979
+
+Short
+6 000
+3 000
+71 300
+60 000
+11 300
+17662
+
+Table 5.4: Description of our Authorship Verification datasets. Author Length refers to
+the total number of characters of text we used to represent one author. Text Length is
+half of this to account for creating known and unknown texts for each author.
+We converted each text into a TF-IDF vectorization in the same way as described in ??.
+One difference was that we used only the most frequent features, dropping terms that were
+used by fewer than one percent of authors in each dataset. Finally, we converted each
+respective known and unknown pair of texts into a single sample by taking the absolute
+value of the difference between them.
+
+Classification We used the same one-vs-rest Linear SVM classification method described in 5.2.1. Because this is a binary classification task, only two SVMs are required,
+as opposed to the one per author required for the identification task.
+
+5.3
+
+Neural Network Approaches
+
+5.3.1
+
+Authorship Identification Tasks
+
+Dataset and preparation We used the same dataset as described above. Instead of
+using TF-IDF vectors, we used character embeddings. First, we preprocess each text,
+converting any sequence of whitespace tokens, including newlines, to a single space. We
+worked with an alphabet consisting of the uppercase and lowercase characters of the
+English alphabet, the standard punctuation symbols
+!"#&’()*+,-./:;<=>?@[]^_‘{|}~%$\
+and a space character, which we hereon indicate as SPACE. We then transform each text
+into a set of partially overlapping sequences of 100 characters each, with each sequence of
+
+5.3. NEURAL NETWORK APPROACHES
+
+43
+
+100 being mapped to the 101st character. To reduce the number of sequences, we use a
+step-size of three characters, effectively skipping some of the overlapping sequences. For
+example, using a sequence of 10 characters the sentence “A quick brown fox jumps over
+the lazy dog.” would be represented by the sequences shown in Table 5.5. Finally, each
+character is converted to an integer, based on its index in our alphabet.
+Sequence
+A SPACE q u i c k SPACE b r
+u i c k SPACE b r o w n
+k SPACE b r o w n SPACE f o
+(etc.)
+
+Next
+o
+SPACE
+x.
+
+Table 5.5: Example of partially overlapping sequences for 10 characters (note that for the
+actual model we used sequences of 100 characters).
+
+Classification For each author, we train a GRU-RNN to predict the next character,
+given the previous 100 characters. The model consists of an Embedding layer that learns
+300 dimensional embeddings for each character, a Gated Recurrent Unit layer with dimension 250, and a fully connected output layer, which uses a softmax activation function
+to choose one of the 85 characters in our alphabet as a prediction. We further add a 10
+percent chance of Dropout after the Embeddings layer and a 30 percent chance of Dropout
+after the GRU layer. We perform Batch Normalization after each Dropout step. We use
+the Adam optimizer and cross entropy as a loss function.
+We chose these hyperparamaters by trying different variations on a single author’s model,
+and attempting to find a configuration that resulted in the lowest cross-entropy loss score
+when holding out 10 percent of the 50 000 character training data as a validation set.
+We predict the author for each of our 500 test texts by evaluating each text under each
+author’s language model. Even though each evaluation procedure is computationally
+efficient, we need to do this 25 000 times (500 texts * 50 models), meaning that generating
+the predictions is more computationally expensive than the actual training.
+
+Chapter 6
+Results
+6.1
+
+Unsupervised Statistical Approaches
+
+6.2
+
+Support Vector Machine Approaches
+
+6.2.1
+
+Authorship Identification Tasks
+
+For the identification experiments, we achieved equal results using Support Vector Machines with TF-IDF vectors and the generative character-based language models. However, the Support Vector Machine approach was substantially more efficient for both
+training and for generating predictions, as can be seen in Table 6.1. The word-based
+discriminative neural network did not perform well, and we discuss potential reasons for
+this below.
+Accuracy
+Train time
+Test time
+Total time
+
+SVM
+Char-NN Word-NN
+0.90
+0.90
+0.03
+00:00:27 02:35:50
+00:05:32
+00:00:00 12:29:40
+00:00:00
+00:00:27 15:05:30
+00:05:32
+
+Table 6.1: Results for the Identification task. Train time includes vectorization and
+preprocessing time.
+For the language modelling experiment we used an AWS p2.xlarge machine with four
+CPU-cores, 61 GiB RAM and an NVIDIA K80 GPU, with 2 496 parallel processing cores
+44
+
+6.2. SUPPORT VECTOR MACHINE APPROACHES
+
+45
+
+and 12 GiB of GPU memory. The other experiments were run on a 2015 MacBook Pro
+with a 2.7 GHz i5 processor and 8 GB RAM.
+Note that although the generative language modelling predictions took an excessively long
+time to generate, these are easily parallelizable. Because each language model needs to
+evaluate each text, it would be trivial to share this workload amongs multiple cores or
+machines by deploying one model and all test texts per machine.
+A random baseline approach would have a 1/50 chance of guessing the correct author,
+so we would expect an accuracy of 0.02. Given that the test texts are relatively short (5
+000 characters is approximately 900 words), the task is not easy and it is evident that
+both the SVM with TF-IDF model and the character-based language model are proficient
+at discriminating between authorship style. We were surprised by the fact that the two
+models achieved identical results, but pleased with the indication that the less-common
+neural approach proved suitable for the task.
+
+6.2.2
+
+Authorship Verification Tasks
+
+For the Authorship Verification tasks, we achieved the results shown in Table 6.2.
+
+Accuracy
+Train time
+Test time
+Total time
+
+Long
+0.95
+00:19:01
+00:00:00
+00:19:01
+
+Short
+0.92
+00:24:02
+00:00:00
+00:24:02
+
+Table 6.2: Results for the Verification task. Train time includes vectorization and preprocessing time.
+We can see that shorter texts are more difficult to accurately classify, even though we
+had more examples to train on (71 300 and 38 900 respectively). However, in both cases
+our novel approach achieved satisfactory results. As discussed before, these results are
+especially interesting as the authors in the test set are disjoint from those in the training
+set (in fact, no author is represented more than once). It is impressive that even using
+a simple approach, a supervised classifier is able to make meaningful decisions about
+authors that it has not seen examples of during the training phase.
+Although we still need a fair amount of text for each known author, this is far less than
+what is needed to achieve reasonable results in an identification task. As mentioned
+
+6.3. NEURAL NETWORK APPROACHES
+
+46
+
+before, the verification task can be used a stepping-stone to solve many other authorship
+attribution tasks, including identification. We could, for example, do pairwise comparisons
+across all reviews in a corpus to find the likelihood of a single author using multiple
+accounts, or do a pairwise comparison of all the reviews associated with a single username
+to find out if it’s likely that more than one person uses that account.
+
+6.3
+
+Neural Network Approaches
+
+Chapter 7
+Conclusion
+
+47
+
+References
+Abbasi, Ahmed, & Chen, Hsinchun. 2008. Writeprints: A stylometric approach to
+identity-level identification and similarity detection in cyberspace. ACM Transactions
+on Information Systems (TOIS), 26(2), 7.
+Afroz, Sadia, Islam, Aylin Caliskan, Stolerman, Ariel, Greenstadt, Rachel, & McCoy,
+Damon. 2014. Doppelgänger finder: Taking stylometry to the underground. Pages
+212–226 of: Security and Privacy (SP), 2014 IEEE Symposium on. IEEE.
+Akimushkin, Camilo, Amancio, Diego R, & Oliveira Jr, Osvaldo N. 2017. On the role of
+words in the network structure of texts: application to authorship attribution. arXiv
+preprint arXiv:1705.04187.
+Bagnall, Douglas. 2015. Author identification using multi-headed recurrent neural networks. arXiv preprint arXiv:1506.04891.
+Bagnall, Douglas. 2016. Authorship clustering using multi-headed recurrent neural networks. arXiv preprint arXiv:1608.04485.
+Baraldi, Lorenzo, Grana, Costantino, & Cucchiara, Rita. 2015. A deep siamese network
+for scene detection in broadcast videos. Pages 1199–1202 of: Proceedings of the 23rd
+ACM international conference on Multimedia. ACM.
+Braud, Chlo, & Sgaard, Anders. 2017. Is writing style predictive of scientific fraud? arXiv
+preprint arXiv:1707.04095.
+Bromley, Jane, Bentz, James W., Bottou, Léon, Guyon, Isabelle, LeCun, Yann, Moore,
+Cliff, Säckinger, Eduard, & Shah, Roopak. 1993. Signature Verification Using A
+”Siamese” Time Delay Neural Network. IJPRAI, 7(4), 669–688.
+Busger op Vollenbroek, Mart, Carlotto, Talvany, Kreutz, Tim, Medvedeva, Maria, Pool,
+Chris, Bjerva, Johannes, Haagsma, Hessel, & Nissim, Malvina. 2016. GronUP: Groningen User Profiling—Notebook for PAN at CLEF 2016. In: Balog, Krisztian, Cappel48
+
+REFERENCES
+
+49
+
+lato, Linda, Ferro, Nicola, & Macdonald, Craig (eds), CLEF 2016 Evaluation Labs and
+Workshop – Working Notes Papers, 5-8 September, Évora, Portugal. CEUR-WS.org.
+Chopra, Sumit, Hadsell, Raia, & LeCun, Yann. 2005. Learning a similarity metric discriminatively, with application to face verification. Pages 539–546 of: Computer Vision
+and Pattern Recognition, 2005. CVPR 2005. IEEE Computer Society Conference on,
+vol. 1. IEEE.
+Deng, Li, & Jaitly, Navdeep. 2015. Deep discriminative and generative models for pattern
+recognition. USENIX–Advanced Computing Systems Association.
+Diederich, Joachim, Kindermann, Jörg, Leopold, Edda, & Paass, Gerhard. 2003. Authorship attribution with support vector machines. Applied intelligence, 19(1), 109–123.
+Ficler, Jessica, & Goldberg, Yoav. 2017. Controlling Linguistic Style Aspects in Neural
+Language Generation. arXiv preprint arXiv:1707.02633.
+Gatt, Albert, & Krahmer, Emiel. 2017. Survey of the State of the Art in Natural Language
+Generation: Core tasks, applications and evaluation. arXiv preprint arXiv:1703.09902.
+Gatys, Leon A, Ecker, Alexander S, & Bethge, Matthias. 2016. Image style transfer
+using convolutional neural networks. Pages 2414–2423 of: Proceedings of the IEEE
+Conference on Computer Vision and Pattern Recognition.
+Goldberg, Yoav. 2016. A Primer on Neural Network Models for Natural Language Processing. J. Artif. Intell. Res.(JAIR), 57, 345–420.
+Halvani, Oren, Winter, Christian, & Pflug, Anika. 2016. Authorship verification for
+different languages, genres and topics. Digital Investigation, 16, S33–S43.
+Halvani, Oren, Winter, Christian, & Graner, Lukas. 2017. Authorship Verification based
+on Compression-Models. arXiv preprint arXiv:1706.00516.
+Hosseini-Asl, Ehsan, & Guha, Angshuman. 2015. Similarity-based Text Recognition by
+Deeply Supervised Siamese Network. arXiv preprint arXiv:1511.04397.
+Houvardas, John, & Stamatatos, Efstathios. 2006. N-gram feature selection for authorship
+identification. Artificial Intelligence: Methodology, Systems, and Applications, 77–86.
+Hürlimann, Manuela, Weck, Benno, van den Berg, Esther, Suster, Simon, & Nissim, Malvina. 2015. GLAD: Groningen Lightweight Authorship Detection. In: CLEF (Working
+Notes).
+
+REFERENCES
+
+50
+
+Jhamtani, Harsh, Gangal, Varun, Hovy, Eduard, & Nyberg, Eric. 2017. Shakespearizing
+Modern Language Using Copy-Enriched Sequence-to-Sequence Models. arXiv preprint
+arXiv:1707.01161.
+Joachims, Thorsten. 1998. Text categorization with support vector machines: Learning
+with many relevant features. Machine learning: ECML-98, 137–142.
+Kabbara, Jad, & Cheung, Jackie Chi Kit. 2016. Stylistic Transfer in Natural Language
+Generation Systems Using Recurrent Neural Networks. EMNLP 2016, 43.
+Kestemont, Mike. 2014. Function words in authorship attribution from black magic to
+theory? Pages 59–66 of: Proceedings of the 3rd Workshop on Computational Linguistics
+for Literature (CLfL)@ EACL.
+Klimt, Bryan, & Yang, Yiming. 2004. The enron corpus: A new dataset for email classification research. Machine learning: ECML 2004, 217–226.
+Koch, Gregory, Zemel, Richard, & Salakhutdinov, Ruslan. 2015. Siamese neural networks
+for one-shot image recognition. In: ICML Deep Learning Workshop, vol. 2.
+Koppel, Moshe, & Schler, Jonathan. 2003. Exploiting stylistic idiosyncrasies for authorship attribution. Page 72 of: Proceedings of IJCAI’03 Workshop on Computational
+Approaches to Style Analysis and Synthesis, vol. 69.
+Koppel, Moshe, & Schler, Jonathan. 2004. Authorship verification as a one-class classification problem. Page 62 of: Proceedings of the twenty-first international conference
+on Machine learning. ACM.
+Koppel, Moshe, & Winter, Yaron. 2014. Determining if two documents are written by
+the same author. Journal of the Association for Information Science and Technology,
+65(1), 178–187.
+Koppel, Moshe, Schler, Jonathan, & Argamon, Shlomo. 2009. Computational methods
+in authorship attribution. Journal of the Association for Information Science and
+Technology, 60(1), 9–26.
+Koppel, Moshe, Schler, Jonathan, & Argamon, Shlomo. 2012a. Authorship Attribution:
+What’s Easy and What’s Hard. JL & Pol’y, 21, 317.
+Koppel, Moshe, Schler, Jonathan, Argamon, Shlomo, & Winter, Yaron. 2012b. The
+fundamental problem of authorship attribution. English Studies, 93(3), 284–291.
+
+REFERENCES
+
+51
+
+Kravalová, Jana, & Žabokrtský, Zdeněk. 2009. Czech Named Entity Corpus and SVMbased Recognizer. Pages 194–201 of: Proceedings of the 2009 Named Entities Workshop:
+Shared Task on Transliteration. NEWS ’09. Stroudsburg, PA, USA: Association for
+Computational Linguistics.
+Lai, Siwei, Xu, Liheng, Liu, Kang, & Zhao, Jun. 2015. Recurrent Convolutional Neural
+Networks for Text Classification. Pages 2267–2273 of: AAAI, vol. 333.
+Lalor, John, Wu, Hao, & Yu, Hong. 2017. Improving Machine Learning Ability with
+Fine-Tuning. arXiv preprint arXiv:1702.08563.
+Lewis, David D, Yang, Yiming, Rose, Tony G, & Li, Fan. 2004. Rcv1: A new benchmark
+collection for text categorization research. Journal of machine learning research, 5(Apr),
+361–397.
+Luyckx, Kim. 2011. Scalability issues in authorship attribution. ASP/VUBPRESS/UPA.
+Luyckx, Kim, & Daelemans, Walter. 2008. Authorship attribution and verification with
+many authors and limited data. Pages 513–520 of: Proceedings of the 22nd International Conference on Computational Linguistics-Volume 1. Association for Computational Linguistics.
+Mikolov, Tomáš, Sutskever, Ilya, Deoras, Anoop, Le, Hai-Son, Kombrink, Stefan, &
+Cernocky, Jan. 2012. Subword language modeling with neural networks. preprint
+(http://www. fit. vutbr. cz/imikolov/rnnlm/char. pdf ).
+Mueller, Jonas, & Thyagarajan, Aditya. 2016. Siamese Recurrent Architectures for Learning Sentence Similarity. Pages 2786–2792 of: AAAI.
+Myers, Isabel Briggs. 1962. The Myers-Briggs Type Indicator: Manual (1962).
+Naaman, Einat, Adi, Yossi, & Keshet, Joseph. 2017. Learning Similarity Function for
+Pronunciation Variations. arXiv preprint arXiv:1703.09817.
+Neculoiu, Paul, Versteegh, Maarten, Rotaru, Mihai, & Amsterdam, Textkernel BV. 2016.
+Learning Text Similarity with Siamese Recurrent Networks. ACL 2016, 148.
+Ng, Andrew Y, & Jordan, Michael I. 2002. On discriminative vs. generative classifiers:
+A comparison of logistic regression and naive bayes. Pages 841–848 of: Advances in
+neural information processing systems.
+
+REFERENCES
+
+52
+
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., Blondel,
+M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J., Passos, A., Cournapeau,
+D., Brucher, M., Perrot, M., & Duchesnay, E. 2011. Scikit-learn: Machine Learning in
+Python. Journal of Machine Learning Research, 12, 2825–2830.
+Potthast, Martin, Braun, Sarah, Buz, Tolga, Duffhauss, Fabian, Friedrich, Florian,
+Gülzow, Jörg Marvin, Köhler, Jakob, Lötzsch, Winfried, Müller, Fabian, Müller,
+Maike Elisa, et al. 2016. Who wrote the web? Revisiting influential author identification research applicable to information retrieval. Pages 393–407 of: European
+Conference on Information Retrieval. Springer.
+Queneau, Raymond. 1981. Exercises in style. Vol. 513. New Directions Publishing.
+Raghu, Maithra, Poole, Ben, Kleinberg, Jon, Ganguli, Surya, & Sohl-Dickstein,
+Jascha. 2016. On the expressive power of deep neural networks. arXiv preprint
+arXiv:1606.05336.
+Riemer, Matthew, Khabiri, Elham, & Goodwin, Richard. 2017. Representation Stability as a Regularizer for Improved Text Analytics Transfer Learning. arXiv preprint
+arXiv:1704.03617.
+Ruder, Sebastian, Ghaffari, Parsa, & Breslin, John G. 2016. Character-level and Multichannel Convolutional Neural Networks for Large-scale Authorship Attribution. arXiv
+preprint arXiv:1609.06686.
+Shrestha, Prasha, Sierra, Sebastian, González, Fabio A, Rosso, Paolo, Montes-y Gómez,
+Manuel, & Solorio, Thamar. 2017. Convolutional Neural Networks for Authorship
+Attribution of Short Texts. EACL 2017, 669.
+Somers, Harold, & Tweedie, Fiona. 2003. Authorship attribution and pastiche. Computers
+and the Humanities, 37(4), 407–429.
+Stamatatos, Efstathios. 2009. A survey of modern authorship attribution methods. Journal of the American Society for information Science and Technology, 60(3), 538–556.
+Stamatatos, Efstathios, Daelemans, Walter, Verhoeven, Ben, Juola, Patrick @inproceedingsstamatatos2015overview, title=Overview of the Author Identification Task at PAN
+2015, author=Stamatatos, Efstathios and Daelemans, Walter and Verhoeven, Ben and
+Juola, Patrick and López-López, Aurelio and Potthast, Martin and Stein, Benno,
+booktitle=CLEF (Working Notes), pages=877–897, year=2014 @inproceedingsstamatatos2015overview, title=Overview of the Author Identification Task at PAN 2015,
+
+REFERENCES
+
+53
+
+author=Stamatatos, Efstathios and Daelemans, Walter and Verhoeven, Ben and Juola,
+Patrick and López-López, Aurelio and Potthast, Martin and Stein, Benno, booktitle=CLEF (Working Notes), pages=877–897, year=2014 , López-López, Aurelio, Potthast, Martin, & Stein, Benno. 2014. Overview of the Author Identification Task at
+PAN 2014. Pages 877–897 of: CLEF (Working Notes).
+Stamatatos, Efstathios, amd Ben Verhoeven, Walter Daelemans, Juola, Patrick, LópezLópez, Aurelio, Potthast, Martin, & Stein, Benno. 2015. Overview of the Author
+Identification Task at PAN 2015. In: Cappellato, Linda, Ferro, Nicola, Jones, Gareth,
+& San Juan, Eric (eds), CLEF 2015 Evaluation Labs and Workshop – Working Notes
+Papers, 8-11 September, Toulouse, France. CEUR-WS.org.
+Stamatatos, Efstathios, Tschuggnall, Michael, Verhoeven, Ben, Daelemans, Walter,
+Specht, Guenther, Stein, Benno, & Potthast, Martin. 2016. Clustering by Authorship Within and Across Documents. In: Working Notes Papers of the CLEF 2016
+Evaluation Labs. CEUR Workshop Proceedings. CLEF and CEUR-WS.org.
+Stolerman, Ariel. 2015. Authorship Verification. Ph.D. thesis. Copyright - Copyright
+ProQuest, UMI Dissertations Publishing 2015; Last updated - 2015-05-12; First page n/a.
+Stolerman, Ariel, Overdorf, Rebekah, Afroz, Sadia, & Greenstadt, Rachel. 2011. Classify,
+but verify: Breaking the closed-world assumption in stylometric authorship attribution.
+Page 23 of: IFIP Working Group, vol. 11.
+Sutskever, Ilya, Martens, James, & Hinton, Geoffrey E. 2011. Generating text with
+recurrent neural networks. Pages 1017–1024 of: Proceedings of the 28th International
+Conference on Machine Learning (ICML-11).
+Tiflin, Conrad, & Omlin, Christian W. 2012. LSTM recurrent neural networks for signature verification. Lap Lambert Academic Publ.
+Verhoeven, Ben, Daelemans, Walter, & Plank, Barbara. 2016. TwiSty: A Multilingual
+Twitter Stylometry Corpus for Gender and Personality Profiling. In: LREC.
+Yin, Wenpeng, Schütze, Hinrich, Xiang, Bing, & Zhou, Bowen. 2016. ABCNN: AttentionBased Convolutional Neural Network for Modeling Sentence Pairs. Transactions of the
+Association for Computational Linguistics, 4, 259–272.
+Yogatama, Dani, Dyer, Chris, Ling, Wang, & Blunsom, Phil. 2017. Generative and
+Discriminative Text Classification with Recurrent Neural Networks. arXiv preprint
+arXiv:1703.01898.
+
+REFERENCES
+
+54
+
+Yoon, Seunghyun, Yun, Hyeongu, Kim, Yuna, Park, Gyu-tae, & Jung, Kyomin. 2017. Efficient Transfer Learning Schemes for Personalized Language Modeling using Recurrent
+Neural Network. arXiv preprint arXiv:1701.03578.
+Zhu, Jianqing, Zeng, Huanqiang, Liao, Shengcai, Lei, Zhen, Cai, Canhui, & Zheng, LiXin.
+2017. Deep Hybrid Similarity Learning for Person Re-identification. arXiv preprint
+arXiv:1702.04858.
+Zoph, Barret, Yuret, Deniz, May, Jonathan, & Knight, Kevin. 2016. Transfer learning for
+low-resource neural machine translation. arXiv preprint arXiv:1604.02201.
+
+

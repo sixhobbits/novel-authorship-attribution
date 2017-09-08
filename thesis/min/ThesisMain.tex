@@ -1,0 +1,65 @@
+\documentclass[12pt] {newrucsthesis}    % changed default font to 12pt
+
+	% preamble stuff here
+\usepackage{graphicx}  % need this for figures etc.
+\usepackage{url}  % to handle urls 
+\usepackage[comma,authoryear]{natbib}    %  includes \citet (textual), and \citep (parenthesized) -- can be used with numbered styles too
+%% include any other packages that you need for your thesis  ....
+
+\renewcommand {\cite} {\citep}  % default for cite is citet in natbib - so change it
+\newcommand {\shortcite} {\citeyearpar}  % for date only citations
+
+% \renewcommand\bibname{References}    % if not using newrucsthesis sty file
+
+
+\begin{document}
+
+	% contents of doc between the begin ... end
+
+
+
+	% Create a title
+\title{ Neural Approaches to Authorship Identification }
+\author{ Gareth Terence Bryant Dwyer}
+\date { July 2017 }
+\maketitle  
+
+\abstract
+This is pretty abstract.
+\acm    %% acm classification stuff here
+Thesis classification under the ACM Computing Classification System (1998 version, valid
+through 2013) [16]:\\
+\textbf{I.2.7} [Natural Language Processing]: Web Corpora\\
+\\
+\textbf{General-Terms:} Corpus, Corpora, Natural Language, Concordancer
+
+
+\ack
+I would like to thank all the people who gave me money and maybe my supervisor too. Also some other people.
+
+\newpage
+
+\tableofcontents
+\newpage
+
+\listoffigures
+\newpage
+
+\listoftables
+\newpage
+
+\input{test.tex}
+% \input{Chap1.tex}
+%\input{Chap2.tex}
+
+
+\bibliographystyle{ruauthordate}    % authordate style 
+ 
+\bibliography{ref}   	% load in the info produced from ref.bib 
+
+
+\end{document}
+
+
+
+

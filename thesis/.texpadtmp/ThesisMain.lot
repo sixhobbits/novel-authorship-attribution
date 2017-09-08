@@ -1,0 +1,12 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Example of pairing same-author and different-author verification examples. All pairs are \textit {same-author} in the first two arrays (before shift), while half are \textit {different author} in the second two (after shift).}}{34}
+\contentsline {table}{\numberline {5.2}{\ignorespaces Description of our Authorship Verification datasets. Author Length refers to the total number of characters of text we used to represent one author. Text Length is half of this to account for creating \textit {known} and \textit {unknown} texts for each author.}}{35}
+\contentsline {table}{\numberline {5.3}{\ignorespaces Example of partially overlapping sequences for 10 characters (note that for the actual model we used sequences of 100 characters). }}{36}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces Results for the Identification task. Train time includes vectorization and preprocessing time.}}{37}
+\contentsline {table}{\numberline {6.2}{\ignorespaces Results for the Verification task. Train time includes vectorization and preprocessing time.}}{38}
+\addvspace {10\p@ }

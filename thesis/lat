@@ -1,0 +1,7 @@
+#!/bin/bash
+latex ThesisMain.tex
+bibtex ThesisMain
+latex ThesisMain.tex
+latex ThesisMain.tex
+pdflatex ThesisMain.tex
+open ThesisMain.pdf

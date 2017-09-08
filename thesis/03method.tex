@@ -1,0 +1,214 @@
+\chapter{Method}
+\label{chap:meth}
+
+As previously discussed, there are a number of different ways to approach Authorship Attribution tasks. Specifically, we experiment with both authorship identification and authorship verification tasks, using different methods. These methods can be broadly broken into
+
+\begin{itemize}
+\tightlist
+\item
+  Statistical methods, in which we compare texts using (unsupervised) approaches which rely on descriptive statistics.
+\item
+  Support Vector Machine (SVM) methods, in which we use SVMs to
+  discriminate between authorship styles.
+\item
+  Neural Network approaches, in which we experiment with various
+  formulations of AA tasks and various models, including Siamese
+  Networks and generative language modelling.
+\end{itemize}
+
+In the rest of this chapter, we give a brief overview of each method with which we experimented. The goal of this chapter is to provide a high-level overview of each method, explaining the intuitions behind why we decided to use these. We describe the approaches in more detail in Chapter \ref{chap:models}.
+
+\section{Unsupervised statistical approaches}
+\label{meth:unsupervised}
+\label{authorship-verification-tasks}
+
+There is an important distinction between \emph{intrinsic} and
+\emph{extrinsic} approaches to authorship attribution \cite{juola2013overview}. The
+former relies only on comparing the target texts (for example, a known and an
+unknown text) to each other. The latter compares the target texts
+to a corpus of external texts. 
+
+In this section, we describe our experiments involving \emph{extrinsic}
+approaches. Supervised machine learning has become the go-to method for
+many text classification tasks, but the resulting models are often seen
+as a ``black box''. Data goes in and predictions come out, and it can be
+difficult to justify or explain these predictions. Here, we explain how
+we can meaningfully analyse texts using some basic statistical
+approaches, including correlation techniques, on a number of different
+features. For these techniques, we experimented only with authorship
+verification tasks.
+
+To decide if two texts are written by the same author, we can compare
+various features in each text to some large corpus of (preferably
+similar) texts. If, for example, both texts have (when compared to the
+corpus) a higher-than-average sentence length, or a lower-than-average
+adjective frequency, then we have some small piece of evidence that the
+two texts were written by the same author. If the two texts relate to
+the corpus similarly over a variety of different features, then we have
+more evidence that the two texts share an author.
+
+We experiment with two ways of comparing our target texts to a corpus.
+Firstly, we use a simple count-based approach based on supporting and
+opposing points for the hypothesis that the texts share an author.
+Secondly we use a correlation analysis, to see if the two texts diverge
+from the corpus in a similar fashion.
+
+We use lexical and syntactic features for these experiments, including
+sentence length, word length, various readability scores,
+parts-of-speech (PoS) tag relative frequency, and frequency of the
+most-common function words. Unlike our other experiments where we attempt 
+to keep feature engineering to a minimum, these experiments rely on a 
+PoS tagger, a manually crafted list of function words, and several 
+readability scores. Therefore, we experiment only with the small 
+English datasets, that is, the English sections of PAN 2014 and PAN 2015.
+
+\paragraph{Count-based statistical
+experiments}\label{count-based-statistical-experiments}
+
+First, we use a simple count-based approach. If two texts, compared to
+the corpus, either:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\item
+  Both have a feature that is higher-than-average (for example, both texts have
+  a higher-than-average adjective frequency), or
+\item
+  Both have a feature that is lower-than-average (for example, both texts have
+  an average sentence length that is lower than the average of the
+  corpus)
+\end{enumerate}
+
+then we take this to be a point supporting the hypothesis that the texts
+share an author.
+
+If there is a feature such that one text is higher-than-average while
+the other is lower-than-average (e.g. Text 1 uses more commas than the
+corpus-average while Text 2 uses fewer commas than the corpus-average),
+then we take this to be an opposing point.
+
+We then classify texts into same-author or different-author classes
+based on whether there are more supporting points than opposing ones.
+
+\paragraph{Correlation based statistical
+experiments}\label{correlation-based-statistical-experiments}
+
+A more nuanced way to achieve the above 
+is to look at the correlation between the features of each text. 
+If one text has a much higher than average sentence length,
+and the other has only a slightly higher than average sentence length,
+then this should be less indicative of same-author than if the two texts
+both have a much higher than average sentence length.
+
+If two texts are written by the same author, we expect the exact way that
+each diverges from the reference corpus to correlate quite strongly. If
+the texts are written by different authors, we expect a weaker
+correlation.
+
+We therefore run experiments similar to those described above, but instead 
+of simply counting the supporting and opposing points, we run a Pearson correlation 
+coefficient test on each pair of features, again experimenting with different thresholds 
+to make the final same-author or different-author predictions.
+
+\section{Support vector machine approaches}
+\label{method:svm}
+
+Support Vector Machines (SVMs) have proven to be efficient and powerful
+for a wide-variety of text-classification tasks. For all of our
+multi-class SVM experiments, we use a one-against-all strategy. That is,
+if we have 50 candidate authors, we train 50 SVMs, and each one is
+trained to discriminate in a binary fashion between its author and all
+other authors.
+
+Because SVMs are fast to train and scale well to large datasets, we
+present SVM-based experiments for all of our datasets.
+
+\subsection{Authorship identification tasks}
+\label{method:svm-aid}
+
+For the identification task, we can simply train SVMs on the authors
+knowns texts, and attempt to predict the author of unknown texts from
+the pool of candidate authors. While this is perhaps the most-common set
+up for authorship attribution tasks, it is also the least interesting.
+Generally, good results are only feasible for a small pool (fewer than
+100) candidate authors, and practically there are very few cases where
+we want to know which of small, well-defined set of authors wrote a
+particular text. Nonetheless, we use this set up to experiment with
+different numbers of authors and different features, predominately word
+and character n-grams represented as Term Frequency - Inverse Document
+Frequency (TF-IDF) vectors.
+
+\subsection{Authorship verification tasks}
+\label{method:svm-av}
+
+Normally for text classification tasks, the goal is to apply a label to
+each text. For authorship verification tasks, we need to say something
+meaningful about the relation between a pair of texts. A naive approach
+might be to concatenate the two texts and then attempt to assign a
+``yes'' or ``no'' label. However, we don't want to learn rules such as
+``if either text contains the word \emph{discombobulation} then the two
+texts are likely to be written by the same author'' which is
+unfortunately the kind of rule that a traditional classifier would learn
+if we trained it on concatenated pairs of texts.
+
+Therefore, to learn something meaningful about text pairs, we need to
+look at the similarity between the two texts. Often, the cosine distance
+between the vector representations of each text is used for such tasks.
+However, two different authors often write texts that have a strong
+cosine similarity (for example, two authors writing about the same
+topic), and conversely a single author will often produce two texts that
+appear very dissimilar by the cosine metric (for example, if the author
+writes on two different topics).
+
+By subtracting TF-IDF vectors of each text, we get a feature set that
+is more meaningful. The SVM can learn which word- and character n-grams
+are indicate authorship, and can learn rules such as ``if the count of
+the word ``the'' is similar in both texts, then it is likely that they
+are written by the same author''.
+
+\section{Neural network approaches}
+\label{method:nn}
+
+Neural Networks, especially Recurrent Neural Networks (RNNs) with Long Short-Term Memory (RNN-LSTMs) or with Gated Recurrent Units (RNN-GRUs) have been the poster-child of many Natural Language Processing advancements in the last few years. As discussed before, they have failed so far to become state-of-the-art for Authorship Attribution tasks. This is probably for several reasons, including:
+
+\begin{itemize}
+\tightlist
+\item
+  RNNs are difficult to train and not yet fully understood.
+\item
+  RNNs usually require much larger amounts of data than existing AA datasets.
+\item
+  The feedback cycle for RNN classifiers can be much longer than alternative approaches such as SVMs. For example, for one of our experiments, the SVM took about three minutes to train and evaluate, while the RNN model took over 14 hours for the same amount of data.
+\end{itemize}
+
+We use Neural Networks for the AID and AV tasks, albiet in very different ways. For the AID task, we use generative language modelling techniques to build a personalized language model for each candidate author. A model that can \textit{generate} text in a specific style should also be able to \textit{recognise} text written in that style. More specifically, if we evaluate a generative model trained on a known text on an unknown text, we would expect a lower cross-entropy score if the unknown text was in a similar style to that of the known text. For the Authorship Verification tasks, we use a Siamese Neural Network that looks at both the known and unknown text simultaneously and learns a custom distance function between them such that texts in a similar style are represented as being close together and texts in different styles are far apart. We describe each of these approaches in more detail below. 
+
+
+\subsection{Authorship Identification Tasks}
+\label{method:nn-aid}
+
+If we can generate text in the style of a specific author, we can also recognise it. Previous work has shown that generative classifiers can be more effective than discriminative ones, even for discriminative tasks. As discussed in Chapter \ref{chap:back}, \citet{bagnall2015author} used generative language modelling to discriminate between authorship styles very effectively. Although Bagnall used this technique for an AV task, the method fits the AID task better as we need to train the model on text from each specific known candidate author. 
+
+We experiment with different generative architectures to see how best to learn an author-specific language model. All our models are character-based as these models can more easily learn stylistic choices, such as punctuation use. 
+
+We experiment with using generative models to generate text in specific styles and then evaluate these models by seeing how well they can identify authors for the AID task. The models we use are described in detail in Chapter \ref{chap:models}.
+
+As discussed in \ref{chap:back}, transfer learning seemed as though it could help an author-specific model learn a writer's style from very little training data. However, in early validation experiments we found that training models from only the limited data available were better at modelling unseen text from the same author than models which were pre-trained on larger text corpora. We therefore did not carry out all of the planned transfer learning experiments and leave this to future work.
+
+\subsection{Authorship Verification Tasks}
+\label{method:nn-av}
+
+As we discussed before, Siamese Neural Networks look at pairs of examples and decide whether or not each example belongs to the same class.
+This is therefore theoretically a very good fit for the AV problem, in which we need to look at two texts and make a \textit{same-author} or 
+\textit{different-author} prediction. Siamese Neural Networks seem to us the most promising model for Authorship Verification, but in practice they are hard to get right. 
+This is partly because, as with our generative language modelling experiments, the feedback loop is much longer than for other models, such as our Support Vector Machine models.
+This makes it difficult to find exactly the right architecture and preprocessing steps to fit the task. Furthermore, Siamese Neural Networks are only recently starting to be used 
+for text classification tasks, and therefore there is no well-established method or architecture yet.
+
+For the verification task, we attemped to use various Siamese Neural Network models, including using word- and character embeddings, along with Convolutional Neural Network and Long Short Term Memory Neural Network architectures. Unfortunately, in most cases we were unable to get any meaningful results from these models. Most of the time, they predicted \textit{different-author} for all unseen pairs.
+
+We therefore present results only for a simpler model in which we feed TF-IDF vectors of the text pairs to fully-connected layers. We describe the details of this model, along with which datasets we used for these experiments, in Section \ref{mod:siamese}.
+
+Because Siamese Networks are specifically designed to process pairs of input examples, we did not use these for the AID tasks.
+
+We describe the model architecture and datasets used in detail in Chapter \ref{chap:models}.

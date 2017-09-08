@@ -1,0 +1,154 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citename{Audhkhasi {\em et~al.}, }2017]{audhkhasi2017end}
+Audhkhasi, Kartik, Rosenberg, Andrew, Sethy, Abhinav, Ramabhadran, Bhuvana, \&
+  Kingsbury, Brian. 2017.
+\newblock End-to-End ASR-free Keyword Search from Speech.
+\newblock {\em arXiv preprint arXiv:1701.04313}.
+
+\bibitem[\protect\citename{Bagnall, }2015]{bagnall2015author}
+Bagnall, Douglas. 2015.
+\newblock Author identification using multi-headed recurrent neural networks.
+\newblock {\em arXiv preprint arXiv:1506.04891}.
+
+\bibitem[\protect\citename{Baraldi {\em et~al.}, }2015]{baraldi2015deep}
+Baraldi, Lorenzo, Grana, Costantino, \& Cucchiara, Rita. 2015.
+\newblock A deep siamese network for scene detection in broadcast videos.
+\newblock {\em Pages  1199--1202 of:} {\em Proceedings of the 23rd ACM
+  international conference on Multimedia}.
+\newblock ACM.
+
+\bibitem[\protect\citename{Bromley {\em et~al.}, }1993]{bromley1993signature}
+Bromley, Jane, Bentz, James~W., Bottou, L{\'e}on, Guyon, Isabelle, LeCun, Yann,
+  Moore, Cliff, S{\"a}ckinger, Eduard, \& Shah, Roopak. 1993.
+\newblock Signature Verification Using A "Siamese" Time Delay Neural Network.
+\newblock {\em IJPRAI}, {\bf 7}(4), 669--688.
+
+\bibitem[\protect\citename{Gatys {\em et~al.}, }2015]{gatys2015neural}
+Gatys, Leon~A, Ecker, Alexander~S, \& Bethge, Matthias. 2015.
+\newblock A neural algorithm of artistic style.
+\newblock {\em arXiv preprint arXiv:1508.06576}.
+
+\bibitem[\protect\citename{Hoffer \& Ailon, }2015]{hoffer2015deep}
+Hoffer, Elad, \& Ailon, Nir. 2015.
+\newblock Deep metric learning using triplet network.
+\newblock {\em Pages  84--92 of:} {\em International Workshop on
+  Similarity-Based Pattern Recognition}.
+\newblock Springer.
+
+\bibitem[\protect\citename{Hosseini-Asl \& Guha, }2015]{hosseini2015similarity}
+Hosseini-Asl, Ehsan, \& Guha, Angshuman. 2015.
+\newblock Similarity-based Text Recognition by Deeply Supervised Siamese
+  Network.
+\newblock {\em arXiv preprint arXiv:1511.04397}.
+
+\bibitem[\protect\citename{Kabbara \& Cheung, }2016]{kabbara2016stylistic}
+Kabbara, Jad, \& Cheung, Jackie Chi~Kit. 2016.
+\newblock Stylistic Transfer in Natural Language Generation Systems Using
+  Recurrent Neural Networks.
+\newblock {\em EMNLP 2016}, ~43.
+
+\bibitem[\protect\citename{Karpathy, }2015]{karpathy2015unreasonable2}
+Karpathy, Andrej. 2015.
+\newblock {\em The Unreasonable Effectiveness of Recurrent Neural Networks}.
+\newblock \url{http://karpathy.github.io/2015/05/21/rnn-effectiveness/}.
+\newblock Accessed: 13 March 2017.
+
+\bibitem[\protect\citename{Kestemont, }2014]{kestemont2014function}
+Kestemont, Mike. 2014.
+\newblock Function words in authorship attribution from black magic to theory?
+\newblock {\em Pages  59--66 of:} {\em Proceedings of the 3rd Workshop on
+  Computational Linguistics for Literature (CLfL)@ EACL}.
+
+\bibitem[\protect\citename{Lalor {\em et~al.}, }2017]{lalor2017improving}
+Lalor, John, Wu, Hao, \& Yu, Hong. 2017.
+\newblock Improving Machine Learning Ability with Fine-Tuning.
+\newblock {\em arXiv preprint arXiv:1702.08563}.
+
+\bibitem[\protect\citename{McGraw {\em et~al.}, }2016]{mcgraw2016personalized}
+McGraw, Ian, Prabhavalkar, Rohit, Alvarez, Raziel, Arenas, Montse~Gonzalez,
+  Rao, Kanishka, Rybach, David, Alsharif, Ouais, Sak, Ha{\c{s}}im, Gruenstein,
+  Alexander, Beaufays, Fran{\c{c}}oise, {\em et~al.} 2016.
+\newblock Personalized speech recognition on mobile devices.
+\newblock {\em Pages  5955--5959 of:} {\em Acoustics, Speech and Signal
+  Processing (ICASSP), 2016 IEEE International Conference on}.
+\newblock IEEE.
+
+\bibitem[\protect\citename{Mikolov {\em et~al.},
+  }2013a]{mikolov2013distributed}
+Mikolov, Tomas, Sutskever, Ilya, Chen, Kai, Corrado, Greg~S, \& Dean, Jeff.
+  2013a.
+\newblock Distributed representations of words and phrases and their
+  compositionality.
+\newblock {\em Pages  3111--3119 of:} {\em Advances in neural information
+  processing systems}.
+
+\bibitem[\protect\citename{Mikolov {\em et~al.}, }2013b]{mikolov2013efficient}
+Mikolov, Tomas, Chen, Kai, Corrado, Greg, \& Dean, Jeffrey. 2013b.
+\newblock Efficient estimation of word representations in vector space.
+\newblock {\em arXiv preprint arXiv:1301.3781}.
+
+\bibitem[\protect\citename{Mueller \& Thyagarajan, }2016]{mueller2016siamese}
+Mueller, Jonas, \& Thyagarajan, Aditya. 2016.
+\newblock Siamese Recurrent Architectures for Learning Sentence Similarity.
+\newblock {\em Pages  2786--2792 of:} {\em AAAI}.
+
+\bibitem[\protect\citename{Neculoiu {\em et~al.}, }2016]{neculoiu2016learning}
+Neculoiu, Paul, Versteegh, Maarten, Rotaru, Mihai, \& Amsterdam, Textkernel~BV.
+  2016.
+\newblock Learning Text Similarity with Siamese Recurrent Networks.
+\newblock {\em ACL 2016},  148.
+
+\bibitem[\protect\citename{Raghu {\em et~al.}, }2016]{raghu2016expressive}
+Raghu, Maithra, Poole, Ben, Kleinberg, Jon, Ganguli, Surya, \& Sohl-Dickstein,
+  Jascha. 2016.
+\newblock On the expressive power of deep neural networks.
+\newblock {\em arXiv preprint arXiv:1606.05336}.
+
+\bibitem[\protect\citename{Sapkota {\em et~al.}, }2015]{sapkota2015not}
+Sapkota, Upendra, Bethard, Steven, Montes-y G{\'o}mez, Manuel, \& Solorio,
+  Thamar. 2015.
+\newblock Not All Character N-grams Are Created Equal: A Study in Authorship
+  Attribution.
+\newblock {\em Pages  93--102 of:} {\em HLT-NAACL}.
+
+\bibitem[\protect\citename{Shin {\em et~al.}, }2016]{shin2016generative}
+Shin, Sungho, Hwang, Kyuyeon, \& Sung, Wonyong. 2016.
+\newblock Generative Transfer Learning between Recurrent Neural Networks.
+\newblock {\em arXiv preprint arXiv:1608.04077}.
+
+\bibitem[\protect\citename{Somers \& Tweedie, }2003]{somers2003authorship}
+Somers, Harold, \& Tweedie, Fiona. 2003.
+\newblock Authorship attribution and pastiche.
+\newblock {\em Computers and the Humanities}, {\bf 37}(4), 407--429.
+
+\bibitem[\protect\citename{Stamatatos, }2009]{stamatatos2009survey}
+Stamatatos, Efstathios. 2009.
+\newblock A survey of modern authorship attribution methods.
+\newblock {\em Journal of the American Society for information Science and
+  Technology}, {\bf 60}(3), 538--556.
+
+\bibitem[\protect\citename{Yin {\em et~al.}, }2015]{yin2015abcnn}
+Yin, Wenpeng, Sch{\"u}tze, Hinrich, Xiang, Bing, \& Zhou, Bowen. 2015.
+\newblock Abcnn: Attention-based convolutional neural network for modeling
+  sentence pairs.
+\newblock {\em arXiv preprint arXiv:1512.05193}.
+
+\bibitem[\protect\citename{Yoon {\em et~al.}, }2017]{yoon2017efficient}
+Yoon, Seunghyun, Yun, Hyeongu, Kim, Yuna, Park, Gyu-tae, \& Jung, Kyomin. 2017.
+\newblock Efficient Transfer Learning Schemes for Personalized Language
+  Modeling using Recurrent Neural Network.
+\newblock {\em arXiv preprint arXiv:1701.03578}.
+
+\bibitem[\protect\citename{Zhu {\em et~al.}, }2017]{zhu2017deep}
+Zhu, Jianqing, Zeng, Huanqiang, Liao, Shengcai, Lei, Zhen, Cai, Canhui, \&
+  Zheng, LiXin. 2017.
+\newblock Deep Hybrid Similarity Learning for Person Re-identification.
+\newblock {\em arXiv preprint arXiv:1702.04858}.
+
+\bibitem[\protect\citename{Zoph {\em et~al.}, }2016]{zoph2016transfer}
+Zoph, Barret, Yuret, Deniz, May, Jonathan, \& Knight, Kevin. 2016.
+\newblock Transfer learning for low-resource neural machine translation.
+\newblock {\em arXiv preprint arXiv:1604.02201}.
+
+\end{thebibliography}

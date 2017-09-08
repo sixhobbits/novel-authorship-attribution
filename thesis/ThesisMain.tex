@@ -1,0 +1,97 @@
+%\documentclass[12pt] {newrucsthesis}    % changed default font to 12pt
+\documentclass[12pt] {newrucsthesis}    % changed default font to 12pt
+
+	% preamble stuff here
+\usepackage{graphicx}  % need this for figures etc.
+\usepackage{url}  % to handle urls 
+\usepackage{booktabs}
+\usepackage[comma,authoryear]{natbib}    %  includes \citet (textual), and \citep (parenthesized) -- can be used with numbered styles too
+%% include any other packages that you need for your thesis  ....
+
+\renewcommand {\cite} {\citep}  % default for cite is citet in natbib - so change it
+\newcommand {\shortcite} {\citeyearpar}  % for date only citations
+\renewcommand{\floatpagefraction}{.9}
+\providecommand{\tightlist}{%
+\setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+\expandafter\def\expandafter\quote\expandafter{\quote\small\singlespacing}
+
+
+% \renewcommand\bibname{References}    % if not using newrucsthesis sty file
+
+
+\begin{document}
+
+   
+\title{ Novel Approaches to Authorship Attribution}
+\author{ Gareth Terence Bryant Dwyer }
+\date { July 2017 }
+\maketitle  
+
+\acm
+I hereby confirm that the thesis presented here is my own work, with all assistance acknowledged.
+\\
+\\
+\\
+\\
+\\
+Gareth Dwyer
+
+Groningen, September 2017
+\\
+\\
+\\
+A thesis submitted in fulfillment of the requirements for the degree of Master of Science in Language and Communication Technologies
+\\
+\\
+
+
+
+
+\abstract
+Authorship Attribution is the study of identifying people by their writing style. We present several approaches to achieving this goal, looking at both Authorship Identification problems (in which we attempt to predict which of a limited set of candidate authors wrote a disputed text) and Authorship Verification problems (in which we attempt to predict whether or not two texts are written by the same author). We test and compare several techniques, including an unsupervised method that relies on descriptive statistics; methods which use Support Vector Machines; and methods which use Neural Networks. We compare our methods to previous state of the art results and present results on a new large dataset, built from Yelp reviews, which we introduce. Although in many cases our methods failed to beat previous state of the art results, we show that all three broad techniques are viable strategies for Authorship Attribution tasks, and we discuss the advantages and disadvantages of each approach.
+
+\ack
+Moving from a small town in South Africa to Europe was quite an adventure for me, and I have met so many wonderful, kind, and thought-provoking people along the road. Each of them have contributed in some small way to teaching me New Things, many of which are represented somehow in this work. I asked if I could publish all their names here, but apparently that's a no-no (even in size six font), so I'm picking a few of them at random and hoping that the others never read this.
+
+Thank you Dietrich for providing advice from afar.
+
+Thank you Malvina for all the guidance and help, and for changing my ideas about what Academia is. And for that ten minute talk about Authorship Attribution that led to this work.
+
+Thank you Esther for the shared ideas and long discussions. Working through difficult problems together made them so much more enjoyable than fighting them alone. You helped me adjust when everything was new.
+
+Thank you Masha for your company, for sharing your home, food and drink, and many hours of laughter and commiseration. I hope we can spend many more hours together in the future without deadlines hanging over our heads.
+
+Thank you Roman for helping out with understanding scary theoretical concepts from the moment we met. And for the constant transfer of memes ever since. You help keep from the pit of sanity.
+
+Thank you Isabel for being my constant companion and overlooking my annoyances and quirks, which must have only heightened as the deadlines got nearer.
+
+Thank you Mom, Dad, Theresa, Lewis, and Stephanie. For everything.
+\newpage
+
+\tableofcontents
+\newpage
+
+\listoffigures
+\newpage
+
+\listoftables
+\newpage
+
+\input{01introduction.tex}
+\input{02literature.tex}
+\input{03method.tex}
+\input{04data.tex}
+\input{05models.tex}
+\input{06results.tex}
+\input{07conclusion.tex}
+
+% \input{Chap1.tex}
+%\input{Chap2.tex}
+
+\bibliographystyle{ruauthordate}    % authordate style 
+ 
+\bibliography{ref}   	% load in the info produced from ref.bib 
+
+\end{document}
+

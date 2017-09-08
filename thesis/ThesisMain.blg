@@ -1,0 +1,69 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: ThesisMain.aux
+The style file: ruauthordate.bst
+Database file #1: ref.bib
+Repeated entry---line 582 of file ref.bib
+ : @inproceedings{verhoeven2016twisty
+ :                                   ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 720 of file ref.bib
+ : @inproceedings{stamatatos2015overview
+ :                                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 733 of file ref.bib
+ : @inproceedings{stamatatos2015overview
+ :                                      ,
+I'm skipping whatever remains of this entry
+Repeated entry---line 795 of file ref.bib
+ : @article{klimt2004enron
+ :                        ,
+I'm skipping whatever remains of this entry
+A bad cross reference---entry "busgeropvollenbroeck:2016"
+refers to entry "pan:2016", which doesn't exist
+Warning--I didn't find a database entry for "mosteller2007inference"
+Warning--I didn't find a database entry for "pan:2016"
+Warning--empty journal in myers1962myers
+Warning--empty school in stolerman2015authorship
+You've used 75 entries,
+            2562 wiz_defined-function locations,
+            982 strings with 19277 characters,
+and the built_in function-call counts, 32122 in all, are:
+= -- 3078
+> -- 1382
+< -- 268
++ -- 427
+- -- 410
+* -- 2533
+:= -- 5250
+add.period$ -- 316
+call.type$ -- 75
+change.case$ -- 469
+chr.to.int$ -- 74
+cite$ -- 77
+duplicate$ -- 1240
+empty$ -- 2265
+format.name$ -- 479
+if$ -- 6700
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 77
+newline$ -- 394
+num.names$ -- 229
+pop$ -- 461
+preamble$ -- 1
+purify$ -- 544
+quote$ -- 0
+skip$ -- 1361
+stack$ -- 0
+substring$ -- 1819
+swap$ -- 370
+text.length$ -- 24
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 594
+warning$ -- 2
+while$ -- 240
+width$ -- 0
+write$ -- 961
+(There were 5 error messages)

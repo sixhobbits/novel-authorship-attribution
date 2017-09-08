@@ -1,0 +1,57 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: /Users/g/git/neural-authorship-identification/thesis/.texpadtmp/ThesisMain.aux
+The style file: ../ruauthordate.bst
+Database file #1: ../ref.bib
+Repeated entry---line 582 of file ../ref.bib
+ : @inproceedings{verhoeven2016twisty
+ :                                   ,
+I'm skipping whatever remains of this entry
+A bad cross reference---entry "busgeropvollenbroeck:2016"
+refers to entry "pan:2016", which doesn't exist
+Warning--I didn't find a database entry for "robertson2004understanding"
+Warning--I didn't find a database entry for "pan:2016"
+Warning--empty journal in myers1962myers
+Warning--empty school in stolerman2015authorship
+You've used 61 entries,
+            2562 wiz_defined-function locations,
+            913 strings with 16206 characters,
+and the built_in function-call counts, 25581 in all, are:
+= -- 2471
+> -- 1056
+< -- 219
++ -- 324
+- -- 311
+* -- 2008
+:= -- 4177
+add.period$ -- 253
+call.type$ -- 61
+change.case$ -- 383
+chr.to.int$ -- 60
+cite$ -- 63
+duplicate$ -- 1000
+empty$ -- 1804
+format.name$ -- 372
+if$ -- 5328
+int.to.chr$ -- 2
+int.to.str$ -- 0
+missing$ -- 63
+newline$ -- 317
+num.names$ -- 185
+pop$ -- 381
+preamble$ -- 1
+purify$ -- 444
+quote$ -- 0
+skip$ -- 1092
+stack$ -- 0
+substring$ -- 1443
+swap$ -- 293
+text.length$ -- 19
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 482
+warning$ -- 2
+while$ -- 192
+width$ -- 0
+write$ -- 775
+(There were 2 error messages)

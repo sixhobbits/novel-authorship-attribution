@@ -1,0 +1,52 @@
+\contentsline {chapter}{\numberline {1}Introduction}{8}
+\contentsline {chapter}{\numberline {2}Background}{11}
+\contentsline {section}{\numberline {2.1}Text Classification}{12}
+\contentsline {subsection}{\numberline {2.1.1}Support Vector Machines}{12}
+\contentsline {subsection}{\numberline {2.1.2}Neural Networks}{13}
+\contentsline {subsection}{\numberline {2.1.3}Siamese Neural Networks}{14}
+\contentsline {subsubsection}{Image Similarity Tasks}{14}
+\contentsline {subsubsection}{Text Similarity Tasks}{16}
+\contentsline {section}{\numberline {2.2}Text Generation}{17}
+\contentsline {subsection}{\numberline {2.2.1}Neural Language Modelling}{17}
+\contentsline {section}{\numberline {2.3}Authorship Attribution}{19}
+\contentsline {subsection}{\numberline {2.3.1}Authorship Identification}{19}
+\contentsline {subsection}{\numberline {2.3.2}Authorship Verification}{22}
+\contentsline {subsection}{\numberline {2.3.3}Neural Networks for Authorship Attribution}{24}
+\contentsline {subsubsection}{Generative and Discriminative models}{25}
+\contentsline {subsection}{\numberline {2.3.4}Transfer Learning}{26}
+\contentsline {subsection}{\numberline {2.3.5}Style}{27}
+\contentsline {subsection}{\numberline {2.3.6}Related tasks}{28}
+\contentsline {chapter}{\numberline {3}Method}{30}
+\contentsline {section}{\numberline {3.1}Unsupervised statistical approaches}{30}
+\contentsline {paragraph}{Count-based statistical experiments}{31}
+\contentsline {paragraph}{Correlation based statistical experiments}{32}
+\contentsline {section}{\numberline {3.2}Support vector machine approaches}{32}
+\contentsline {subsection}{\numberline {3.2.1}Authorship identification tasks}{33}
+\contentsline {subsection}{\numberline {3.2.2}Authorship verification tasks}{33}
+\contentsline {section}{\numberline {3.3}Neural network approaches}{34}
+\contentsline {subsection}{\numberline {3.3.1}Authorship Identification Tasks}{34}
+\contentsline {subsection}{\numberline {3.3.2}Authorship Verification Tasks}{35}
+\contentsline {chapter}{\numberline {4}Data}{37}
+\contentsline {section}{\numberline {4.1}PAN dataset}{37}
+\contentsline {subsection}{\numberline {4.1.1}PAN 2014 dataset}{38}
+\contentsline {subsection}{\numberline {4.1.2}PAN 2015 dataset}{39}
+\contentsline {section}{\numberline {4.2}C50 dataset}{39}
+\contentsline {section}{\numberline {4.3}Yelp dataset}{39}
+\contentsline {chapter}{\numberline {5}Models}{41}
+\contentsline {section}{\numberline {5.1}Unsupervised Statistical Approaches}{41}
+\contentsline {subsection}{\numberline {5.1.1}Features and Feature Extraction}{41}
+\contentsline {section}{\numberline {5.2}Support Vector Machine Approaches}{45}
+\contentsline {subsection}{\numberline {5.2.1}Authorship Identification Tasks}{45}
+\contentsline {subsection}{\numberline {5.2.2}Authorship Verification Tasks}{46}
+\contentsline {section}{\numberline {5.3}Neural Network Approaches}{48}
+\contentsline {subsection}{\numberline {5.3.1}Authorship Identification Tasks}{48}
+\contentsline {subsection}{\numberline {5.3.2}Authorship Verification Tasks}{49}
+\contentsline {chapter}{\numberline {6}Results}{53}
+\contentsline {section}{\numberline {6.1}Unsupervised Statistical Approaches}{53}
+\contentsline {section}{\numberline {6.2}Support Vector Machine Approaches}{55}
+\contentsline {subsection}{\numberline {6.2.1}Authorship Identification Tasks}{55}
+\contentsline {subsection}{\numberline {6.2.2}Authorship Verification Tasks}{56}
+\contentsline {section}{\numberline {6.3}Neural Network Approaches}{57}
+\contentsline {subsection}{\numberline {6.3.1}Authorship Identification Tasks}{58}
+\contentsline {subsection}{\numberline {6.3.2}Authorship Verification Tasks}{58}
+\contentsline {chapter}{\numberline {7}Conclusion}{60}

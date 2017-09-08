@@ -1,0 +1,547 @@
+mport numpy
+from keras.models import Sequential
+from keras.layers import Dense
+from keras.layers import Dropout
+from keras.layers import LSTM, Input, Embedding, Conv1D, MaxPooling1D, BatchNormalization, GRU
+from keras.callbacks import ModelCheckpoint
+from keras.utils import np_utils
+
+# load ascii text and covert to lowercase
+
+# cnn = Dropout(0.2)(embedded)
+# cnn = Conv1D(128, 5, activation='relu')(cnn)
+# cnn = MaxPooling1D(pool_size=4)(cnn)
+
+model = Sequential()
+model.add(Embedding(input_dim=len(charset), output_dim=100))
+model.add(Dropout(0.1))
+model.add(BatchNormalization())
+model.add(GRU(256))
+model.add(Dropout(0.1))
+model.add(BatchNormalization())
+model.add(Dense(y.shape[1], activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam')
+model.fit(X, y, epochs=10, batch_size=128, validation_split=0.1)
+
+"""
+LSTM, BatchNorm
+Train on 14929 samples, validate on 1659 samples
+Epoch 1/5
+14929/14929 [==============================] - 75s - loss: 3.0403 - val_loss: 3.4757
+Epoch 2/5
+14929/14929 [==============================] - 60s - loss: 2.3156 - val_loss: 2.9687
+
+LSTM
+Train on 14929 samples, validate on 1659 samples
+Epoch 1/5
+14929/14929 [==============================] - 75s - loss: 3.1259 - val_loss: 2.7865
+Epoch 2/5
+14929/14929 [==============================] - 60s - loss: 2.6150 - val_loss: 2.3894
+
+CNN(5), LSTM  # faster, needs more epochs
+Train on 14929 samples, validate on 1659 samples
+Epoch 1/5
+14929/14929 [==============================] - 42s - loss: 3.1579 - val_loss: 2.9987
+Epoch 2/5
+14929/14929 [==============================] - 26s - loss: 2.8874 - val_loss: 2.6994
+Epoch 3/5
+14929/14929 [==============================] - 26s - loss: 2.6220 - val_loss: 2.4879
+Epoch 4/5
+14929/14929 [==============================] - 26s - loss: 2.4309 - val_loss: 2.3942
+Epoch 5/5
+14929/14929 [==============================] - 26s - loss: 2.2950 - val_loss: 2.2902
+
+CNN(5), CNN(3), LSTM doesn't drop below 3.0 in 5 epochs
+
+
+Embedding, BatchNorm, GRU, BatchNorm
+Train on 14725 samples, validate on 1637 samples
+Epoch 1/20
+14725/14725 [==============================] - 16s - loss: 2.9240 - val_loss: 3.9516
+Epoch 2/20
+14725/14725 [==============================] - 15s - loss: 2.2447 - val_loss: 3.3667
+Epoch 3/20
+14725/14725 [==============================] - 15s - loss: 2.0054 - val_loss: 2.8011
+Epoch 4/20
+14725/14725 [==============================] - 15s - loss: 1.8388 - val_loss: 2.3477
+Epoch 5/20
+14725/14725 [==============================] - 15s - loss: 1.7122 - val_loss: 2.0196
+Epoch 6/20
+14725/14725 [==============================] - 15s - loss: 1.6069 - val_loss: 1.9417
+Epoch 7/20
+14725/14725 [==============================] - 15s - loss: 1.5044 - val_loss: 1.9541
+Epoch 8/20
+14725/14725 [==============================] - 15s - loss: 1.3987 - val_loss: 1.9512
+Epoch 9/20
+14725/14725 [==============================] - 15s - loss: 1.2940 - val_loss: 1.9921
+Epoch 10/20
+14725/14725 [==============================] - 15s - loss: 1.1850 - val_loss: 2.0424
+
+Train on 14725 samples, validate on 1637 samples
+Epoch 1/20
+14725/14725 [==============================] - 17s - loss: 3.2577 - val_loss: 3.8892
+Epoch 2/20
+14725/14725 [==============================] - 15s - loss: 2.5444 - val_loss: 3.2364
+Epoch 3/20
+14725/14725 [==============================] - 15s - loss: 2.2915 - val_loss: 2.7205
+Epoch 4/20
+14725/14725 [==============================] - 15s - loss: 2.1258 - val_loss: 2.3477
+Epoch 5/20
+14725/14725 [==============================] - 15s - loss: 2.0219 - val_loss: 2.0588
+Epoch 6/20
+14725/14725 [==============================] - 15s - loss: 1.9386 - val_loss: 1.9478
+Epoch 7/20
+14725/14725 [==============================] - 15s - loss: 1.8762 - val_loss: 1.9152
+Epoch 8/20
+14725/14725 [==============================] - 15s - loss: 1.7994 - val_loss: 1.9076
+Epoch 9/20
+14725/14725 [==============================] - 15s - loss: 1.7224 - val_loss: 1.8829
+Epoch 10/20
+14725/14725 [==============================] - 15s - loss: 1.6783 - val_loss: 1.9007
+Epoch 11/20
+14725/14725 [==============================] - 15s - loss: 1.6154 - val_loss: 1.8910
+Epoch 12/20
+14725/14725 [==============================] - 15s - loss: 1.5485 - val_loss: 1.8920
+Epoch 13/20
+14725/14725 [==============================] - 15s - loss: 1.4844 - val_loss: 1.9198
+Epoch 14/20
+14725/14725 [==============================] - 15s - loss: 1.4291 - val_loss: 1.9193
+Epoch 15/20
+14725/14725 [==============================] - 15s - loss: 1.3670 - val_loss: 1.9295
+Epoch 16/20
+14725/14725 [==============================] - 15s - loss: 1.3028 - val_loss: 1.9752
+Epoch 17/20
+14725/14725 [==============================] - 15s - loss: 1.2321 - val_loss: 1.9969
+Epoch 18/20
+14725/14725 [==============================] - 15s - loss: 1.2159 - val_loss: 2.0431
+Epoch 19/20
+14725/14725 [==============================] - 15s - loss: 1.1391 - val_loss: 2.0709
+Epoch 20/20
+14725/14725 [==============================] - 15s - loss: 1.1321 - val_loss: 2.1172
+
+
+model = Sequential()
+model.add(Embedding(input_dim=len(charset), output_dim=100))
+model.add(BatchNormalization())
+model.add(GRU(256))
+model.add(Dropout(0.5))
+model.add(BatchNormalization())
+model.add(Dense(y.shape[1], activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam')
+model.fit(X, y, epochs=20, batch_size=128, validation_split=0.1)
+Train on 14725 samples, validate on 1637 samples
+Epoch 1/20
+14725/14725 [==============================] - 17s - loss: 3.2577 - val_loss: 3.8892
+Epoch 2/20
+14725/14725 [==============================] - 15s - loss: 2.5444 - val_loss: 3.2364
+Epoch 3/20
+14725/14725 [==============================] - 15s - loss: 2.2915 - val_loss: 2.7205
+Epoch 4/20
+14725/14725 [==============================] - 15s - loss: 2.1258 - val_loss: 2.3477
+Epoch 5/20
+14725/14725 [==============================] - 15s - loss: 2.0219 - val_loss: 2.0588
+Epoch 6/20
+14725/14725 [==============================] - 15s - loss: 1.9386 - val_loss: 1.9478
+Epoch 7/20
+14725/14725 [==============================] - 15s - loss: 1.8762 - val_loss: 1.9152
+Epoch 8/20
+14725/14725 [==============================] - 15s - loss: 1.7994 - val_loss: 1.9076
+Epoch 9/20
+14725/14725 [==============================] - 15s - loss: 1.7224 - val_loss: 1.8829
+Epoch 10/20
+14725/14725 [==============================] - 15s - loss: 1.6783 - val_loss: 1.9007
+Epoch 11/20
+14725/14725 [==============================] - 15s - loss: 1.6154 - val_loss: 1.8910
+Epoch 12/20
+14725/14725 [==============================] - 15s - loss: 1.5485 - val_loss: 1.8920
+Epoch 13/20
+14725/14725 [==============================] - 15s - loss: 1.4844 - val_loss: 1.9198
+Epoch 14/20
+14725/14725 [==============================] - 15s - loss: 1.4291 - val_loss: 1.9193
+Epoch 15/20
+14725/14725 [==============================] - 15s - loss: 1.3670 - val_loss: 1.9295
+Epoch 16/20
+14725/14725 [==============================] - 15s - loss: 1.3028 - val_loss: 1.9752
+Epoch 17/20
+14725/14725 [==============================] - 15s - loss: 1.2321 - val_loss: 1.9969
+Epoch 18/20
+14725/14725 [==============================] - 15s - loss: 1.2159 - val_loss: 2.0431
+Epoch 19/20
+14725/14725 [==============================] - 15s - loss: 1.1391 - val_loss: 2.0709
+Epoch 20/20
+14725/14725 [==============================] - 15s - loss: 1.1321 - val_loss: 2.1172
+
+
+model = Sequential()
+model.add(Embedding(input_dim=len(charset), output_dim=100))
+model.add(GRU(256))
+model.add(BatchNormalization())
+model.add(Dropout(0.5))
+model.add(Dense(y.shape[1], activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam')
+model.fit(X, y, epochs=20, batch_size=128, validation_split=0.1)
+Train on 14725 samples, validate on 1637 samples
+Epoch 1/20
+14725/14725 [==============================] - 16s - loss: 3.1731 - val_loss: 3.5648
+Epoch 2/20
+14725/14725 [==============================] - 14s - loss: 2.4964 - val_loss: 2.9875
+Epoch 3/20
+14725/14725 [==============================] - 14s - loss: 2.3446 - val_loss: 2.7695
+Epoch 4/20
+14725/14725 [==============================] - 14s - loss: 2.2928 - val_loss: 2.6010
+Epoch 5/20
+14725/14725 [==============================] - 14s - loss: 2.2642 - val_loss: 2.3900
+Epoch 6/20
+14725/14725 [==============================] - 14s - loss: 2.2373 - val_loss: 2.5023
+Epoch 7/20
+14725/14725 [==============================] - 14s - loss: 2.2186 - val_loss: 2.3780
+Epoch 8/20
+14725/14725 [==============================] - 14s - loss: 2.2029 - val_loss: 2.4928
+Epoch 9/20
+14725/14725 [==============================] - 14s - loss: 2.1852 - val_loss: 2.3480
+Epoch 10/20
+14725/14725 [==============================] - 14s - loss: 2.1745 - val_loss: 2.4801
+Epoch 11/20
+14725/14725 [==============================] - 14s - loss: 2.1563 - val_loss: 2.3951
+Epoch 12/20
+14725/14725 [==============================] - 14s - loss: 2.1391 - val_loss: 2.4133
+Epoch 13/20
+14725/14725 [==============================] - 14s - loss: 2.1192 - val_loss: 2.5896
+Epoch 14/20
+14725/14725 [==============================] - 14s - loss: 2.1020 - val_loss: 2.2692
+Epoch 15/20
+14725/14725 [==============================] - 14s - loss: 2.0770 - val_loss: 2.2179
+Epoch 16/20
+14725/14725 [==============================] - 14s - loss: 2.0643 - val_loss: 2.2822
+Epoch 17/20
+ 6784/14725 [============>.................] - ETA: 7s - loss: 2.0302
+
+
+model = Sequential()
+model.add(Embedding(input_dim=len(charset), output_dim=100))
+model.add(Dropout(0.2))
+model.add(BatchNormalization())
+model.add(GRU(256))
+model.add(Dropout(0.2))
+model.add(BatchNormalization())
+model.add(Dense(y.shape[1], activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam')
+model.fit(X, y, epochs=20, batch_size=128, validation_split=0.1)
+Train on 14725 samples, validate on 1637 samples
+Epoch 1/20
+14725/14725 [==============================] - 17s - loss: 3.1528 - val_loss: 3.9042
+Epoch 2/20
+14725/14725 [==============================] - 15s - loss: 2.4658 - val_loss: 3.2093
+Epoch 3/20
+14725/14725 [==============================] - 15s - loss: 2.2001 - val_loss: 2.6764
+Epoch 4/20
+14725/14725 [==============================] - 15s - loss: 2.0358 - val_loss: 2.2919
+Epoch 5/20
+14725/14725 [==============================] - 15s - loss: 1.9497 - val_loss: 2.0060
+Epoch 6/20
+14725/14725 [==============================] - 15s - loss: 1.8588 - val_loss: 1.9313
+Epoch 7/20
+14725/14725 [==============================] - 15s - loss: 1.7883 - val_loss: 1.9153
+Epoch 8/20
+14725/14725 [==============================] - 15s - loss: 1.7034 - val_loss: 1.9145
+Epoch 9/20
+14725/14725 [==============================] - 15s - loss: 1.6382 - val_loss: 1.8979
+Epoch 10/20
+14725/14725 [==============================] - 15s - loss: 1.5827 - val_loss: 1.8864
+Epoch 11/20
+14725/14725 [==============================] - 15s - loss: 1.5093 - val_loss: 1.8967
+Epoch 12/20
+14725/14725 [==============================] - 15s - loss: 1.4472 - val_loss: 1.9040
+Epoch 13/20
+14725/14725 [==============================] - 15s - loss: 1.3809 - val_loss: 1.9227
+Epoch 14/20
+14725/14725 [==============================] - 15s - loss: 1.3225 - val_loss: 1.9469
+Epoch 15/20
+14725/14725 [==============================] - 15s - loss: 1.2516 - val_loss: 1.9862
+Epoch 16/20
+14725/14725 [==============================] - 15s - loss: 1.2094 - val_loss: 1.9963
+Epoch 17/20
+14725/14725 [==============================] - 15s - loss: 1.1658 - val_loss: 2.0331
+Epoch 18/20
+14725/14725 [==============================] - 15s - loss: 1.0851 - val_loss: 2.0452
+Epoch 19/20
+14725/14725 [==============================] - 15s - loss: 1.0394 - val_loss: 2.0810
+Epoch 20/20
+14725/14725 [==============================] - 15s - loss: 0.9903 - val_loss: 2.1283
+
+
+model = Sequential()
+model.add(Embedding(input_dim=len(charset), output_dim=100))
+model.add(Dropout(0.3))
+model.add(BatchNormalization())
+model.add(GRU(256))
+model.add(Dropout(0.3))
+model.add(BatchNormalization())
+model.add(Dense(y.shape[1], activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam')
+model.fit(X, y, epochs=20, batch_size=128, validation_split=0.1)
+Train on 14725 samples, validate on 1637 samples
+Epoch 1/20
+14725/14725 [==============================] - 17s - loss: 3.2991 - val_loss: 3.8902
+Epoch 2/20
+14725/14725 [==============================] - 15s - loss: 2.5672 - val_loss: 3.1627
+Epoch 3/20
+14725/14725 [==============================] - 15s - loss: 2.2731 - val_loss: 2.6340
+Epoch 4/20
+14725/14725 [==============================] - 15s - loss: 2.1316 - val_loss: 2.2594
+Epoch 5/20
+14725/14725 [==============================] - 15s - loss: 2.0249 - val_loss: 2.0159
+Epoch 6/20
+14725/14725 [==============================] - 15s - loss: 1.9571 - val_loss: 1.9456
+Epoch 7/20
+14725/14725 [==============================] - 15s - loss: 1.8789 - val_loss: 1.9213
+Epoch 8/20
+14725/14725 [==============================] - 15s - loss: 1.8233 - val_loss: 1.8924
+Epoch 9/20
+14725/14725 [==============================] - 15s - loss: 1.7575 - val_loss: 1.8987
+
+
+
+model = Sequential()
+model.add(Embedding(input_dim=len(charset), output_dim=100))
+model.add(Dropout(0.5))
+model.add(BatchNormalization())
+model.add(GRU(256))
+model.add(Dropout(0.5))
+model.add(BatchNormalization())
+model.add(Dense(y.shape[1], activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam')
+model.fit(X, y, epochs=20, batch_size=128, validation_split=0.1)
+Train on 14725 samples, validate on 1637 samples
+Epoch 1/20
+14725/14725 [==============================] - 17s - loss: 3.6036 - val_loss: 3.7924
+Epoch 2/20
+14725/14725 [==============================] - 15s - loss: 2.7765 - val_loss: 3.0022
+Epoch 3/20
+14725/14725 [==============================] - 15s - loss: 2.4773 - val_loss: 2.5697
+Epoch 4/20
+14725/14725 [==============================] - 15s - loss: 2.3218 - val_loss: 2.2606
+Epoch 5/20
+14725/14725 [==============================] - 15s - loss: 2.2328 - val_loss: 2.0832
+Epoch 6/20
+14725/14725 [==============================] - 15s - loss: 2.1748 - val_loss: 2.0248
+Epoch 7/20
+14725/14725 [==============================] - 15s - loss: 2.1174 - val_loss: 1.9865
+Epoch 8/20
+14725/14725 [==============================] - 15s - loss: 2.0617 - val_loss: 1.9640
+Epoch 9/20
+14725/14725 [==============================] - 15s - loss: 2.0206 - val_loss: 1.9461
+Epoch 10/20
+14725/14725 [==============================] - 15s - loss: 1.9758 - val_loss: 1.9334
+Epoch 11/20
+14725/14725 [==============================] - 15s - loss: 1.9546 - val_loss: 1.9148
+Epoch 12/20
+14725/14725 [==============================] - 15s - loss: 1.9045 - val_loss: 1.9121
+Epoch 13/20
+14725/14725 [==============================] - 15s - loss: 1.8757 - val_loss: 1.8888
+Epoch 14/20
+14725/14725 [==============================] - 15s - loss: 1.8437 - val_loss: 1.8874
+Epoch 15/20
+14725/14725 [==============================] - 15s - loss: 1.8145 - val_loss: 1.8822
+Epoch 16/20
+14725/14725 [==============================] - 15s - loss: 1.7805 - val_loss: 1.8785
+Epoch 17/20
+14725/14725 [==============================] - 15s - loss: 1.7558 - val_loss: 1.8868
+Epoch 18/20
+14725/14725 [==============================] - 15s - loss: 1.7218 - val_loss: 1.8670
+Epoch 19/20
+14725/14725 [==============================] - 15s - loss: 1.7032 - val_loss: 1.8759
+Epoch 20/20
+14725/14725 [==============================] - 15s - loss: 1.6832 - val_loss: 1.8834
+
+
+model = Sequential()
+model.add(Embedding(input_dim=len(charset), output_dim=100))
+model.add(Dropout(0.5))
+model.add(BatchNormalization())
+model.add(GRU(256, return_sequences=True))
+model.add(Dropout(0.5))
+model.add(BatchNormalization())
+model.add(GRU(256))
+model.add(Dropout(0.5))
+model.add(BatchNormalization())
+model.add(Dense(y.shape[1], activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam')
+model.fit(X, y, epochs=20, batch_size=128, validation_split=0.1)
+Train on 14725 samples, validate on 1637 samples
+Epoch 1/20
+14725/14725 [==============================] - 33s - loss: 3.7814 - val_loss: 3.7282
+Epoch 2/20
+14725/14725 [==============================] - 29s - loss: 2.8453 - val_loss: 2.8542
+Epoch 3/20
+14725/14725 [==============================] - 29s - loss: 2.5178 - val_loss: 2.4434
+Epoch 4/20
+14725/14725 [==============================] - 29s - loss: 2.3762 - val_loss: 2.1894
+Epoch 5/20
+14725/14725 [==============================] - 29s - loss: 2.2896 - val_loss: 2.0862
+Epoch 6/20
+14725/14725 [==============================] - 29s - loss: 2.2254 - val_loss: 2.0516
+Epoch 7/20
+14725/14725 [==============================] - 29s - loss: 2.1565 - val_loss: 2.0133
+Epoch 8/20
+14725/14725 [==============================] - 29s - loss: 2.1132 - val_loss: 1.9992
+Epoch 9/20
+14725/14725 [==============================] - 29s - loss: 2.0798 - val_loss: 1.9881
+Epoch 10/20
+14725/14725 [==============================] - 29s - loss: 2.0509 - val_loss: 1.9784
+Epoch 11/20
+14725/14725 [==============================] - 29s - loss: 2.0198 - val_loss: 1.9618
+Epoch 12/20
+14725/14725 [==============================] - 29s - loss: 1.9822 - val_loss: 1.9383
+Epoch 13/20
+14725/14725 [==============================] - 29s - loss: 1.9437 - val_loss: 1.9300
+Epoch 14/20
+14725/14725 [==============================] - 29s - loss: 1.9198 - val_loss: 1.9163
+Epoch 15/20
+14725/14725 [==============================] - 29s - loss: 1.8989 - val_loss: 1.9160
+Epoch 16/20
+14725/14725 [==============================] - 29s - loss: 1.8866 - val_loss: 1.9085
+Epoch 17/20
+14725/14725 [==============================] - 29s - loss: 1.8493 - val_loss: 1.8965
+Epoch 18/20
+14725/14725 [==============================] - 29s - loss: 1.8248 - val_loss: 1.8878
+Epoch 19/20
+14725/14725 [==============================] - 29s - loss: 1.8037 - val_loss: 1.8870
+Epoch 20/20
+14725/14725 [==============================] - 29s - loss: 1.7724 - val_loss: 1.8862
+
+
+model = Sequential()
+model.add(Embedding(input_dim=len(charset), output_dim=100))
+model.add(Dropout(0.2))
+model.add(BatchNormalization())
+model.add(GRU(256, return_sequences=True))
+model.add(Dropout(0.2))
+model.add(BatchNormalization())
+model.add(GRU(256))
+model.add(Dropout(0.2))
+model.add(BatchNormalization())
+model.add(Dense(y.shape[1], activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam')
+model.fit(X, y, epochs=20, batch_size=128, validation_split=0.1)
+Train on 14725 samples, validate on 1637 samples
+Epoch 1/20
+14725/14725 [==============================] - 32s - loss: 3.2809 - val_loss: 3.7595
+Epoch 2/20
+14725/14725 [==============================] - 29s - loss: 2.4379 - val_loss: 2.9869
+Epoch 3/20
+14725/14725 [==============================] - 29s - loss: 2.1504 - val_loss: 2.5361
+Epoch 4/20
+14725/14725 [==============================] - 29s - loss: 1.9887 - val_loss: 2.1294
+Epoch 5/20
+14725/14725 [==============================] - 29s - loss: 1.8984 - val_loss: 1.9727
+Epoch 6/20
+14725/14725 [==============================] - 29s - loss: 1.7892 - val_loss: 1.9264
+Epoch 7/20
+14725/14725 [==============================] - 29s - loss: 1.7172 - val_loss: 1.9100
+Epoch 8/20
+14725/14725 [==============================] - 29s - loss: 1.6361 - val_loss: 1.9124
+Epoch 9/20
+14725/14725 [==============================] - 29s - loss: 1.5621 - val_loss: 1.9122
+Epoch 10/20
+14725/14725 [==============================] - 29s - loss: 1.4863 - val_loss: 1.9045
+Epoch 11/20
+14725/14725 [==============================] - 29s - loss: 1.4150 - val_loss: 1.9278
+Epoch 12/20
+14725/14725 [==============================] - 29s - loss: 1.3691 - val_loss: 1.9181
+Epoch 13/20
+14725/14725 [==============================] - 29s - loss: 1.2970 - val_loss: 1.9414
+Epoch 14/20
+ 1536/14725 [==>...........................] - ETA: 25s - loss: 1.1475
+ 
+ 
+ 
+model = Sequential()
+model.add(Embedding(input_dim=len(charset), output_dim=100))
+model.add(BatchNormalization())
+model.add(GRU(256))
+model.add(Dropout(0.4))
+model.add(BatchNormalization())
+model.add(Dense(y.shape[1], activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam')
+model.fit(X, y, epochs=20, batch_size=128, validation_split=0.1)
+ Train on 14725 samples, validate on 1637 samples
+Epoch 1/20
+14725/14725 [==============================] - 17s - loss: 3.1787 - val_loss: 3.9282
+Epoch 2/20
+14725/14725 [==============================] - 15s - loss: 2.5070 - val_loss: 3.2479
+Epoch 3/20
+14725/14725 [==============================] - 15s - loss: 2.2191 - val_loss: 2.7522
+Epoch 4/20
+14725/14725 [==============================] - 15s - loss: 2.0637 - val_loss: 2.3331
+Epoch 5/20
+14725/14725 [==============================] - 15s - loss: 1.9539 - val_loss: 2.0326
+Epoch 6/20
+14725/14725 [==============================] - 15s - loss: 1.8622 - val_loss: 1.9440
+Epoch 7/20
+14725/14725 [==============================] - 15s - loss: 1.7821 - val_loss: 1.9166
+Epoch 8/20
+14725/14725 [==============================] - 15s - loss: 1.7169 - val_loss: 1.8996
+Epoch 9/20
+14725/14725 [==============================] - 15s - loss: 1.6561 - val_loss: 1.8849
+Epoch 10/20
+14725/14725 [==============================] - 15s - loss: 1.5910 - val_loss: 1.9032
+Epoch 11/20
+14725/14725 [==============================] - 15s - loss: 1.5082 - val_loss: 1.8878
+Epoch 12/20
+14725/14725 [==============================] - 15s - loss: 1.4513 - val_loss: 1.9252
+Epoch 13/20
+ 7552/14725 [==============>...............] - ETA: 7s - loss: 1.3534
+ 
+ 
+model = Sequential()
+model.add(Embedding(input_dim=len(charset), output_dim=100))
+model.add(BatchNormalization())
+model.add(GRU(512))
+model.add(Dropout(0.4))
+model.add(BatchNormalization())
+model.add(Dense(y.shape[1], activation='softmax'))
+model.compile(loss='categorical_crossentropy', optimizer='adam')
+model.fit(X, y, epochs=20, batch_size=128, validation_split=0.1)
+ Train on 14725 samples, validate on 1637 samples
+Epoch 1/20
+14725/14725 [==============================] - 23s - loss: 3.1173 - val_loss: 3.8415
+Epoch 2/20
+14725/14725 [==============================] - 20s - loss: 2.4202 - val_loss: 3.1512
+Epoch 3/20
+14725/14725 [==============================] - 20s - loss: 2.1302 - val_loss: 2.7191
+Epoch 4/20
+14725/14725 [==============================] - 20s - loss: 1.9435 - val_loss: 2.3341
+Epoch 5/20
+14725/14725 [==============================] - 20s - loss: 1.7966 - val_loss: 1.9877
+Epoch 6/20
+14725/14725 [==============================] - 20s - loss: 1.6621 - val_loss: 1.9349
+Epoch 7/20
+14725/14725 [==============================] - 20s - loss: 1.5190 - val_loss: 1.9632
+Epoch 8/20
+14725/14725 [==============================] - 20s - loss: 1.3925 - val_loss: 1.9735
+
+
+Train on 14725 samples, validate on 1637 samples
+Epoch 1/10
+14725/14725 [==============================] - 18s - loss: 3.1611 - val_loss: 3.9135
+Epoch 2/10
+14725/14725 [==============================] - 15s - loss: 2.4805 - val_loss: 3.2162
+Epoch 3/10
+14725/14725 [==============================] - 15s - loss: 2.2300 - val_loss: 2.7090
+Epoch 4/10
+14725/14725 [==============================] - 15s - loss: 2.0666 - val_loss: 2.3030
+Epoch 5/10
+14725/14725 [==============================] - 15s - loss: 1.9555 - val_loss: 2.0318
+Epoch 6/10
+14725/14725 [==============================] - 15s - loss: 1.8663 - val_loss: 1.9357
+Epoch 7/10
+14725/14725 [==============================] - 15s - loss: 1.7861 - val_loss: 1.9046
+Epoch 8/10
+14725/14725 [==============================] - 15s - loss: 1.7292 - val_loss: 1.9042
+Epoch 9/10
+14725/14725 [==============================] - 15s - loss: 1.6508 - val_loss: 1.8829
+Epoch 10/10
+14725/14725 [==============================] - 15s - loss: 1.5803 - val_loss: 1.8646:q
+
+"""

@@ -1,0 +1,476 @@
+\begin{thebibliography}{}
+
+\bibitem[\protect\citename{Abadi {\em et~al.}, }2016]{abadi2016tensorflow}
+Abadi, Mart{\'\i}n, Agarwal, Ashish, Barham, Paul, Brevdo, Eugene, Chen,
+  Zhifeng, Citro, Craig, Corrado, Greg~S, Davis, Andy, Dean, Jeffrey, Devin,
+  Matthieu, {\em et~al.} 2016.
+\newblock Tensorflow: Large-scale machine learning on heterogeneous distributed
+  systems.
+\newblock {\em arXiv preprint arXiv:1603.04467}.
+
+\bibitem[\protect\citename{Abbasi \& Chen, }2008]{abbasi2008writeprints}
+Abbasi, Ahmed, \& Chen, Hsinchun. 2008.
+\newblock Writeprints: A stylometric approach to identity-level identification
+  and similarity detection in cyberspace.
+\newblock {\em ACM Transactions on Information Systems (TOIS)}, {\bf 26}(2), 7.
+
+\bibitem[\protect\citename{Afroz {\em et~al.}, }2014]{afroz2014doppelganger}
+Afroz, Sadia, Islam, Aylin~Caliskan, Stolerman, Ariel, Greenstadt, Rachel, \&
+  McCoy, Damon. 2014.
+\newblock Doppelg{\"a}nger finder: Taking stylometry to the underground.
+\newblock {\em Pages  212--226 of:} {\em Security and Privacy (SP), 2014 IEEE
+  Symposium on}.
+\newblock IEEE.
+
+\bibitem[\protect\citename{Akimushkin {\em et~al.}, }2017]{akimushkin2017role}
+Akimushkin, Camilo, Amancio, Diego~R, \& Oliveira~Jr, Osvaldo~N. 2017.
+\newblock On the role of words in the network structure of texts: application
+  to authorship attribution.
+\newblock {\em arXiv preprint arXiv:1705.04187}.
+
+\bibitem[\protect\citename{Bagnall, }2015]{bagnall2015author}
+Bagnall, Douglas. 2015.
+\newblock Author identification using multi-headed recurrent neural networks.
+\newblock {\em arXiv preprint arXiv:1506.04891}.
+
+\bibitem[\protect\citename{Bagnall, }2016]{bagnall2016authorship}
+Bagnall, Douglas. 2016.
+\newblock Authorship clustering using multi-headed recurrent neural networks.
+\newblock {\em arXiv preprint arXiv:1608.04485}.
+
+\bibitem[\protect\citename{Baraldi {\em et~al.}, }2015]{baraldi2015deep}
+Baraldi, Lorenzo, Grana, Costantino, \& Cucchiara, Rita. 2015.
+\newblock A deep siamese network for scene detection in broadcast videos.
+\newblock {\em Pages  1199--1202 of:} {\em Proceedings of the 23rd ACM
+  international conference on Multimedia}.
+\newblock ACM.
+
+\bibitem[\protect\citename{Basile {\em et~al.}, }2017]{basile2017ngram}
+Basile, Angelo, Dwyer, Gareth, Medvedeva, Maria, Rawee, Josine, Haagsma,
+  Hessel, \& Nissim, Malvina. 2017.
+\newblock N-GrAM: New Groningen Author-profiling Model.
+\newblock {\em arXiv preprint arXiv:1707.03764}.
+
+\bibitem[\protect\citename{Braud \& Søgaard, }2017]{braud2017writing}
+Braud, Chloé, \& Søgaard, Anders. 2017.
+\newblock Is writing style predictive of scientific fraud?
+\newblock {\em arXiv preprint arXiv:1707.04095}.
+
+\bibitem[\protect\citename{Bromley {\em et~al.}, }1993]{bromley1993signature}
+Bromley, Jane, Bentz, James~W., Bottou, L{\'e}on, Guyon, Isabelle, LeCun, Yann,
+  Moore, Cliff, S{\"a}ckinger, Eduard, \& Shah, Roopak. 1993.
+\newblock Signature Verification Using A "Siamese" Time Delay Neural Network.
+\newblock {\em IJPRAI}, {\bf 7}(4), 669--688.
+
+\bibitem[\protect\citename{{Busger op Vollenbroek} {\em et~al.},
+  }2016]{busgeropvollenbroeck:2016}
+{Busger op Vollenbroek}, Mart, Carlotto, Talvany, Kreutz, Tim, Medvedeva,
+  Maria, Pool, Chris, Bjerva, Johannes, Haagsma, Hessel, \& Nissim, Malvina.
+  2016.
+\newblock {GronUP: Groningen User Profiling---Notebook for PAN at CLEF 2016}.
+\newblock {\em In:} Balog, Krisztian, Cappellato, Linda, Ferro, Nicola, \&
+  Macdonald, Craig (eds), {\em {CLEF 2016 Evaluation Labs and Workshop --
+  Working Notes Papers, 5-8 September, {\'E}vora, Portugal}}.
+\newblock CEUR-WS.org.
+
+\bibitem[\protect\citename{Cappellato {\em et~al.}, }2014]{cappellato2014clef}
+Cappellato, Linda, Ferro, Nicola, Halvey, Martin, \& Kraaij, Wessel. 2014.
+\newblock CLEF 2014 labs and workshops, notebook papers.
+\newblock {\em Pages  1613--0073 of:} {\em CEUR Workshop Proceedings (CEUR-WS.
+  org), ISSN}.
+
+\bibitem[\protect\citename{Chopra {\em et~al.}, }2005]{chopra2005learning}
+Chopra, Sumit, Hadsell, Raia, \& LeCun, Yann. 2005.
+\newblock Learning a similarity metric discriminatively, with application to
+  face verification.
+\newblock {\em Pages  539--546 of:} {\em Computer Vision and Pattern
+  Recognition, 2005. CVPR 2005. IEEE Computer Society Conference on},  vol. 1.
+\newblock IEEE.
+
+\bibitem[\protect\citename{Deng \& Jaitly, }2015]{deng2015deep}
+Deng, Li, \& Jaitly, Navdeep. 2015.
+\newblock Deep discriminative and generative models for pattern recognition.
+\newblock {\em USENIX--Advanced Computing Systems Association}.
+
+\bibitem[\protect\citename{Diederich {\em et~al.},
+  }2003]{diederich2003authorship}
+Diederich, Joachim, Kindermann, J{\"o}rg, Leopold, Edda, \& Paass, Gerhard.
+  2003.
+\newblock Authorship attribution with support vector machines.
+\newblock {\em Applied intelligence}, {\bf 19}(1), 109--123.
+
+\bibitem[\protect\citename{Ficler \& Goldberg, }2017]{ficler2017controlling}
+Ficler, Jessica, \& Goldberg, Yoav. 2017.
+\newblock Controlling Linguistic Style Aspects in Neural Language Generation.
+\newblock {\em arXiv preprint arXiv:1707.02633}.
+
+\bibitem[\protect\citename{Fr{\'e}ry {\em et~al.},
+  }2014]{frery2014identification}
+Fr{\'e}ry, J, Largeron, C, \& Jugana, M. 2014.
+\newblock CLEF 2014 labs and workshops, notebook papers.
+\newblock {\em In:} {\em CLEF (Working Notes)}.
+\newblock In \cite{cappellato2014clef}.
+
+\bibitem[\protect\citename{Gatt \& Krahmer, }2017]{gatt2017survey}
+Gatt, Albert, \& Krahmer, Emiel. 2017.
+\newblock Survey of the State of the Art in Natural Language Generation: Core
+  tasks, applications and evaluation.
+\newblock {\em arXiv preprint arXiv:1703.09902}.
+
+\bibitem[\protect\citename{Gatys {\em et~al.}, }2016]{gatys2016image}
+Gatys, Leon~A, Ecker, Alexander~S, \& Bethge, Matthias. 2016.
+\newblock Image style transfer using convolutional neural networks.
+\newblock {\em Pages  2414--2423 of:} {\em Proceedings of the IEEE Conference
+  on Computer Vision and Pattern Recognition}.
+
+\bibitem[\protect\citename{Goldberg, }2016]{goldberg2016primer}
+Goldberg, Yoav. 2016.
+\newblock A Primer on Neural Network Models for Natural Language Processing.
+\newblock {\em J. Artif. Intell. Res.(JAIR)}, {\bf 57}, 345--420.
+
+\bibitem[\protect\citename{Hadsell {\em et~al.},
+  }2006]{hadsell2006dimensionality}
+Hadsell, Raia, Chopra, Sumit, \& LeCun, Yann. 2006.
+\newblock Dimensionality reduction by learning an invariant mapping.
+\newblock {\em Pages  1735--1742 of:} {\em Computer vision and pattern
+  recognition, 2006 IEEE computer society conference on},  vol. 2.
+\newblock IEEE.
+
+\bibitem[\protect\citename{Halvani {\em et~al.}, }2016]{halvani2016authorship}
+Halvani, Oren, Winter, Christian, \& Pflug, Anika. 2016.
+\newblock Authorship verification for different languages, genres and topics.
+\newblock {\em Digital Investigation}, {\bf 16}, S33--S43.
+
+\bibitem[\protect\citename{Halvani {\em et~al.}, }2017]{halvani2017authorship}
+Halvani, Oren, Winter, Christian, \& Graner, Lukas. 2017.
+\newblock Authorship Verification based on Compression-Models.
+\newblock {\em arXiv preprint arXiv:1706.00516}.
+
+\bibitem[\protect\citename{Hosseini-Asl \& Guha, }2015]{hosseini2015similarity}
+Hosseini-Asl, Ehsan, \& Guha, Angshuman. 2015.
+\newblock Similarity-based Text Recognition by Deeply Supervised Siamese
+  Network.
+\newblock {\em arXiv preprint arXiv:1511.04397}.
+
+\bibitem[\protect\citename{Houvardas \& Stamatatos, }2006]{houvardas2006ngram}
+Houvardas, John, \& Stamatatos, Efstathios. 2006.
+\newblock N-gram feature selection for authorship identification.
+\newblock {\em Artificial Intelligence: Methodology, Systems, and
+  Applications},  77--86.
+
+\bibitem[\protect\citename{H{\"u}rlimann {\em et~al.},
+  }2015]{hurlimann2015glad}
+H{\"u}rlimann, Manuela, Weck, Benno, van~den Berg, Esther, Suster, Simon, \&
+  Nissim, Malvina. 2015.
+\newblock GLAD: Groningen Lightweight Authorship Detection.
+\newblock {\em In:} {\em CLEF (Working Notes)}.
+
+\bibitem[\protect\citename{Jhamtani {\em et~al.},
+  }2017]{jhamtani2017shakespearizing}
+Jhamtani, Harsh, Gangal, Varun, Hovy, Eduard, \& Nyberg, Eric. 2017.
+\newblock Shakespearizing Modern Language Using Copy-Enriched
+  Sequence-to-Sequence Models.
+\newblock {\em arXiv preprint arXiv:1707.01161}.
+
+\bibitem[\protect\citename{Joachims, }1998]{joachims1998text}
+Joachims, Thorsten. 1998.
+\newblock Text categorization with support vector machines: Learning with many
+  relevant features.
+\newblock {\em Machine learning: ECML-98},  137--142.
+
+\bibitem[\protect\citename{Juola \& Stamatatos, }2013]{juola2013overview}
+Juola, Patrick, \& Stamatatos, Efstathios. 2013.
+\newblock Overview of the Author Identification Task at PAN 2013.
+\newblock {\em In:} {\em CLEF (Working Notes)}.
+
+\bibitem[\protect\citename{Kabbara \& Cheung, }2016]{kabbara2016stylistic}
+Kabbara, Jad, \& Cheung, Jackie Chi~Kit. 2016.
+\newblock Stylistic Transfer in Natural Language Generation Systems Using
+  Recurrent Neural Networks.
+\newblock {\em EMNLP 2016}, ~43.
+
+\bibitem[\protect\citename{Karpathy, }2015]{karpathy2015unreasonable}
+Karpathy, Andrej. 2015.
+\newblock The unreasonable effectiveness of recurrent neural networks.
+\newblock {\em Andrej Karpathy blog}.
+
+\bibitem[\protect\citename{Kestemont, }2014]{kestemont2014function}
+Kestemont, Mike. 2014.
+\newblock Function words in authorship attribution from black magic to theory?
+\newblock {\em Pages  59--66 of:} {\em Proceedings of the 3rd Workshop on
+  Computational Linguistics for Literature (CLfL)@ EACL}.
+
+\bibitem[\protect\citename{Khonji \& Iraqi, }2014]{khonji2014slightly}
+Khonji, Mahmoud, \& Iraqi, Youssef. 2014.
+\newblock A Slightly-modified GI-based Author-verifier with Lots of Features
+  (ASGALF).
+\newblock {\em CLEF (Working Notes)}, {\bf 1180}, 977--983.
+
+\bibitem[\protect\citename{Klimt \& Yang, }2004]{klimt2004enron}
+Klimt, Bryan, \& Yang, Yiming. 2004.
+\newblock The enron corpus: A new dataset for email classification research.
+\newblock {\em Machine learning: ECML 2004},  217--226.
+
+\bibitem[\protect\citename{Koch {\em et~al.}, }2015]{koch2015siamese}
+Koch, Gregory, Zemel, Richard, \& Salakhutdinov, Ruslan. 2015.
+\newblock Siamese neural networks for one-shot image recognition.
+\newblock {\em In:} {\em ICML Deep Learning Workshop},  vol. 2.
+
+\bibitem[\protect\citename{Koppel \& Schler, }2003]{koppel2003exploiting}
+Koppel, Moshe, \& Schler, Jonathan. 2003.
+\newblock Exploiting stylistic idiosyncrasies for authorship attribution.
+\newblock {\em Page ~72 of:} {\em Proceedings of IJCAI'03 Workshop on
+  Computational Approaches to Style Analysis and Synthesis},  vol. 69.
+
+\bibitem[\protect\citename{Koppel \& Schler, }2004]{koppel2004authorship}
+Koppel, Moshe, \& Schler, Jonathan. 2004.
+\newblock Authorship verification as a one-class classification problem.
+\newblock {\em Page ~62 of:} {\em Proceedings of the twenty-first international
+  conference on Machine learning}.
+\newblock ACM.
+
+\bibitem[\protect\citename{Koppel \& Winter, }2014]{koppel2014determining}
+Koppel, Moshe, \& Winter, Yaron. 2014.
+\newblock Determining if two documents are written by the same author.
+\newblock {\em Journal of the Association for Information Science and
+  Technology}, {\bf 65}(1), 178--187.
+
+\bibitem[\protect\citename{Koppel {\em et~al.}, }2009]{koppel2009computational}
+Koppel, Moshe, Schler, Jonathan, \& Argamon, Shlomo. 2009.
+\newblock Computational methods in authorship attribution.
+\newblock {\em Journal of the Association for Information Science and
+  Technology}, {\bf 60}(1), 9--26.
+
+\bibitem[\protect\citename{Koppel {\em et~al.}, }2012a]{koppel2012authorship}
+Koppel, Moshe, Schler, Jonathan, \& Argamon, Shlomo. 2012a.
+\newblock Authorship Attribution: What's Easy and What's Hard.
+\newblock {\em JL \& Pol'y}, {\bf 21}, 317.
+
+\bibitem[\protect\citename{Koppel {\em et~al.}, }2012b]{koppel2012fundamental}
+Koppel, Moshe, Schler, Jonathan, Argamon, Shlomo, \& Winter, Yaron. 2012b.
+\newblock The “fundamental problem” of authorship attribution.
+\newblock {\em English Studies}, {\bf 93}(3), 284--291.
+
+\bibitem[\protect\citename{Kravalov\'{a} \& \v{Z}abokrtsk\'{y},
+  }2009]{Kravalova:2009:CNE:1699705.1699748}
+Kravalov\'{a}, Jana, \& \v{Z}abokrtsk\'{y}, Zden\v{e}k. 2009.
+\newblock Czech Named Entity Corpus and SVM-based Recognizer.
+\newblock {\em Pages  194--201 of:} {\em Proceedings of the 2009 Named Entities
+  Workshop: Shared Task on Transliteration}.
+\newblock NEWS '09.
+\newblock Stroudsburg, PA, USA: Association for Computational Linguistics.
+
+\bibitem[\protect\citename{Lai {\em et~al.}, }2015]{lai2015recurrent}
+Lai, Siwei, Xu, Liheng, Liu, Kang, \& Zhao, Jun. 2015.
+\newblock Recurrent Convolutional Neural Networks for Text Classification.
+\newblock {\em Pages  2267--2273 of:} {\em AAAI},  vol. 333.
+
+\bibitem[\protect\citename{Lalor {\em et~al.}, }2017]{lalor2017improving}
+Lalor, John, Wu, Hao, \& Yu, Hong. 2017.
+\newblock Improving Machine Learning Ability with Fine-Tuning.
+\newblock {\em arXiv preprint arXiv:1702.08563}.
+
+\bibitem[\protect\citename{Lewis {\em et~al.}, }2004]{lewis2004rcv1}
+Lewis, David~D, Yang, Yiming, Rose, Tony~G, \& Li, Fan. 2004.
+\newblock Rcv1: A new benchmark collection for text categorization research.
+\newblock {\em Journal of machine learning research}, {\bf 5}(Apr), 361--397.
+
+\bibitem[\protect\citename{Luyckx, }2011]{luyckx2011scalability}
+Luyckx, Kim. 2011.
+\newblock {\em Scalability issues in authorship attribution}.
+\newblock ASP/VUBPRESS/UPA.
+
+\bibitem[\protect\citename{Luyckx \& Daelemans, }2008]{luyckx2008authorship}
+Luyckx, Kim, \& Daelemans, Walter. 2008.
+\newblock Authorship attribution and verification with many authors and limited
+  data.
+\newblock {\em Pages  513--520 of:} {\em Proceedings of the 22nd International
+  Conference on Computational Linguistics-Volume 1}.
+\newblock Association for Computational Linguistics.
+
+\bibitem[\protect\citename{Mikolov {\em et~al.}, }2012]{mikolov2012subword}
+Mikolov, Tom{\'a}{\v{s}}, Sutskever, Ilya, Deoras, Anoop, Le, Hai-Son,
+  Kombrink, Stefan, \& Cernocky, Jan. 2012.
+\newblock Subword language modeling with neural networks.
+\newblock {\em preprint (http://www. fit. vutbr. cz/imikolov/rnnlm/char. pdf)}.
+
+\bibitem[\protect\citename{Mueller \& Thyagarajan, }2016]{mueller2016siamese}
+Mueller, Jonas, \& Thyagarajan, Aditya. 2016.
+\newblock Siamese Recurrent Architectures for Learning Sentence Similarity.
+\newblock {\em Pages  2786--2792 of:} {\em AAAI}.
+
+\bibitem[\protect\citename{Myers, }1962]{myers1962myers}
+Myers, Isabel~Briggs. 1962.
+\newblock The Myers-Briggs Type Indicator: Manual (1962).
+
+\bibitem[\protect\citename{Naaman {\em et~al.}, }2017]{naaman2017learning}
+Naaman, Einat, Adi, Yossi, \& Keshet, Joseph. 2017.
+\newblock Learning Similarity Function for Pronunciation Variations.
+\newblock {\em arXiv preprint arXiv:1703.09817}.
+
+\bibitem[\protect\citename{Neculoiu {\em et~al.}, }2016]{neculoiu2016learning}
+Neculoiu, Paul, Versteegh, Maarten, Rotaru, Mihai, \& Amsterdam, Textkernel~BV.
+  2016.
+\newblock Learning Text Similarity with Siamese Recurrent Networks.
+\newblock {\em ACL 2016},  148.
+
+\bibitem[\protect\citename{Ng \& Jordan, }2002]{ng2002discriminative}
+Ng, Andrew~Y, \& Jordan, Michael~I. 2002.
+\newblock On discriminative vs. generative classifiers: A comparison of
+  logistic regression and naive bayes.
+\newblock {\em Pages  841--848 of:} {\em Advances in neural information
+  processing systems}.
+
+\bibitem[\protect\citename{Pedregosa {\em et~al.}, }2011]{scikit-learn}
+Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel,
+  O., Blondel, M., Prettenhofer, P., Weiss, R., Dubourg, V., Vanderplas, J.,
+  Passos, A., Cournapeau, D., Brucher, M., Perrot, M., \& Duchesnay, E. 2011.
+\newblock Scikit-learn: Machine Learning in {P}ython.
+\newblock {\em Journal of Machine Learning Research}, {\bf 12}, 2825--2830.
+
+\bibitem[\protect\citename{Potthast {\em et~al.}, }2016]{potthast2016wrote}
+Potthast, Martin, Braun, Sarah, Buz, Tolga, Duffhauss, Fabian, Friedrich,
+  Florian, G{\"u}lzow, J{\"o}rg~Marvin, K{\"o}hler, Jakob, L{\"o}tzsch,
+  Winfried, M{\"u}ller, Fabian, M{\"u}ller, Maike~Elisa, {\em et~al.} 2016.
+\newblock Who wrote the web? Revisiting influential author identification
+  research applicable to information retrieval.
+\newblock {\em Pages  393--407 of:} {\em European Conference on Information
+  Retrieval}.
+\newblock Springer.
+
+\bibitem[\protect\citename{Queneau, }1981]{queneau1981exercises}
+Queneau, Raymond. 1981.
+\newblock {\em Exercises in style}.
+\newblock  Vol. 513.
+\newblock New Directions Publishing.
+
+\bibitem[\protect\citename{Raghu {\em et~al.}, }2016]{raghu2016expressive}
+Raghu, Maithra, Poole, Ben, Kleinberg, Jon, Ganguli, Surya, \& Sohl-Dickstein,
+  Jascha. 2016.
+\newblock On the expressive power of deep neural networks.
+\newblock {\em arXiv preprint arXiv:1606.05336}.
+
+\bibitem[\protect\citename{Riemer {\em et~al.},
+  }2017]{riemer2017representation}
+Riemer, Matthew, Khabiri, Elham, \& Goodwin, Richard. 2017.
+\newblock Representation Stability as a Regularizer for Improved Text Analytics
+  Transfer Learning.
+\newblock {\em arXiv preprint arXiv:1704.03617}.
+
+\bibitem[\protect\citename{Robertson, }2004]{robertson2004understanding}
+Robertson, Stephen. 2004.
+\newblock Understanding inverse document frequency: on theoretical arguments
+  for IDF.
+\newblock {\em Journal of documentation}, {\bf 60}(5), 503--520.
+
+\bibitem[\protect\citename{Ruder {\em et~al.}, }2016]{ruder2016character}
+Ruder, Sebastian, Ghaffari, Parsa, \& Breslin, John~G. 2016.
+\newblock Character-level and Multi-channel Convolutional Neural Networks for
+  Large-scale Authorship Attribution.
+\newblock {\em arXiv preprint arXiv:1609.06686}.
+
+\bibitem[\protect\citename{Shrestha {\em et~al.},
+  }2017]{shrestha2017convolutional}
+Shrestha, Prasha, Sierra, Sebastian, Gonz{\'a}lez, Fabio~A, Rosso, Paolo,
+  Montes-y G{\'o}mez, Manuel, \& Solorio, Thamar. 2017.
+\newblock Convolutional Neural Networks for Authorship Attribution of Short
+  Texts.
+\newblock {\em EACL 2017},  669.
+
+\bibitem[\protect\citename{Stamatatos, }2009]{stamatatos2009survey}
+Stamatatos, Efstathios. 2009.
+\newblock A survey of modern authorship attribution methods.
+\newblock {\em Journal of the American Society for information Science and
+  Technology}, {\bf 60}(3), 538--556.
+
+\bibitem[\protect\citename{Stamatatos {\em et~al.},
+  }2014]{stamatatos2015overview}
+Stamatatos, Efstathios, Daelemans, Walter, Verhoeven, Ben, Juola, Patrick,
+  L{\'o}pez-L{\'o}pez, Aurelio, Potthast, Martin, \& Stein, Benno. 2014.
+\newblock Overview of the Author Identification Task at PAN 2015.
+\newblock {\em Pages  877--897 of:} {\em CLEF (Working Notes)}.
+
+\bibitem[\protect\citename{Stamatatos {\em et~al.}, }2016]{stein2016overview}
+Stamatatos, Efstathios, Tschuggnall, Michael, Verhoeven, Ben, Daelemans,
+  Walter, Specht, Guenther, Stein, Benno, \& Potthast, Martin. 2016.
+\newblock {Clustering by Authorship Within and Across Documents}.
+\newblock {\em In:} {\em Working Notes Papers of the CLEF 2016 Evaluation
+  Labs}.
+\newblock CEUR Workshop Proceedings.
+\newblock CLEF and CEUR-WS.org.
+
+\bibitem[\protect\citename{Stolerman, }2015]{stolerman2015authorship}
+Stolerman, Ariel. 2015.
+\newblock {\em Authorship Verification}.
+\newblock Ph.D. thesis.
+\newblock Copyright - Copyright ProQuest, UMI Dissertations Publishing 2015;
+  Last updated - 2015-05-12; First page - n/a.
+
+\bibitem[\protect\citename{Stolerman {\em et~al.},
+  }2011]{stolerman2011classify}
+Stolerman, Ariel, Overdorf, Rebekah, Afroz, Sadia, \& Greenstadt, Rachel. 2011.
+\newblock Classify, but verify: Breaking the closed-world assumption in
+  stylometric authorship attribution.
+\newblock {\em Page ~23 of:} {\em IFIP Working Group},  vol. 11.
+
+\bibitem[\protect\citename{Sutskever {\em et~al.},
+  }2011]{sutskever2011generating}
+Sutskever, Ilya, Martens, James, \& Hinton, Geoffrey~E. 2011.
+\newblock Generating text with recurrent neural networks.
+\newblock {\em Pages  1017--1024 of:} {\em Proceedings of the 28th
+  International Conference on Machine Learning (ICML-11)}.
+
+\bibitem[\protect\citename{Tiflin \& Omlin, }2012]{tiflin2012lstm}
+Tiflin, Conrad, \& Omlin, Christian~W. 2012.
+\newblock {\em LSTM recurrent neural networks for signature verification}.
+\newblock Lap Lambert Academic Publ.
+
+\bibitem[\protect\citename{Tschuggnall {\em et~al.}, }2017]{stein2017overview}
+Tschuggnall, Michael, Stamatatos, Efstathios, Verhoeven, Ben, Daelemans,
+  Walter, Specht, G\"{u}nther, Stein, Benno, \& Potthast, Martin. 2017.
+\newblock {Overview of the Author Identification Task at PAN-2017: Style Breach
+  Detection and Author Clustering}.
+\newblock {\em In:} Cappellato, Linda, Ferro, Nicola, Goeuriot, Lorraine, \&
+  Mandl, Thomad (eds), {\em Working Notes Papers of the CLEF 2017 Evaluation
+  Labs}.
+\newblock CEUR Workshop Proceedings, vol. 1866.
+\newblock CLEF and CEUR-WS.org.
+
+\bibitem[\protect\citename{Verhoeven {\em et~al.}, }2016]{verhoeven2016twisty}
+Verhoeven, Ben, Daelemans, Walter, \& Plank, Barbara. 2016.
+\newblock TwiSty: A Multilingual Twitter Stylometry Corpus for Gender and
+  Personality Profiling.
+\newblock {\em In:} {\em LREC}.
+
+\bibitem[\protect\citename{Yin {\em et~al.}, }2016]{yin2016abcnn}
+Yin, Wenpeng, Sch{\"u}tze, Hinrich, Xiang, Bing, \& Zhou, Bowen. 2016.
+\newblock ABCNN: Attention-Based Convolutional Neural Network for Modeling
+  Sentence Pairs.
+\newblock {\em Transactions of the Association for Computational Linguistics},
+  {\bf 4}, 259--272.
+
+\bibitem[\protect\citename{Yogatama {\em et~al.},
+  }2017]{yogatama2017generative}
+Yogatama, Dani, Dyer, Chris, Ling, Wang, \& Blunsom, Phil. 2017.
+\newblock Generative and Discriminative Text Classification with Recurrent
+  Neural Networks.
+\newblock {\em arXiv preprint arXiv:1703.01898}.
+
+\bibitem[\protect\citename{Yoon {\em et~al.}, }2017]{yoon2017efficient}
+Yoon, Seunghyun, Yun, Hyeongu, Kim, Yuna, Park, Gyu-tae, \& Jung, Kyomin. 2017.
+\newblock Efficient Transfer Learning Schemes for Personalized Language
+  Modeling using Recurrent Neural Network.
+\newblock {\em arXiv preprint arXiv:1701.03578}.
+
+\bibitem[\protect\citename{Zhu {\em et~al.}, }2017]{zhu2017deep}
+Zhu, Jianqing, Zeng, Huanqiang, Liao, Shengcai, Lei, Zhen, Cai, Canhui, \&
+  Zheng, LiXin. 2017.
+\newblock Deep Hybrid Similarity Learning for Person Re-identification.
+\newblock {\em arXiv preprint arXiv:1702.04858}.
+
+\bibitem[\protect\citename{Zoph {\em et~al.}, }2016]{zoph2016transfer}
+Zoph, Barret, Yuret, Deniz, May, Jonathan, \& Knight, Kevin. 2016.
+\newblock Transfer learning for low-resource neural machine translation.
+\newblock {\em arXiv preprint arXiv:1604.02201}.
+
+\end{thebibliography}

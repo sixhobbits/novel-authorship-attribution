@@ -1,0 +1,19 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces An overview of the PAN 2014 dataset. \textit {Docs. / Prob.} refers to the average number of documents per known author. \textit {Words / Doc.} is an average of the words per document.}}{38}
+\contentsline {table}{\numberline {4.2}{\ignorespaces An overview of the PAN 2015 dataset. \textit {Docs. / Prob.} refers to the average number of documents per known author. \textit {Words / Doc.} is an average of the words per document.}}{39}
+\contentsline {table}{\numberline {4.3}{\ignorespaces An overview of the C50 dataset.}}{40}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces An overview of the features we used for our unsupervised models. Each feature is normalized as a ratio either by the number of words in the text or the number of characters as specified by `per word' or `per character' above.}}{42}
+\contentsline {table}{\numberline {5.2}{\ignorespaces An excerpt from the known text (\textit {Der Tag}) and the unknown text (\textit {The Admirable Crichton}) by J. M. Barrie.}}{43}
+\contentsline {table}{\numberline {5.3}{\ignorespaces The fifteen supporting features for a pair of texts by J. M. Barrie. The Feature column shows the literal word or feature that was used differently in these two texts compared to the rest of the corpus, while the Known and Unknown columns show the z-score for that feature. Positive score indicate that the author used that feature more often than average, while negative scores indicate that the feature was used less often than average.}}{44}
+\contentsline {table}{\numberline {5.4}{\ignorespaces Example of pairing same-author and different-author verification examples. All pairs are \textit {same-author} in the first two arrays (before shift), while half are \textit {different author} in the second two (after shift).}}{47}
+\contentsline {table}{\numberline {5.5}{\ignorespaces Description of our Authorship Verification datasets. Author Length refers to the total number of characters of text we used to represent one author. Text Length is half of this to account for creating \textit {known} and \textit {unknown} texts for each author.}}{47}
+\contentsline {table}{\numberline {5.6}{\ignorespaces An example of partially overlapping sequences for 10 characters (note that for the actual model we used sequences of 100 characters). }}{49}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {6.1}{\ignorespaces The comparative results for our Unsupervised method for the basic and correlation models. We present our highest results using thresholds of 0.75 for both models. Khonji=\citet {khonji2014slightly}, Frery=\citet {frery2014identification}, Bagnal=\citet {bagnall2015author}, tr=train, te=test.}}{54}
+\contentsline {table}{\numberline {6.2}{\ignorespaces The comparative results for our Support Vector Machine models. We present accuracy scores alongside our F1 scores in order to be able to compare to previous high scores at PAN. \textit {B/K} is \citet {bagnall2015author} for 2015 datasets and \citet {khonji2014slightly} for 2014 datasets. ``Yelp short'' and ``Yelp long'' refer to the datasets summarized in Table 5.5\hbox {}}}{57}
+\contentsline {table}{\numberline {6.3}{\ignorespaces The comparative results for our Siamese method, averaged over 10 runs. We present accuracy scores alongside our F1 scores in order to be able to compare to previous high scores at PAN. \textit {B/K} is \citet {bagnall2015author} for 2015 datasets and \citet {khonji2014slightly} for 2014 datasets. Note that datasets marked with * were used to tune the models and the results should not be taken as indicative of evaluation.}}{59}
+\addvspace {10\p@ }

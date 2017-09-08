@@ -1,0 +1,208 @@
+\chapter{Related work}
+
+\begin{itemize}
+    \item which language identifiers are there
+    \item which similar languages
+    \item which minority languages
+    \item overview of methods
+    \item some assumptions/conclusions on the way to approach a universal language identifier
+    \item a huge table overview (in appendix?): year/author/model/main features
+\end{itemize}
+
+\section{Bullet points}
+
+
+
+\begin{itemize}
+    \item domain
+    \item number of languages
+    \item tested on (document, sentence, word, snippet)
+    \item approach
+    \item representation (byte/char/word ngrams, words, weighted letters, etc)
+\end{itemize}
+
+In this chapter we will discuss the research in language identification that has already been conducted. As we've mentioned before, there were a lot of attempts to solve this problem; from the very start the attempts showed very promising results \parencite{cavnar1994n,dunning1994statistical}. Even though many papers show language identification problem as a solved problem due to their near perfect results (CITE CITE), there are certain aspects of it that are still a challenge. The main problem 
+
+
+%• Increasing the coverage of language identification systems by extending the number of languages that are recognizable, e.g., Xia et al. (2010) trained a system to identify over 1,000 languages, whereas Brown (2014) de- veloped a language identification tool able to discriminate between over 1,300 languages.
+%• Improving the robustness of language identification systems, e.g., by training on multiple domains and various text types (Lui and Baldwin, 2011).
+%• Handling non-standard texts, e.g., very short (Zubiaga et al., 2014) or involving code-switching (Solorio et al., 2014).
+%• Discriminating between very similar lan- guages (Tiedemann and Ljubesˇic ́, 2012), lan- guage varieties (Zampieri et al., 2014), and dialects (Sadat et al., 2014; Malmasi et al., 2015).
+
+
+
+Brown 2012, 2013, 2014 (USED A 50 TO 1000 LINES FOR TESTING. WEIRD) is trained on up to 1366 languages, but it is predominantly trained and tested on Bible, Wikipedia and Europarl corpus of European
+parliamentary proceedings (Koehn, 2005FIX CITATION), and even though it has a very high accuracy, it is unclear how well it performs on out-of domain data. Thus we should not only concentrate on increasing the coverage, but also simultaneously  improving the robustness by building systems that either trained on more domains or not as domain-dependant, thus more general. 
+
+
+
+
+When talking about language identification systems, we need to focus not only on the algorithms, but also on languages, how well the models performs within different domains, ho many languages do they support, and if they can be retrained on more languages, does the performance stay the same. on what size of the text can the predication be accurate enough? is it a whole document? How long is that document? a sentence? a word?
+what is the representation used for the training? how are the systems evaluated.
+
+A full list of systems discussed can be found in TABLE.
+\section{From DSL}
+\label{intro}
+
+The problem of automatic language identification has been a popular task for at least the last 25 years. From early on, different solutions showed very high results \parencite{cavnar1994n,dunning1994statistical}, while the more recent models achieve near-perfect accuracies.
+
+Distinguishing closely-related languages, however, still remains a challenge. The \textit{Discriminating between similar languages} (DSL) shared task \parencite{vardial2017report} is aimed at solving this problem. For this year's task our team (mm\_lct) built a model that discriminates between 14 languages or language varieties across 6 language groups (which had two or three languages or language varieties in them).\footnote{The term \textit{language} shall henceforth be used for both `language' and `language variety'.}
+
+The most popular of the more recent systems, such as \texttt{langid.py} \parencite{lui2012langid} and CLD/CLD2\footnote{\texttt{https://github.com/CLD2Owners/cld2}} produce very good results based on datasets containing fewer than 100 languages, but even a model trained on as many as 131 languages \parencite{kocmi2017lanidenn} and whatlang \parencite{brown2013selecting} with trained on 184 and 1100 languages, are not able to distinguish closely-related (and therefore very similar) languages and dialects to a satisfying degree, at least not to the extent of the data available.
+
+%  \todo[inline]{overview of our tasks and motivation\\With neural systems overtaking the NLP world, we wanted to see how traditional systems compare with them. - Any way to make it smart? All the mentions of last year's papers are in the related work :(}
+
+As part of the DSL 2017 shared task we chose to further explore traditional linear approaches, as well as deep learning methods. In the next Section we shortly discuss previous approaches to the task of discriminating between similar languages. Then in Section \ref{method} we describe our systems and the data, followed by the results in Section \ref{results}, which are discussed in Section \ref{discussion}. We conclude in Section \ref{conclusion}.
+
+%This paper represents an example of how a system description paper may be structured. A bib file with relevant references is also included.
+%\\
+
+%{\bf** PLEASE NOTE: If you participated in multiple tasks and your systems are different, you may consider submitting one paper per task. This can help you write a more task-oriented paper.}
+%\\
+
+%We would like to ensure that future readers of your paper can find the relevant task description, data and results. So, we ask that you cite the shared task report paper \parencite{vardial2017report} in your introduction.
+%\\
+
+%You could begin with a brief description of the task and an overview of your approach. 
+
+
+%\section{Related Work}\label{relwork}
+
+
+
+%\\
+%In this section you can briefly describe other work in this area.
+%\\
+
+%\textit{For DSL, useful details can be found in the analysis by \newcite{dslrec:2016}. This is a good general paper to cite for this task.}
+%\\
+
+%\textit{You can also discuss how your system relates to other work in this area. For example, you can compare the approach to the winners of the previous task: \parencite{malmasi-dras:2015:LT4VarDial} and \parencite{goutte-leger:2015:LT4VarDial}.}
+
+%\textit{You may also wish to refer to the DSL shared task from last year \parencite{dsl2016}.}
+%\\
+Even though a number of researches in dialect identification have been conducted, \parencite[among many others]{tiedemann-ljubesic:2012:COLING,lui2013classifying,maier2014language,ljubesic2015discriminating}, they mostly deal with particular language groups or language variations. We saw as our goal to create a language identifier that is able to produce comparable results for languages within all provided groups with the same set of features for every language group, so that it can be expanded outside those languages provided by the DSL shared task without any changes other than to the training corpus -- as to make the system as language-independent and universal as possible.
+
+Most of the language identifiers that use linear classifiers rely on character $n$-gram models \parencite{carter2011semi,ng2011improving,zampieri2012automatic} and combinations of character and word $n$-grams \parencite{milne2012study,vogel2012robust,goldszmidt2013boot}, also including top systems from previous DSL shared tasks \parencite{goutte-leger:2015:LT4VarDial,malmasi-dras:2015:LT4VarDial,ccoltekin-rama:2016:VarDial3}.
+
+The overviews of the previous DSL shared tasks \parencite{zampieri:2014:VarDial,zampieri:2015:LT4VarDial,dslrec:2016} showed that SVMs always produce some of the top results in this task, especially when tested on same-domain datasets \parencite{ccoltekin-rama:2016:VarDial3}. Thus, we chose to put our efforts into improving upon SVM approaches, but still decided to experiment with an neural network to see if we could get comparable results, while using fewer features and reducing the chance of overfitting.
+
+The popularity of using NNs for NLP tasks is growing. A few neural language identifiers already exist as well \parencite[among others]{tian2003scalable,takcci2012minimal,simoes2014language}, however on average traditional systems still seem to outperform them. The results of the DSL 2016 shared task also show the same tendency overall \parencite{bjerva:2016:VarDial3,cianflone-kosseim:2016:VarDial3,ccoltekin-rama:2016:VarDial3,dsl2016}.%\todo{"In case these would be of any interest, here’s a list of articles where
+%neural networks have been used for language identification before 2015.
+
+%Batchelder (1992)
+%MacNamara, Cunningham, and Byrne (1998)
+%Riis, Pedersen, and Jensen (2001)
+%Tian and Suontausta (2003)
+%Bilcu and Astola (2006, 2007)
+%Sagiroglu, Yavanoglu, and Guven (2007)
+%Selamat, Ng, and Mikami (2007)
+%Selamat, Ng, and Ibrahim (2007)
+%Ng and Selamat (2008)
+%Selamat and Ng (2008)(x3)
+%Noh et al. (2009)
+%Verma, Lee, and Zakos (2009)
+%Al-Dubaee et al. (2010)
+%Suresh Babu and Pavan Kumar (2010)
+%Ng (2010)
+%Selamat and Ng (2011)
+%Bayrak, Takçi, and Eminli (2012)
+%Takçı and Ekinci (2012)
+%Hayta, Takci, and Eminli (2013)
+%Barman et al. (2014)
+%Simões, Almeida, and Byers (2014)
+%Cazamias, Dixit, and Marek (2015)
+%Chang and Lin (2015)"} 
+
+
+\section{Related Work}\label{relwork}
+
+
+
+%\\
+%In this section you can briefly describe other work in this area.
+%\\
+
+%\textit{For DSL, useful details can be found in the analysis by \newcite{dslrec:2016}. This is a good general paper to cite for this task.}
+%\\
+
+%\textit{You can also discuss how your system relates to other work in this area. For example, you can compare the approach to the winners of the previous task: \parencite{malmasi-dras:2015:LT4VarDial} and \parencite{goutte-leger:2015:LT4VarDial}.}
+
+%\textit{You may also wish to refer to the DSL shared task from last year \parencite{dsl2016}.}
+%\\
+Even though a number of researches in dialect identification have been conducted, \parencite[among many others]{tiedemann-ljubesic:2012:COLING,lui2013classifying,maier2014language,ljubesic2015discriminating}, they mostly deal with particular language groups or language variations. We saw as our goal to create a language identifier that is able to produce comparable results for languages within all provided groups with the same set of features for every language group, so that it can be expanded outside those languages provided by the DSL shared task without any changes other than to the training corpus -- as to make the system as language-independent and universal as possible.
+
+Most of the language identifiers that use linear classifiers rely on character $n$-gram models \parencite{carter2011semi,ng2011improving,zampieri2012automatic} and combinations of character and word $n$-grams \parencite{milne2012study,vogel2012robust,goldszmidt2013boot}, also including top systems from previous DSL shared tasks \parencite{goutte-leger:2015:LT4VarDial,malmasi-dras:2015:LT4VarDial,ccoltekin-rama:2016:VarDial3}.
+
+The overviews of the previous DSL shared tasks \parencite{zampieri:2014:VarDial,zampieri:2015:LT4VarDial,dslrec:2016} showed that SVMs always produce some of the top results in this task, especially when tested on same-domain datasets \parencite{ccoltekin-rama:2016:VarDial3}. Thus, we chose to put our efforts into improving upon SVM approaches, but still decided to experiment with an neural network to see if we could get comparable results, while using fewer features and reducing the chance of overfitting.
+
+The popularity of using NNs for NLP tasks is growing. A few neural language identifiers already exist as well \parencite[among others]{tian2003scalable,takcci2012minimal,simoes2014language}, however on average traditional systems still seem to outperform them. The results of the DSL 2016 shared task also show the same tendency overall \parencite{bjerva:2016:VarDial3,cianflone-kosseim:2016:VarDial3,ccoltekin-rama:2016:VarDial3,dsl2016}.%\todo{"In case these would be of any interest, here’s a list of articles where
+%neural networks have been used for language identification before 2015.
+
+%Batchelder (1992)
+%MacNamara, Cunningham, and Byrne (1998)
+%Riis, Pedersen, and Jensen (2001)
+%Tian and Suontausta (2003)
+%Bilcu and Astola (2006, 2007)
+%Sagiroglu, Yavanoglu, and Guven (2007)
+%Selamat, Ng, and Mikami (2007)
+%Selamat, Ng, and Ibrahim (2007)
+%Ng and Selamat (2008)
+%Selamat and Ng (2008)(x3)
+%Noh et al. (2009)
+%Verma, Lee, and Zakos (2009)
+%Al-Dubaee et al. (2010)
+%Suresh Babu and Pavan Kumar (2010)
+%Ng (2010)
+%Selamat and Ng (2011)
+%Bayrak, Takçi, and Eminli (2012)
+%Takçı and Ekinci (2012)
+%Hayta, Takci, and Eminli (2013)
+%Barman et al. (2014)
+%Simões, Almeida, and Byers (2014)
+%Cazamias, Dixit, and Marek (2015)
+%Chang and Lin (2015)"}
+
+\section{From proposal}
+
+Language identification is one of the most challenging, yet incredibly relevant tasks in computational linguistics. Well-performing systems are necessary for both conducting linguistic research and creating various applications that work with texts.
+
+There are however very few systems that can identify any minority languages, while many of them have written traditions and are largely represented on the Internet. These language communities are often under-resourced and without language recognition systems they are slowed down in their progress in developing various instruments both for researching the respective languages and for creating tools that have been available in all major languages for a long time.
+
+A sub-task of language identification is identification of languages within multilingual texts. It is a much more challenging task as the identification has to happen on much smaller character sequences (i.e.\ word-level). There have been some attempts of solving this problem for texts written by speakers of certain languages \parencite{nguyen2013word,maharjan2015developing}, but those are pairs of unrelated languages; today's challenge is to figure out the way to distinguish between related languages and languages that have been in a very long contact. This problem can be viewed as quite similar to dialect distinction, as they are both recognised by particular words(/morphemes/syntax) standing out of overall context. Therefore I would like to propose a system that would be a solution to all of these problems at once.
+
+
+Being a novelty in computational linguistics, Neural Networks have not been used much for solving the language identification problem before. In my thesis I would like to take advantage of this method.%\todo{why haven't hey been used much and why do you want to use them?}
+
+
+\subsection{Data}
+
+%- the data section is still pretty short and vague; It would be great to compile an overview of the data you already have, and spell out the data you want to collect (the Twitter corpus you mention in the last section when you refer to Maharjan); related to this is: try to elaborate how you intend to annotate the data (yourself? friends? crowdsourcing? -- at what level? especially when working with code-switched data -- maybe you could actually focus on two angles):
+%  * discriminating closely related languages (not assuming code-switching, this is like more the standard language identification task; here question like how much data is needed? (which you implicitly mention in the method section) are interesting to examine; for example, is there a relation of language closeness and data requirement?
+% * language identification at the finer-grained level (to be able to work with code-switched data; here, think about what Dong did, for instance; they focused on NL and TR, but there were EN tokens also in there..If I recall well they labeled it as 'nl' -- this are assumptions, question them and discuss how you would treat them)
+
+As this problem has been explored before, quite a lot of corpora have been created already. There are traditional monolingual language corpora, code-switching corpora, monolingual twitter corpora \parencite{vrl2014accurate}, code-switching twitter corpora \parencite{maharjan2015developing, vrl2010multilingual}, etc.
+
+As part of this work I would also be building a corpus with larger diversity of phenomena. There are 93 indigenous minority languages spoken just in Russia, according to Ethnologue (\parencite{lewis2009ethnologue}; the number should not be seen as precise because of the language vs.\ dialect uncertainty). These are languages of different families, with different (and similar) writing systems, some them have been in long contact and some have not. Almost all of them have translations of the Bible, Wikipedia articles, blogs and Twitter accounts written entirely in their language, some of them already have annotated corpora. Putting my background of working with languages of Russia and being a native speaker of Russian to use I could create a languages of Russia database to test how well language identification works on less explored languages.
+
+
+
+
+\subsection{Method}
+
+There are multiple open-source language identification systems available, including \texttt{langid.py} \parencite{lui2012langid}, whatlang \parencite{brown2013selecting}, YALI \parencite{majlivs2012yet}, TextCat \parencite{cavnar1994n}, MSR-LID \parencite{goldszmidt2013boot}, etc. They however were trained on different data and therefore their performance is not comparable, as there is a high possibility that they only perform well within their own domains. Moreover, obviously some languages are easier to distinguish between than others and the distribution within those systems might be very different.
+
+%CLD2 \parencite{mccandless2010accuracy}\\
+%LangDetect (Nakatani, 2010)\\
+%LDIG (Nakatani, 2012)\\
+
+As part of the thesis work I will train existing systems on datasets of each other in order to have a proper comparison and to be able to see which are the strong suits of one system against the other (i.e.\ one works better with sorter sequences, one performs properly only on social media, good to distinguish languages of different families, etc.). By training the systems on all datasets together and in different combinations we'll be able to build a better training set and see if a combination of classifiers might be a good solution.
+
+The focus will be on the closely related languages and languages that have been in a very long contact (and therefore, share a lot of lexicon). Therefore, a finer-grained classification for shorter sequences will be needed. Language identification within multilingual texts will not be a priority, and the system will not be trained on such data. However, languages that borrowed large amounts of lexicon from contact languages can be considered very similar to multilingual texts, and thus I will test the system on code-switching data as well to see how it performs. 
+
+The main approach will be trying to use Deep Learning in order to see if it improves the performance. 
+In order for the system to perform well on dialect distinction task and multilingual texts the identification will have to be on n-gram or word-level, or a combination of two. 
+
+I am however restricted by computing-power limitations and therefore a scheme of reducing the training data will have to be introduced as well.
+
+Therefore, the main goals of the project are to reduce the training data needed for building a comparable to state-of-the-art language identification system, as well as focusing on large minority languages and closely related data and dialects. The minimum requirement for the data is to be determined: the initial approach is going to be `the more the better', and tested throughout the process (on different simpler classifiers) in order to see whether the results keep improving with the amount of data and whether certain languages require more data due to a lot of borrowings from other languages, etc.

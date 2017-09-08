@@ -1,0 +1,95 @@
+\documentclass[10pt,oneside]{book}
+% \usepackage[margin=1in]{geometry}
+\usepackage{geometry}
+\usepackage[utf8x]{inputenc}
+\usepackage{calc,fp}
+\usepackage{graphicx}
+\usepackage{wrapfig, longtable}
+\usepackage{pgfplots}
+\usepackage[noend, ruled]{algorithm2e}
+\usepackage{lmodern, amsmath, slantsc}
+\usepackage{emptypage}
+\usepackage{hyperref, caption}
+\usepackage[american]{babel}
+\usepackage[ddmmyyyy]{datetime}
+\usepackage{todonotes}
+\usepackage[explicit]{titlesec}
+\usepackage[backend=biber,style=apa]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+
+\bibliography{bib.bib}
+
+\newlength{\drop}
+
+\title{Master Thesis}
+\author{Martin Kroon}
+\date{December 2015}
+
+\titleformat{\chapter}[display]
+    {\bfseries\Huge}
+    {\thechapter.~#1}
+    {0.5ex}
+    {}
+    [\vspace{-50pt}]
+\titleformat{name=\chapter,numberless}[display]
+    {\bfseries\Huge}
+    {#1}
+    {0.5ex}
+    {}
+    [\vspace{-50pt}]
+\titlespacing*{\chapter}{0pt}{0pt}{30pt}
+
+\newcommand{\possessivecite}[1]{\citeauthor{#1}'s (\citeyear{#1})}
+\newcommand{\repeatcaption}[2]{%
+  \renewcommand{\thefigure}{\ref{#1}}%
+  \captionsetup{list=no}%
+  \caption{#2 (repeated from page \pageref{#1})}%
+}
+
+\allowdisplaybreaks
+\setlength{\jot}{5pt}
+
+% \makeatletter
+% \newcommand\appendix@chapter[1]{%
+%   \refstepcounter{chapter}%
+%   \orig@chapter*{Appendix \@Alph\c@chapter: #1}%
+%   \addcontentsline{toc}{chapter}{Appendix \@Alph\c@chapter: #1}%
+% }
+% \let\orig@chapter\chapter
+% \g@addto@macro\appendix{\let\chapter\appendix@chapter}
+% \makeatother
+
+
+\begin{document}
+
+\let\oldequation=\equation
+\let\endoldequation=\endequation
+\renewenvironment{equation}{\vspace{.125in}\begin{oldequation}}{\end{oldequation}\vspace{.125in}}
+
+\frontmatter
+\input{chapters/titlepage.tex}
+
+\newgeometry{margin=2in}
+\input{chapters/signature.tex}
+\input{chapters/abstract.tex}
+\input{chapters/acknowledgement.tex}
+\restoregeometry
+\tableofcontents
+
+\mainmatter
+\input{chapters/intro.tex}
+\input{chapters/background.tex}
+\input{chapters/data.tex}
+\input{chapters/methods.tex}
+\input{chapters/results.tex}
+\input{chapters/conclusion.tex}
+
+
+\printbibliography[heading=bibintoc]
+
+
+% \appendix
+% \addcontentsline{toc}{part}{\appendixname}
+% \input{chapters/appendix.tex}
+
+\end{document}

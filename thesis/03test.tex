@@ -1,0 +1,114 @@
+\section{Method}\label{chap:meth}
+
+As previously discussed, there are a number of different ways to
+appraoch authorship attribution tasks. Specifically, we experiment with
+both authorhip identification and authorship verification tasks, using
+different methods. These methods can be broadly broken into
+
+\begin{itemize}
+\item
+  Statistical methods, in which we compare texts using basic statistical
+  methods.
+\item
+  Support vector machine methods, in which we use discriminative
+\item
+  Neural methods, in which we use neural network models to classify
+  texts.
+\end{itemize}
+
+\subsection{Basic statistical
+approaches}\label{basic-statistical-approaches}
+
+These are useful because they aren't a `black box'. We can provide the
+full reasoning to the user about why we have classified texts.
+
+\subsubsection{Authorship identification
+tasks}\label{authorship-identification-tasks}
+
+??
+
+\subsubsection{Authorship verification
+tasks}\label{authorship-verification-tasks}
+
+To decide if two texts are written by the same author, we can compare
+various features in each text to some large corpus of (preferably
+similar) texts. If, for example, both texts have higher-than-average
+sentence length, a worse-than-average readability score, a higher than
+average adjective ratio and a lower than usual verb ratio, then we have
+some evidence that they are both written by the same author. If one text
+has longer-than-average sentences while the other has short-than-average
+sentences, we can take this as evidence against the hypothesis that both
+authors are the same.
+
+There are two ways we can do this. We can take a binary approach
+(whenever two features are both higher than average or both lower than
+average, we can see this as a `supporting point', and whenever one text
+is higher than average and the other is lower than average for a
+specific feature, we take this as an `opposing point'. If the two texts
+have more supporting than opposing points, we predict that they are the
+same author.
+
+A more refined way is to look do a correlation test between the two sets
+of scores. If one text has a much higher than average sentence length,
+and the other has only a slightly higher than average sentene length,
+then this should be less indicative of same-author than if the two texts
+both have a much higher than average sentence length. If two texts are
+written by the same author, we expect their features to correlate quite
+strongly. If the texts are written by different authors, we expect a
+weaker correlation.
+
+\subsection{Support vector machine
+approaches}\label{support-vector-machine-approaches}
+
+These tend to be more scalable than neural methods. They are robust and
+work well on small or large datasets.
+
+\subsubsection{Authorship identification
+tasks}\label{authorship-identification-tasks-1}
+
+Classic text classification task\ldots{}
+
+\subsubsection{Authorship verification
+tasks}\label{authorship-verification-tasks-1}
+
+Normally for text classification tasks, we input N texts and output N
+labels. For authorship verification, we have to look at pairs of texts.
+We don't want to learn rules of the patter``if either text contains the
+word \emph{discombobulation} then the texts are likely to be written by
+the same author'' which is unfortunately the kind of rule that a
+traditional classifier would learn if we were to simply concatenate the
+two texts.
+
+By subtracting Tf-IDF vectors of each text, we get a feature set that is
+more meaningful. The SVM can learn rules such as `if the count of the
+word ``the'' is similar in both texts, then it is likely that they are
+written by the same author''.
+
+\subsection{Neural network approaches}\label{neural-network-approaches}
+
+\subsubsection{Authorship identification
+tasks}\label{authorship-identification-tasks-2}
+
+\paragraph{Discriminative classifiers}\label{discriminative-classifiers}
+
+\paragraph{Generative language
+modelling}\label{generative-language-modelling}
+
+We can learn a language model for every author. This is not efficient,
+but is good for cases where we want to identify a specific author.
+
+\subsubsection{Authorship verification
+tasks}\label{authorship-verification-tasks-2}
+
+\paragraph{Discriminative
+classifiers}\label{discriminative-classifiers-1}
+
+\paragraph{Generative language
+modelling}\label{generative-language-modelling-1}
+
+Bagnal does this\ldots{}
+
+\paragraph{Siamese networks}\label{siamese-networks}
+
+The nicest way to model the problem, but very tricky to get right.
+Unstable.

@@ -1,0 +1,12 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {5.1}{\ignorespaces The Euclidean distance between text-pairs for the training set (training on the test set).}}{52}
+\contentsline {figure}{\numberline {5.2}{\ignorespaces The Euclidean distance between text-pairs for the test set (training on the training set)}}{52}
+\contentsline {figure}{\numberline {5.3}{\ignorespaces The Siamese learned distance between text-pairs for the training set (training on the test set). }}{52}
+\contentsline {figure}{\numberline {5.4}{\ignorespaces The Siamese learned distance between text-pairs for the test set (training on the training set) }}{52}
+\addvspace {10\p@ }
+\contentsline {figure}{\numberline {6.1}{\ignorespaces The effect of the threshold on the different datasets. Generally setting the threshold too low or too high worsens the results.}}{55}
+\addvspace {10\p@ }
